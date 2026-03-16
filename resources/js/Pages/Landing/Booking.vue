@@ -2,13 +2,13 @@
     <!-- Page Title -->
     <div class="page-title light-background">
         <div class="container d-lg-flex justify-content-between align-items-center">
-            <h1 class="mb-2 mb-lg-0">Booking</h1>
+            <h1 class="mb-2 mb-lg-0">{{ $t('front.booking.title') }}</h1>
             <nav class="breadcrumbs">
                 <ol>
                     <li>
-                        <Link :href="route('home')">Home</Link>
+                        <Link :href="route('home')">{{ $t('front.header.home') }}</Link>
                     </li>
-                    <li class="current">Booking</li>
+                    <li class="current">{{ $t('front.booking.title') }}</li>
                 </ol>
             </nav>
         </div>
@@ -22,8 +22,8 @@
             <div class="reservation-wrapper">
 
                 <div class="reservation-header text-center" data-aos="fade-up" data-aos-delay="200">
-                    <h2>Reserve Your Stay</h2>
-                    <p class="lead">Experience unmatched hospitality with our streamlined booking process</p>
+                    <h2>{{ $t('front.booking.subtitle') }}</h2>
+                    <p class="lead">{{ $t('front.booking.description') }}</p>
                 </div>
 
                 <div class="booking-grid d-flex gap-5">
@@ -34,11 +34,11 @@
                             </div>
                             <div class="card-body room-details">
                                 <Link :href="route('roomTypes.show', {roomType: roomType.slug, filters})"><h3
-                                    class="text-lg-start">{{ roomType.name }}l</h3></Link>
+                                    class="text-lg-start">{{ roomType.name }}</h3></Link>
                                 <div class="room-capacity mb-4">
                                     <div class="capacity-item">
                                         <i class="bi bi-people"></i>
-                                        <span>Up to {{ roomType.max_total_guests }} guests</span>
+                                        <span>{{ $t('front.booking.up_to_guests', { count: roomType.max_total_guests }) }}</span>
                                     </div>
                                     <div class="capacity-item">
                                         <i class="bi bi-grid"></i>
@@ -58,57 +58,56 @@
                                         <i class="bi bi-star-fill"></i>
                                         <i class="bi bi-star-fill"></i>
                                     </div>
-                                    <span class="reviews-count">(127 reviews)</span>
+                                    <span class="reviews-count">({{ $t('front.booking.reviews', { count: 127 }) }})</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="hotel-highlights"
                              v-if="form.adults && form.children !== '' && form.rooms && form.check_in && form.check_out">
-                            <h3 class="text-lg-start m-0">Your booking details</h3>
+                            <h3 class="text-lg-start m-0">{{ $t('front.booking.your_booking_details') }}</h3>
                             <div class="d-flex gap-4 mt-4 pb-3"
                                  style="border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);">
                                 <div class="d-flex flex-column gap-2" style="margin-right: 5px">
-                                    <span>Check-in</span>
+                                    <span>{{ $t('front.booking.check_in') }}</span>
                                     <span class="bold text-black"
                                           style="font-weight: 700">{{ moment(form.check_in).format('ddd, MMM D, Y') }}</span>
                                     <span class="text-secondary" style="font-size: 14px">4:00 PM – 11:00 PM</span>
                                 </div>
                                 <div class="d-flex flex-column gap-2"
                                      style="border-left: 1px solid color-mix(in srgb, var(--default-color), transparent 90%); padding-left: 2rem">
-                                    <span>Check-out</span>
+                                    <span>{{ $t('front.booking.check_out') }}</span>
                                     <span class="bold text-black"
                                           style="font-weight: 700">{{ moment(form.check_out).format('ddd, MMM D, Y') }}</span>
                                     <span class="text-secondary" style="font-size: 14px">4:00 PM – 11:00 PM</span>
                                 </div>
                             </div>
                             <div class="mt-4">
-                                <div class="mb-1">You selected</div>
+                                <div class="mb-1">{{ $t('front.booking.you_selected') }}</div>
                                 <div class="bold text-black" style="font-weight: 700">
-                                    {{ diffDays(form.check_out, form.check_in) }} nights, {{ form.rooms }} room for
-                                    {{ form.adults }} adults{{ form.children > 0 ? `, ${form.children} children` : '' }}
+                                    {{ $t('front.booking.nights_count', { count: diffDays(form.check_out, form.check_in) }) }}, {{ $t('front.booking.rooms_count', { count: form.rooms }) }} {{ $t('front.booking.adults_count', { count: form.adults }) }}{{ form.children > 0 ? `, ${$t('front.booking.children_count', { count: form.children })}` : '' }}
                                 </div>
                             </div>
                         </div>
 
                         <div class="hotel-highlights" v-if="prices">
-                            <h3 class="text-lg-start m-0">Your price summary</h3>
+                            <h3 class="text-lg-start m-0">{{ $t('front.booking.price_summary') }}</h3>
                             <div class="d-flex flex-column gap-4 mt-4">
                                 <div class="d-flex justify-content-between">
-                                    <span><i class="bi bi-house me-2"></i>Room</span>
+                                    <span><i class="bi bi-house me-2"></i>{{ $t('front.booking.room') }}</span>
                                     <span>{{ money_format(prices.totalRooms) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    <span><i class="bi bi-egg-fried me-2"></i>Meal Plan</span>
+                                    <span><i class="bi bi-egg-fried me-2"></i>{{ $t('front.booking.meal_plan') }}</span>
                                     <span>{{ money_format(prices.mealPlan) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    <span><i class="bi bi-bank me-2"></i>Tax </span>
+                                    <span><i class="bi bi-bank me-2"></i>{{ $t('front.booking.tax') }} </span>
                                     <span>{{ money_format(prices.tax) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="bold text-black" style="font-weight: 700;"><i
-                                        class="bi bi-wallet2 me-2"></i>Total Price</span>
+                                        class="bi bi-wallet2 me-2"></i>{{ $t('front.booking.total_price') }}</span>
                                     <span class="bold text-black" style="font-weight: 700;">{{
                                             money_format(prices.total)
                                         }}</span>
@@ -119,15 +118,15 @@
                         <div class="booking-guarantees">
                             <div class="guarantee-item">
                                 <i class="bi bi-shield-check"></i>
-                                <span>Secure Booking</span>
+                                <span>{{ $t('front.booking.secure_booking') }}</span>
                             </div>
                             <div class="guarantee-item">
                                 <i class="bi bi-arrow-clockwise"></i>
-                                <span>Flexible Cancellation</span>
+                                <span>{{ $t('front.booking.flexible_cancellation') }}</span>
                             </div>
                             <div class="guarantee-item">
                                 <i class="bi bi-telephone"></i>
-                                <span>24/7 Support</span>
+                                <span>{{ $t('front.booking.support') }}</span>
                             </div>
                         </div>
                     </div>
@@ -140,10 +139,10 @@
                             <form class="reservation-form" method="POST" @submit.prevent="submitForm">
 
                                 <div class="form-section">
-                                    <h4>Booking Details</h4>
+                                    <h4>{{ $t('front.booking.details') }}</h4>
                                     <div class="form-grid">
                                         <div class="form-group">
-                                            <label for="check_in" class="form-label">Check In</label>
+                                            <label for="check_in" class="form-label">{{ $t('front.booking.check_in') }}</label>
                                             <input type="date" class="form-control" id="check_in"
                                                    v-model="form.check_in"
                                                    :min="currentDate()"
@@ -154,7 +153,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="check_out" class="form-label">Check Out</label>
+                                            <label for="check_out" class="form-label">{{ $t('front.booking.check_out') }}</label>
                                             <input type="date" class="form-control" id="check_out"
                                                    v-model="form.check_out"
                                                    :min="addDays(Date.now(), 1)"
@@ -165,7 +164,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="adults" class="form-label">Adults</label>
+                                            <label for="adults" class="form-label">{{ $t('front.booking.adults') }}</label>
                                             <input type="number" min="1" v-model="form.adults" class="form-control"
                                                    :class="{ 'is-invalid': form.errors.adults }"
                                                    id="adults" required="">
@@ -174,7 +173,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="children" class="form-label">Children</label>
+                                            <label for="children" class="form-label">{{ $t('front.booking.children') }}</label>
                                             <input type="number" min="0" v-model="form.children" class="form-control"
                                                    :class="{ 'is-invalid': form.errors.children }"
                                                    id="children" required="">
@@ -191,7 +190,7 @@
                                                     <template #default="{ item, index }" :key="index">
                                                         <td class="age">
                                                             <select-box
-                                                                placeholder="Choose Your Child Age"
+                                                                :placeholder="$t('front.booking.choose_child_age')"
                                                                 :options="ages"
                                                                 v-model="item.age"
                                                                 :error="item.errors?.age"
@@ -203,7 +202,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="room" class="form-label">Room</label>
+                                            <label for="room" class="form-label">{{ $t('front.booking.room') }}</label>
                                             <input type="number" min="1" v-model="form.rooms" class="form-control"
                                                    id="room"
                                                    :class="{ 'is-invalid': form.errors['rooms.0.quantity']}"
@@ -213,7 +212,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="smoking" class="form-label">Meal Plan</label>
+                                            <label for="smoking" class="form-label">{{ $t('front.booking.meal_plan') }}</label>
                                             <select class="form-select"
                                                     id="smoking" :selected="form.meal_plan_id"
                                                     v-model="form.meal_plan_id"
@@ -231,14 +230,14 @@
                                 </div>
 
                                 <div class="form-section">
-                                    <h4>Room Preferences</h4>
+                                    <h4>{{ $t('front.booking.preferences') }}</h4>
                                     <div class="form-group">
-                                        <label for="smoking" class="form-label">Smoking Preference</label>
+                                        <label for="smoking" class="form-label">{{ $t('front.booking.smoking_preference') }}</label>
                                         <select class="form-select" id="smoking" v-model="form.smoking_preference"
                                                 :class="{ 'is-invalid': form.errors.smoking_preference }">
                                             <option v-for="[id, label] in Object.entries(smoking)" :value="id"
                                                     :key="id">
-                                                {{ label }}
+                                                {{ $t('front.booking.smoking_preferences.' + id) }}
                                             </option>
                                         </select>
                                         <div class="invalid-feedback" v-if="form.errors.smoking_preference">
@@ -246,31 +245,31 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="additional-notes" class="form-label">Additional Requirements</label>
+                                        <label for="additional-notes" class="form-label">{{ $t('front.booking.additional_requirements') }}</label>
                                         <textarea class="form-control" id="additional-notes"
                                                   v-model="form.special_requests"
                                                   rows="3"
-                                                  placeholder="Please specify any special arrangements or preferences..."></textarea>
+                                                  :placeholder="$t('front.booking.special_requests_placeholder')"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-section">
-                                    <h4>Guest Information</h4>
+                                    <h4>{{ $t('front.booking.guest_info') }}</h4>
                                     <div class="form-grid">
                                         <div class="form-group full-width">
-                                            <label for="primary-guest" class="form-label">Primary Guest Name</label>
+                                            <label for="primary-guest" class="form-label">{{ $t('front.booking.primary_guest_name') }}</label>
                                             <input type="text" class="form-control" id="primary-guest"
                                                    :value="customer.full_name"
                                                    name="primary_guest" required="" disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="contact-email" class="form-label">Email Address</label>
+                                            <label for="contact-email" class="form-label">{{ $t('front.booking.email_address') }}</label>
                                             <input type="email" class="form-control" id="contact-email"
                                                    :value="customer.email"
                                                    name="contact_email" required="" disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="contact-phone" class="form-label">Mobile</label>
+                                            <label for="contact-phone" class="form-label">{{ $t('front.booking.mobile') }}</label>
                                             <input type="tel" class="form-control" id="contact-phone"
                                                    :value="customer.mobile"
                                                    name="contact_phone" required="" disabled>
@@ -281,7 +280,7 @@
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-calendar-plus me-2"></i>
-                                        Submit Reservation Request
+                                        {{ $t('front.booking.submit') }}
                                     </button>
                                 </div>
 
@@ -335,11 +334,16 @@ const form = useForm({
     children_age: Array.from({length: filters.children ?? 0}, () => ({age: ''})),
 })
 
-const ages = Object.fromEntries(
-    Array.from({length: 13}, (_, i) => [i, `${i} years old`])
-);
+const ages = ref({});
+
+const updateAges = () => {
+    ages.value = Object.fromEntries(
+        Array.from({length: 13}, (_, i) => [i, usePage().props.translations.front.booking.years_old.replace(':count', i)])
+    );
+};
 
 onMounted(() => {
+    updateAges();
     const {adults, children, rooms, meal_plan_id, children_age, check_in, check_out} = form;
     if (adults && children && rooms && meal_plan_id && children_age && check_in && check_out) {
         showPrices([adults, children, rooms, meal_plan_id, children_age, check_in, check_out]);

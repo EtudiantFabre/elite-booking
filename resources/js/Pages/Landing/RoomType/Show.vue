@@ -2,12 +2,12 @@
     <!-- Page Title -->
     <div class="page-title light-background">
         <div class="container d-lg-flex justify-content-between align-items-center">
-            <h1 class="mb-2 mb-lg-0">Room Details</h1>
+            <h1 class="mb-2 mb-lg-0">{{ $t('front.room_details.title') }}</h1>
             <nav class="breadcrumbs">
                 <ol>
-                    <li><Link :href="route('home')">Home</Link></li>
-                    <li><Link :href="route('roomTypes.index')">Rooms</Link></li>
-                    <li class="current">Room Details</li>
+                    <li><Link :href="route('home')">{{ $t('front.header.home') }}</Link></li>
+                    <li><Link :href="route('roomTypes.index')">{{ $t('front.rooms.title') }}</Link></li>
+                    <li class="current">{{ $t('front.room_details.title') }}</li>
                 </ol>
             </nav>
         </div>
@@ -39,14 +39,14 @@
                                 <i class="bi bi-star-fill"></i>
                                 <i class="bi bi-star-fill"></i>
                             </div>
-                            <span class="reviews-count">(127 reviews)</span>
+                            <span class="reviews-count">({{ $t('front.booking.reviews', { count: 127 }) }})</span>
                         </div>
                         <h1 class="room-title">{{ roomType.name}}</h1>
                         <p class="room-tagline" v-html="roomType.short_description"></p>
                         <div class="room-capacity mb-4">
                             <div class="capacity-item">
                                 <i class="bi bi-people"></i>
-                                <span>Up to {{roomType.max_total_guests}} guests</span>
+                                <span>{{ $t('front.booking.up_to_guests', { count: roomType.max_total_guests }) }}</span>
                             </div>
                             <div class="capacity-item">
                                 <i class="bi bi-grid"></i>
@@ -59,16 +59,16 @@
                         </div>
                         <div class="room-price">
                             <span class="price-amount">{{ money_format(roomType.price) }}</span>
-                            <span class="price-period">per night</span>
+                            <span class="price-period">{{ $t('front.room_details.per_night') }}</span>
                         </div>
-                        <Link :href="route('bookings.create', {filters, roomType: roomType.slug})" class="btn btn-book-now">Book Now</Link>
+                        <Link :href="route('bookings.create', {filters, roomType: roomType.slug})" class="btn btn-book-now">{{ $t('front.room_details.book_now') }}</Link>
                     </div>
                 </div>
             </div>
 
             <!-- Room Gallery -->
             <div class="room-gallery mb-5" v-if="roomType.gallery">
-                <h3 class="section-subtitle mb-4" >Room Gallery</h3>
+                <h3 class="section-subtitle mb-4" >{{ $t('front.room_details.gallery') }}</h3>
                 <div class="gallery-carousel swiper init-swiper" data-aos="fade-up" data-aos-delay="200">
                     <swiper
                         :slides-per-view="1"
@@ -121,7 +121,7 @@
                         <div class="highlight-icon">
                             <i class="bi bi-star"></i>
                         </div>
-                        <h4>Premium Experience</h4>
+                        <h4>{{ $t('front.room_details.premium_experience') }}</h4>
                         <p>"The most beautiful suite we've ever stayed in. The ocean view is absolutely breathtaking and the attention to detail is remarkable."</p>
                         <div class="quote-author">
                             <span>- Sarah M., Verified Guest</span>
@@ -132,7 +132,7 @@
 
             <!-- Amenities and Features -->
             <div class="room-amenities mb-5" data-aos="fade-up" data-aos-delay="200">
-                <h3 class="section-subtitle mb-4">Room Amenities</h3>
+                <h3 class="section-subtitle mb-4">{{ $t('front.room_details.amenities') }}</h3>
                 <div class="grid gap-5" style="--bs-columns: 3;">
                     <div class="g-col-3 w-full" v-for="facility in roomType.facilities">
                         <i class="bi bi-check2 text-success me-1" style="font-size: 18px" />
@@ -145,13 +145,13 @@
             <div class="room-tabs mb-5" data-aos="fade-up" data-aos-delay="200">
                 <ul class="nav nav-tabs" id="room-detailsRoomTabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="room-details-policies-tab" data-bs-toggle="tab" data-bs-target="#room-details-policies" type="button" role="tab">Policies</button>
+                        <button class="nav-link active" id="room-details-policies-tab" data-bs-toggle="tab" data-bs-target="#room-details-policies" type="button" role="tab">{{ $t('front.room_details.tabs.policies') }}</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="room-details-location-tab" data-bs-toggle="tab" data-bs-target="#room-details-location" type="button" role="tab">Location</button>
+                        <button class="nav-link" id="room-details-location-tab" data-bs-toggle="tab" data-bs-target="#room-details-location" type="button" role="tab">{{ $t('front.room_details.tabs.location') }}</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="room-details-services-tab" data-bs-toggle="tab" data-bs-target="#room-details-services" type="button" role="tab">Services</button>
+                        <button class="nav-link" id="room-details-services-tab" data-bs-toggle="tab" data-bs-target="#room-details-services" type="button" role="tab">{{ $t('front.room_details.tabs.services') }}</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="room-detailsRoomTabsContent">
@@ -159,16 +159,16 @@
                         <div class="tab-content-wrapper">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <h6>Check-in / Check-out</h6>
-                                    <p>Check-in: 3:00 PM<br>Check-out: 11:00 AM</p>
+                                    <h6>{{ $t('front.room_details.tabs.check_in_out') }}</h6>
+                                    <p>{{ $t('front.room_details.tabs.check_in_time') }}<br>{{ $t('front.room_details.tabs.check_out_time') }}</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <h6>Cancellation</h6>
-                                    <p>Free cancellation up to 24 hours before arrival</p>
+                                    <h6>{{ $t('front.room_details.tabs.cancellation') }}</h6>
+                                    <p>{{ $t('front.room_details.tabs.cancellation_policy') }}</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <h6>Pets</h6>
-                                    <p>Pet-friendly with additional fee</p>
+                                    <h6>{{ $t('front.room_details.tabs.pets') }}</h6>
+                                    <p>{{ $t('front.room_details.tabs.pets_policy') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -177,21 +177,21 @@
                         <div class="tab-content-wrapper">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h6>Nearby Attractions</h6>
+                                    <h6>{{ $t('front.room_details.tabs.nearby_attractions') }}</h6>
                                     <ul>
-                                        <li>Beach access - 2 minutes walk</li>
-                                        <li>Marina District - 0.5 miles</li>
-                                        <li>Historic Downtown - 1.2 miles</li>
-                                        <li>Shopping Center - 0.8 miles</li>
+                                        <li>{{ $t('front.room_details.tabs.attractions_list.beach') }}</li>
+                                        <li>{{ $t('front.room_details.tabs.attractions_list.marina') }}</li>
+                                        <li>{{ $t('front.room_details.tabs.attractions_list.historic') }}</li>
+                                        <li>{{ $t('front.room_details.tabs.attractions_list.shopping') }}</li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
-                                    <h6>Transportation</h6>
+                                    <h6>{{ $t('front.room_details.tabs.transportation') }}</h6>
                                     <ul>
-                                        <li>Airport shuttle available</li>
-                                        <li>Valet parking - $25/night</li>
-                                        <li>Public transportation nearby</li>
-                                        <li>Car rental desk in lobby</li>
+                                        <li>{{ $t('front.room_details.tabs.transport_list.shuttle') }}</li>
+                                        <li>{{ $t('front.room_details.tabs.transport_list.parking') }}</li>
+                                        <li>{{ $t('front.room_details.tabs.transport_list.public') }}</li>
+                                        <li>{{ $t('front.room_details.tabs.transport_list.rental') }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -201,16 +201,16 @@
                         <div class="tab-content-wrapper">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <h6>Concierge</h6>
-                                    <p>24/7 concierge service for reservations and recommendations</p>
+                                    <h6>{{ $t('front.room_details.tabs.concierge') }}</h6>
+                                    <p>{{ $t('front.room_details.tabs.concierge_desc') }}</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <h6>Room Service</h6>
-                                    <p>Available 6:00 AM - 11:00 PM daily</p>
+                                    <h6>{{ $t('front.room_details.tabs.room_service') }}</h6>
+                                    <p>{{ $t('front.room_details.tabs.room_service_desc') }}</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <h6>Housekeeping</h6>
-                                    <p>Daily housekeeping and turndown service</p>
+                                    <h6>{{ $t('front.room_details.tabs.housekeeping') }}</h6>
+                                    <p>{{ $t('front.room_details.tabs.housekeeping_desc') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -222,15 +222,15 @@
                 <div class="booking-card">
                     <div class="row align-items-center">
                         <div class="col-lg-8">
-                            <h4>Ready to book your stay?</h4>
-                            <p>Experience luxury and comfort in our Deluxe Ocean View Suite. Book now and create unforgettable memories.</p>
+                            <h4>{{ $t('front.room_details.cta_title') }}</h4>
+                            <p>{{ $t('front.room_details.cta_desc') }}</p>
                         </div>
                         <div class="col-lg-4 text-center text-lg-end">
                             <div class="price-display">
                                 <span class="price">{{ money_format(roomType.price) }}</span>
-                                <span class="period">per night</span>
+                                <span class="period">{{ $t('front.room_details.per_night') }}</span>
                             </div>
-                            <Link :href="route('bookings.create', {filters, roomType: roomType.slug})" class="btn btn-primary btn-lg">Check Availability</Link>
+                            <Link :href="route('bookings.create', {filters, roomType: roomType.slug})" class="btn btn-primary btn-lg">{{ $t('front.room_details.check_availability') }}</Link>
                         </div>
                     </div>
                 </div>

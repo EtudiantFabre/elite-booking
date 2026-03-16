@@ -1,9 +1,9 @@
 <template>
-    <Head title="bookings"/>
+    <Head :title="$t('front.customer.bookings.title')"/>
     <div class="container">
         <div class="row g-2 align-items-center mb-4">
             <div class="col">
-                <h2 class="page-title">Bookings</h2>
+                <h2 class="page-title">{{ $t('front.customer.bookings.title') }}</h2>
             </div>
         </div>
 
@@ -11,21 +11,21 @@
             <div class="card-table">
                 <div class="card-header d-block">
                     <div class="row">
-                        <h3 class="card-title mb-0">Bookings</h3>
-                        <p class="text-secondary m-0">List Bookings.</p>
+                        <h3 class="card-title mb-0">{{ $t('front.customer.bookings.title') }}</h3>
+                        <p class="text-secondary m-0">{{ $t('front.customer.bookings.list') }}</p>
                     </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-selectable card-table table-vcenter text-nowrap datatable">
                         <thead>
                         <tr>
-                            <th>Ref Number</th>
-                            <th>Adults</th>
-                            <th>Children</th>
-                            <th>Check in</th>
-                            <th>Check out</th>
-                            <th>Status</th>
-                            <th>Total Price</th>
+                            <th>{{ $t('front.customer.bookings.table.ref') }}</th>
+                            <th>{{ $t('front.customer.bookings.table.adults') }}</th>
+                            <th>{{ $t('front.customer.bookings.table.children') }}</th>
+                            <th>{{ $t('front.customer.bookings.table.check_in') }}</th>
+                            <th>{{ $t('front.customer.bookings.table.check_out') }}</th>
+                            <th>{{ $t('front.customer.bookings.table.status') }}</th>
+                            <th>{{ $t('front.customer.bookings.table.total') }}</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -46,18 +46,18 @@
                                 <div class="dropdown" v-if="Object.values(booking.access).some(per => per)">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
                                             data-bs-toggle="dropdown" aria-expanded="true">
-                                        Actions
+                                        {{ $t('front.customer.bookings.actions') }}
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
                                         <Link :href="route('bookings.success', booking.id)" class="dropdown-item"
                                               v-if="booking.access.show">
                                             <IconEye class="icon icon1"/>
-                                            Show
+                                            {{ $t('front.customer.bookings.show') }}
                                         </Link>
                                         <Link :href="route('bookings.payments.create', booking.id)"
                                               class="dropdown-item" v-if="booking.access.retry">
                                             <IconCreditCard class="icon icon1"/>
-                                            Retry
+                                            {{ $t('front.customer.bookings.retry') }}
                                         </Link>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                         </tr>
                         <tr v-else>
                             <td colspan="7" class="text-center py-3 text-muted">
-                                No bookings found.
+                                {{ $t('front.customer.bookings.not_found') }}
                             </td>
                         </tr>
                         </tbody>

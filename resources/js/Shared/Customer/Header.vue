@@ -18,7 +18,7 @@
                                 :href="route('customer.dashboard')"
                                 :class="{'active': $page.url === route('customer.dashboard', {}, false)}">
                                 <i class="bi bi-house me-2 fs-6"></i>
-                                Home
+                                {{ $t('front.header.home') }}
                             </Link>
                         </li>
                         <li>
@@ -26,7 +26,7 @@
                                 :href="route('customer.bookings.index')"
                                 :class="{'active': $page.url === route('customer.bookings.index', {}, false)}">
                                 <i class="bi bi bi-calendar3 me-2 fs-6"></i>
-                                Bookings
+                                {{ $t('front.header.bookings') }}
                             </Link>
                         </li>
                         <li>
@@ -34,13 +34,13 @@
                                 :href="route('customer.payments.index')"
                                 :class="{'active': $page.url === route('customer.payments.index', {}, false)}">
                                 <i class="bi bi-wallet2 me-2 fs-6"></i>
-                                Payments
+                                {{ $t('front.header.payments') }}
                             </Link>
                         </li>
                         <li class="dropdown">
                             <a href="#profile">
                                 <div class="rounded-5 me-2 mx-1"
-                                     style="background: #ffb700; round: 100%; overflow: hidden">
+                                     style="background: #ffb700; border-radius: 50%; overflow: hidden">
                                     <img width="30" height="30" :src="getMediaUrl(customer.avatar[0], 'thumb')"
                                          alt="avtar"/>
                                 </div>
@@ -51,20 +51,34 @@
                                 <li>
                                     <Link :href="route('customer.profile.edit')" class="d-inline-block">
                                         <i class="bi bi-person me-2" style="font-size: 18px"></i>
-                                        <span>Profile</span>
+                                        <span>{{ $t('front.header.profile') }}</span>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link :href="route('customer.password.edit')" class="d-inline-block">
                                         <i class="bi bi-unlock2 me-2" style="font-size: 18px"></i>
-                                        <span>Change Password</span>
+                                        <span>{{ $t('front.header.change_password') }}</span>
                                     </Link>
                                 </li>
                                 <li>
                                     <a href="" @click.prevent="logoutHandle" class="d-inline-block">
                                         <i class="bi bi-box-arrow-left me-2" style="font-size: 18px"></i>
-                                        <span>Sign Out</span>
+                                        <span>{{ $t('front.header.sign_out') }}</span>
                                     </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown ms-2">
+                            <a href="#">
+                                <span>{{ $page.props.locale === 'fr' ? 'FR' : 'EN' }}</span>
+                                <i class="bi bi-chevron-down toggle-dropdown"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a :href="route('language.switch', 'en')" :class="{'fw-bold': $page.props.locale === 'en'}">English</a>
+                                </li>
+                                <li>
+                                    <a :href="route('language.switch', 'fr')" :class="{'fw-bold': $page.props.locale === 'fr'}">Français</a>
                                 </li>
                             </ul>
                         </li>

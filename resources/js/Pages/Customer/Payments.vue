@@ -1,9 +1,9 @@
 <template>
     <div class="container">
-        <Head title="list payments"/>
+        <Head :title="$t('front.customer.payments.title')"/>
         <div class="row g-2 align-items-center mb-4">
             <div class="col">
-                <h2 class="page-title">Payments</h2>
+                <h2 class="page-title">{{ $t('front.customer.payments.title') }}</h2>
             </div>
         </div>
 
@@ -12,8 +12,8 @@
                 <div class="card-header">
                     <div class="row w-full">
                         <div class="col">
-                            <h3 class="card-title mb-0">Payments</h3>
-                            <p class="text-secondary m-0">List Payments.</p>
+                            <h3 class="card-title mb-0">{{ $t('front.customer.payments.title') }}</h3>
+                            <p class="text-secondary m-0">{{ $t('front.customer.payments.list') }}</p>
                         </div>
                     </div>
                 </div>
@@ -22,18 +22,18 @@
                         <thead>
                         <tr>
                             <th>
-                                Booking
+                                {{ $t('front.customer.payments.table.booking') }}
                             </th>
                             <th>
-                                amount
+                                {{ $t('front.customer.payments.table.amount') }}
                             </th>
                             <th>
-                                type
+                                {{ $t('front.customer.payments.table.type') }}
                             </th>
-                            <th>payment method</th>
-                            <th>status</th>
-                            <th>paid_at</th>
-                            <th>created At</th>
+                            <th>{{ $t('front.customer.payments.table.method') }}</th>
+                            <th>{{ $t('front.customer.payments.table.status') }}</th>
+                            <th>{{ $t('front.customer.payments.table.paid_at') }}</th>
+                            <th>{{ $t('front.customer.payments.table.created_at') }}</th>
                         </tr>
                         </thead>
                         <tbody class="table-tbody">
@@ -63,7 +63,7 @@
                             <td>{{ payment.created_at }}</td>
                         </tr>
                         <tr v-else>
-                            <td colspan="8" class="text-center">Payments Record Not exists.</td>
+                            <td colspan="8" class="text-center">{{ $t('front.customer.payments.not_found') }}</td>
                         </tr>
                         </tbody>
                     </table>

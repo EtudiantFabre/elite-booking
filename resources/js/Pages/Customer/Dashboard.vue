@@ -2,8 +2,8 @@
     <div class="container">
         <Head title="dashboard" />
         <div class="g-2 align-items-center mt-4">
-            <div class="page-pretitle">Overview</div>
-            <h2 class="page-title pt-1">Dashboard</h2>
+            <div class="page-pretitle">{{ $t('front.dashboard.overview') }}</div>
+            <h2 class="page-title pt-1">{{ $t('front.dashboard.title') }}</h2>
         </div>
 
         <div class="row g-3 mt-3">
@@ -19,8 +19,8 @@
                         </span>
                             </div>
                             <div class="col">
-                                <h6 class="font-weight-medium mb-1">Upcoming Stays</h6>
-                                <h4 class="text-secondary mb-0">{{ upcoming_count }} booking(s)</h4>
+                                <h6 class="font-weight-medium mb-1">{{ $t('front.dashboard.upcoming_stays') }}</h6>
+                                <h4 class="text-secondary mb-0">{{ upcoming_count }} {{ $t('front.dashboard.bookings_count') }}</h4>
                             </div>
                         </div>
                     </div>
@@ -38,8 +38,8 @@
                         </span>
                             </div>
                             <div class="col">
-                                <h6 class="font-weight-medium mb-1">Past Bookings</h6>
-                                <h4 class="text-secondary mb-0">{{ past_count }} completed</h4>
+                                <h6 class="font-weight-medium mb-1">{{ $t('front.dashboard.past_bookings') }}</h6>
+                                <h4 class="text-secondary mb-0">{{ past_count }} {{ $t('front.dashboard.completed') }}</h4>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         </span>
                             </div>
                             <div class="col">
-                                <h6 class="font-weight-medium mb-1">Total Payments</h6>
+                                <h6 class="font-weight-medium mb-1">{{ $t('front.dashboard.total_payments') }}</h6>
                                 <h4 class="text-secondary mb-0">{{ money_format(total_paid) }}</h4>
                             </div>
                         </div>
@@ -76,8 +76,8 @@
                         </span>
                             </div>
                             <div class="col">
-                                <h6 class="font-weight-medium mb-1">Cancellations</h6>
-                                <h4 class="text-secondary mb-0">{{ cancellation_count }} cancelled</h4>
+                                <h6 class="font-weight-medium mb-1">{{ $t('front.dashboard.cancellations') }}</h6>
+                                <h4 class="text-secondary mb-0">{{ cancellation_count }} {{ $t('front.dashboard.cancelled') }}</h4>
                             </div>
                         </div>
                     </div>
@@ -89,30 +89,30 @@
         <!-- Upcoming Booking Box -->
         <div class="card mb-4 shadow-sm mt-4">
             <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0"><IconCalendarEvent class="icon" /> Your Upcoming Booking</h5>
+                <h5 class="mb-0"><IconCalendarEvent class="icon" /> {{ $t('front.dashboard.upcoming_booking_title') }}</h5>
             </div>
 
             <div class="card-body">
                 <!-- If no upcoming booking -->
                 <p class="text-muted" v-if="!upcoming_booking">
-                    You have no upcoming bookings.
+                    {{ $t('front.dashboard.no_upcoming_bookings') }}
                 </p>
 
                 <!-- If upcoming booking exists -->
                 <div class="room-details" v-else>
-                    <h5>Room: {{ upcoming_booking.rooms[0].type.name }}</h5>
+                    <h5>{{ $t('front.dashboard.room') }} {{ upcoming_booking.rooms[0].type.name }}</h5>
                     <p class="mb-2 mt-3">
                         <IconCalendarStats class="icon" />
                         {{ upcoming_booking.check_in }} → {{ upcoming_booking.check_out }}
                     </p>
                     <p class="mb-2">
                         <IconCurrencyDollar class="icon" />
-                        Total Price: <strong>{{ money_format(upcoming_booking.total_price) }}</strong>
+                        {{ $t('front.dashboard.total_price') }} <strong>{{ money_format(upcoming_booking.total_price) }}</strong>
                     </p>
 
                     <a :href="route('bookings.success', upcoming_booking.id)"
                        class="btn btn-book-now px-3 py-2 fs-6">
-                        <IconEye class="icon me-1" /> View Booking
+                        <IconEye class="icon me-1" /> {{ $t('front.dashboard.view_booking') }}
                     </a>
                 </div>
             </div>
@@ -121,19 +121,19 @@
         <!-- Latest Bookings -->
         <div class="card mt-4">
             <div class="card-header border-0">
-                <h5 class="mb-0">Recent Bookings</h5>
+                <h5 class="mb-0">{{ $t('front.dashboard.recent_bookings') }}</h5>
             </div>
             <div class="card-table table-responsive p-0">
                 <table class="table table-vcenter">
                     <thead>
                     <tr>
-                        <th>#ID</th>
-                        <th>Guests</th>
-                        <th>Check-in</th>
-                        <th>Check-out</th>
-                        <th>Status</th>
-                        <th>Total</th>
-                        <th>Paid Amount</th>
+                        <th>{{ $t('front.dashboard.id') }}</th>
+                        <th>{{ $t('front.dashboard.guests') }}</th>
+                        <th>{{ $t('front.dashboard.check_in') }}</th>
+                        <th>{{ $t('front.dashboard.check_out') }}</th>
+                        <th>{{ $t('front.dashboard.status') }}</th>
+                        <th>{{ $t('front.dashboard.total') }}</th>
+                        <th>{{ $t('front.dashboard.paid_amount') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -152,7 +152,7 @@
                     </tr>
                     <tr v-else>
                         <td colspan="7" class="text-center py-3 text-muted">
-                            No bookings found.
+                            {{ $t('front.dashboard.no_bookings_found') }}
                         </td>
                     </tr>
                     </tbody>

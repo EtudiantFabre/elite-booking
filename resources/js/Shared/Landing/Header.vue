@@ -29,16 +29,16 @@
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><Link :href="route('home')" :class="{'active': $page.url === '/'}">Home</Link></li>
-                        <li><Link :href="route('roomTypes.index')" :class="{'active': $page.url === route('roomTypes.index')}">Rooms</Link></li>
-                        <li><a href="amenities.html">Amenities</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li v-if="!customer"><Link :href="route('login')">Login</Link></li>
-                        <li v-if="!customer"><Link :href="route('register')">Register</Link></li>
+                        <li><Link :href="route('home')" :class="{'active': $page.url === '/'}">{{ $t('front.header.home') }}</Link></li>
+                        <li><Link :href="route('roomTypes.index')" :class="{'active': $page.url === route('roomTypes.index')}">{{ $t('front.header.rooms') }}</Link></li>
+                        <li><a href="amenities.html">{{ $t('front.header.amenities') }}</a></li>
+                        <li><a href="about.html">{{ $t('front.header.about') }}</a></li>
+                        <li v-if="!customer"><Link :href="route('login')">{{ $t('front.header.login') }}</Link></li>
+                        <li v-if="!customer"><Link :href="route('register')">{{ $t('front.header.register') }}</Link></li>
                         <li class="dropdown" v-if="customer">
                             <a href="#profile">
                                 <div class="rounded-5 me-2 mx-1"
-                                     style="background: #ffb700; round: 100%; overflow: hidden">
+                                     style="background: #ffb700; border-radius: 50%; overflow: hidden">
                                     <img width="30" height="30" :src="getMediaUrl(customer.avatar[0], 'thumb')" alt="avtar"/>
                                 </div>
                                 <span class="me-1">{{ customer.full_name }}</span>
@@ -48,14 +48,28 @@
                                 <li>
                                     <Link :href="route('customer.dashboard')" class="d-inline-block">
                                         <i class="bi bi-person me-2" style="font-size: 18px"></i>
-                                        <span>My Account</span>
+                                        <span>{{ $t('front.header.my_account') }}</span>
                                     </Link>
                                 </li>
                                 <li>
                                     <a href="" @click.prevent="logoutHandle" class="d-inline-block">
                                         <i class="bi bi-box-arrow-left me-2" style="font-size: 18px"></i>
-                                        <span>Sign Out</span>
+                                        <span>{{ $t('front.header.sign_out') }}</span>
                                     </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown ms-2">
+                            <a href="#">
+                                <span>{{ $page.props.locale === 'fr' ? 'FR' : 'EN' }}</span>
+                                <i class="bi bi-chevron-down toggle-dropdown"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a :href="route('language.switch', 'en')" :class="{'fw-bold': $page.props.locale === 'en'}">English</a>
+                                </li>
+                                <li>
+                                    <a :href="route('language.switch', 'fr')" :class="{'fw-bold': $page.props.locale === 'fr'}">Français</a>
                                 </li>
                             </ul>
                         </li>

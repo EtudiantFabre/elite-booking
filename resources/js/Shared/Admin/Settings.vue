@@ -41,6 +41,16 @@
                 </a>
                 <Notifications/>
             </div>
+            
+            <div class="nav-item dropdown d-none d-md-flex ms-2 me-2">
+                 <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Change language">
+                     <span class="fw-bold">{{ $page.props.locale === 'fr' ? 'FR' : 'EN' }}</span>
+                 </a>
+                 <div class="dropdown-menu dropdown-menu-end">
+                     <a :href="route('language.switch', 'en')" class="dropdown-item" :class="{'active': $page.props.locale === 'en'}">English</a>
+                     <a :href="route('language.switch', 'fr')" class="dropdown-item" :class="{'active': $page.props.locale === 'fr'}">Français</a>
+                 </div>
+            </div>
         </div>
         <div class="nav-item dropdown">
             <a href="#"

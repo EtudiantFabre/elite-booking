@@ -65,3 +65,9 @@ Route::middleware(['auth:customer', 'verified.customer'])->withoutMiddleware('au
     });
 });
 
+Route::get('/language/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'fr'])) {
+        session()->put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('language.switch');

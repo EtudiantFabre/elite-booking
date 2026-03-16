@@ -28,6 +28,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->web(append: [
+            \App\Http\Middleware\SetUserLocale::class,
             HandleInertiaRequests::class,
             VerifyCsrfToken::class,
         ]);

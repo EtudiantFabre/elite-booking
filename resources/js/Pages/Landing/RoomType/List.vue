@@ -2,13 +2,13 @@
     <!-- Page Title -->
     <div class="page-title light-background">
         <div class="container d-lg-flex justify-content-between align-items-center">
-            <h1 class="mb-2 mb-lg-0">Rooms</h1>
+            <h1 class="mb-2 mb-lg-0">{{ $t('front.rooms.title') }}</h1>
             <nav class="breadcrumbs">
                 <ol>
                     <li>
-                        <Link :href="route('home')">Home</Link>
+                        <Link :href="route('home')">{{ $t('front.header.home') }}</Link>
                     </li>
-                    <li class="current">Rooms</li>
+                    <li class="current">{{ $t('front.rooms.title') }}</li>
                 </ol>
             </nav>
         </div>
@@ -23,17 +23,17 @@
                 <form class="booking-form php-email-form" @submit.prevent="submitForm" method="get">
                     <div class="row align-items-end g-3">
                         <div class="col-md-3">
-                            <label for="checkin" class="form-label">Check-in</label>
+                            <label for="checkin" class="form-label">{{ $t('front.booking.check_in') }}</label>
                             <input type="date" v-model="form.check_in" class="form-control"  id="checkin" :min="currentDate()"
                                    required="">
                         </div>
                         <div class="col-md-3">
-                            <label for="checkout" class="form-label">Check-out</label>
+                            <label for="checkout" class="form-label">{{ $t('front.booking.check_out') }}</label>
                             <input type="date" v-model="form.check_out" class="form-control" id="checkout"  :min="addDays(Date.now(), 1)"
                                    required="">
                         </div>
                         <div class="col-md-4">
-                            <label for="guests" class="form-label">Guests</label>
+                            <label for="guests" class="form-label">{{ $t('front.booking.guests') }}</label>
                             <div class="border bg-white rounded px-4 position-relative cursor-pointer"
                                  style="padding: .75rem;">
                                 <div class="d-flex justify-content-between flex-grow-1"
@@ -42,13 +42,13 @@
                                        style="font-size: 1rem;font-weight: 400;line-height: 1.5;color: #6e7174;">
                                     </i>
                                     <div>
-                                        {{ form.adults }} adults
+                                        {{ $t('front.booking.adults_count', { count: form.adults }) }}
                                     </div>
                                     <div>
-                                        {{ form.children }} children
+                                        {{ $t('front.booking.children_count', { count: form.children }) }}
                                     </div>
                                     <div>
-                                        {{ form.rooms }} room
+                                        {{ $t('front.booking.rooms_count', { count: form.rooms }) }}
                                     </div>
                                     <i class="bi bi-chevron-down mt-1"
                                        style="font-size: 13px;font-weight: 700;line-height: 1.2"></i>
@@ -57,17 +57,17 @@
                                     class="border shadow position-absolute w-full bg-white rounded p-4 d-flex flex-column gap-3"
                                     style="left: 0; top: 53px; z-index: 9" v-if="showGuests">
                                     <div>
-                                        <label for="adults" class="form-label">Adults</label>
+                                        <label for="adults" class="form-label">{{ $t('front.booking.adults') }}</label>
                                         <input type="number" min="1" v-model="form.adults" class="form-control"
                                                id="adults" required="">
                                     </div>
                                     <div>
-                                        <label for="children" class="form-label">Children</label>
+                                        <label for="children" class="form-label">{{ $t('front.booking.children') }}</label>
                                         <input type="number" min="0" v-model="form.children" class="form-control"
                                                id="children" required="">
                                     </div>
                                     <div>
-                                        <label for="room" class="form-label">Room</label>
+                                        <label for="room" class="form-label">{{ $t('front.booking.room') }}</label>
                                         <input type="number" min="1" v-model="form.rooms" class="form-control" id="room"
                                                required="">
                                     </div>
@@ -77,7 +77,7 @@
                         <div class="col-md-2">
                             <button type="submit" class="btn btn-origin">
                                 <i class="bi bi-search"></i>
-                                <span class="mx-2">Search</span>
+                                <span class="mx-2">{{ $t('front.rooms.search') }}</span>
                             </button>
                         </div>
                     </div>
@@ -109,21 +109,21 @@
                                     </div>
                                     <p class="room-description" v-html="roomType.short_description"></p>
                                     <div class="room-amenities">
-                                        <span><i class="bi bi-people"></i> Up to {{ roomType.max_total_guests }} guests</span>
-                                        <span><i class="bi bi-wifi"></i> Free WiFi</span>
-                                        <span><i class="bi bi-tv"></i> Smart TV</span>
+                                        <span><i class="bi bi-people"></i> {{ $t('front.booking.up_to_guests', { count: roomType.max_total_guests }) }}</span>
+                                        <span><i class="bi bi-wifi"></i> {{ $t('front.rooms.wifi')}}</span>
+                                        <span><i class="bi bi-tv"></i> {{ $t('front.rooms.tv') }}</span>
                                     </div>
                                     <div class="room-footer">
                                         <div class="room-price">
-                                            <span class="price-from">From</span>
+                                            <span class="price-from">{{ $t('front.rooms.from') }}</span>
                                             <span class="price-amount">{{ money_format(roomType.price) }}</span>
-                                            <span class="price-period">/ night</span>
+                                            <span class="price-period">{{ $t('front.rooms.per_night_slash') }}</span>
                                         </div>
                                         <Link :href="route('roomTypes.show', {
                                             roomType: roomType.slug,
                                             filters
                                         })" class="btn-room-details">
-                                            View Details
+                                            {{ $t('front.rooms.view_details') }}
                                         </Link>
                                     </div>
                                 </div>

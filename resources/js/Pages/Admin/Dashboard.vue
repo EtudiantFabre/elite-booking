@@ -1,8 +1,8 @@
 <template>
     <Head title="dashboard"/>
     <div class=" g-2 align-items-center">
-        <div class="page-pretitle">Overview</div>
-        <h2 class="page-title">Dashboard</h2>
+        <div class="page-pretitle">{{ $t('admin.dashboard.overview') }}</div>
+        <h2 class="page-title">{{ $t('admin.dashboard.title') }}</h2>
     </div>
 
     <!-- Top Cards -->
@@ -19,7 +19,7 @@
                         </span>
                         </div>
                         <div class="col">
-                            <h6 class="font-weight-medium mb-1">Today Check-ins</h6>
+                            <h6 class="font-weight-medium mb-1">{{ $t('admin.dashboard.today_checkins') }}</h6>
                             <h4 class="text-secondary mb-0">{{ today_checkins }}</h4>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                         </span>
                         </div>
                         <div class="col">
-                            <h6 class="font-weight-medium mb-1">Today Check-outs</h6>
+                            <h6 class="font-weight-medium mb-1">{{ $t('admin.dashboard.today_checkouts') }}</h6>
                             <h4 class="text-secondary mb-0">{{ today_checkouts }}</h4>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         </span>
                         </div>
                         <div class="col">
-                            <h6 class="font-weight-medium mb-1">Pending Payments</h6>
+                            <h6 class="font-weight-medium mb-1">{{ $t('admin.dashboard.pending_payments') }}</h6>
                             <h4 class="text-secondary mb-0">{{ pending_payments }}</h4>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                         </span>
                         </div>
                         <div class="col">
-                            <h6 class="font-weight-medium mb-1">Active Guests</h6>
+                            <h6 class="font-weight-medium mb-1">{{ $t('admin.dashboard.active_guests') }}</h6>
                             <h4 class="text-secondary mb-0">{{ active_guests }}</h4>
                         </div>
                     </div>
@@ -91,24 +91,24 @@
         <div class="col-md-6 d-flex">
             <div class="card shadow-sm border-0 w-full">
                 <div class="card-header border-0">
-                    <h5 class="mb-0">Room Status</h5>
+                    <h5 class="mb-0">{{ $t('admin.dashboard.room_status') }}</h5>
                 </div>
                 <div class="card-body">
 
                     <ul class="list-group">
 
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span><i class="ti ti-bed text-success me-2"></i> Available</span>
+                            <span><i class="ti ti-bed text-success me-2"></i> {{ $t('admin.dashboard.available') }}</span>
                             <span class="badge bg-success-lt rounded-pill">{{ room_status['available'] }}</span>
                         </li>
 
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span><i class="ti ti-door-enter text-warning me-2"></i> Occupied</span>
+                            <span><i class="ti ti-door-enter text-warning me-2"></i> {{ $t('admin.dashboard.occupied') }}</span>
                             <span class="badge bg-warning-lt rounded-pill">{{ room_status['occupied'] }}</span>
                         </li>
 
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span><i class="ti ti-ban text-danger me-2"></i> Out of Service</span>
+                            <span><i class="ti ti-ban text-danger me-2"></i> {{ $t('admin.dashboard.out_of_service') }}</span>
                             <span class="badge bg-danger-lt rounded-pill">{{ room_status['out_of_service'] }}</span>
                         </li>
                     </ul>
@@ -121,22 +121,22 @@
         <div class="col-md-6 d-flex">
             <div class="card shadow-sm border-0 w-full">
                 <div class="card-header border-0">
-                    <h5 class="mb-0">Revenue Summary</h5>
+                    <h5 class="mb-0">{{ $t('admin.dashboard.revenue_summary') }}</h5>
                 </div>
                 <div class="card-body">
 
                     <div class="d-flex justify-content-between p-2 border-bottom">
-                        <span><i class="ti ti-cash text-primary me-2"></i> Today</span>
+                        <span><i class="ti ti-cash text-primary me-2"></i> {{ $t('admin.dashboard.today') }}</span>
                         <strong>{{ money_format(revenue['today']) }}</strong>
                     </div>
 
                     <div class="d-flex justify-content-between p-2 border-bottom">
-                        <span><i class="ti ti-calendar-time text-warning me-2"></i> This Week</span>
+                        <span><i class="ti ti-calendar-time text-warning me-2"></i> {{ $t('admin.dashboard.this_week') }}</span>
                         <strong>{{ money_format(revenue['week']) }}</strong>
                     </div>
 
                     <div class="d-flex justify-content-between p-2">
-                        <span><i class="ti ti-calendar-month text-success me-2"></i> This Month</span>
+                        <span><i class="ti ti-calendar-month text-success me-2"></i> {{ $t('admin.dashboard.this_month') }}</span>
                         <strong>{{ money_format(revenue['month']) }}</strong>
                     </div>
 
@@ -149,19 +149,19 @@
     <!-- Latest Bookings -->
     <div class="card mt-4">
         <div class="card-header border-0">
-            <h5 class="mb-0">Latest Bookings</h5>
+            <h5 class="mb-0">{{ $t('admin.dashboard.latest_bookings') }}</h5>
         </div>
         <div class="card-table table-responsive p-0">
             <table class="table table-vcenter">
                 <thead>
                 <tr>
-                    <th>#ID</th>
-                    <th>Customer</th>
-                    <th>Check-in</th>
-                    <th>Check-out</th>
-                    <th>Status</th>
-                    <th>Total</th>
-                    <th>Paid Amount</th>
+                    <th>{{ $t('admin.dashboard.id') }}</th>
+                    <th>{{ $t('admin.dashboard.customer') }}</th>
+                    <th>{{ $t('admin.dashboard.check_in') }}</th>
+                    <th>{{ $t('admin.dashboard.check_out') }}</th>
+                    <th>{{ $t('admin.dashboard.status') }}</th>
+                    <th>{{ $t('admin.dashboard.total') }}</th>
+                    <th>{{ $t('admin.dashboard.paid_amount') }}</th>
                 </tr>
                 </thead>
                 <tbody>

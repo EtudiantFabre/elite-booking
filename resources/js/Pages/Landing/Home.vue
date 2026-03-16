@@ -6,14 +6,11 @@
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-8">
                         <div class="hero-text aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                            <h1 class="text-white">Luxury Redefined</h1>
-                            <p class="hero-subtitle text-white">Experience unparalleled comfort and elegance in the
-                                heart of the city. Where every moment becomes a cherished memory.</p>
+                            <h1 class="text-white">{{ $t('front.home.hero_title') }}</h1>
+                            <p class="hero-subtitle text-white">{{ $t('front.home.hero_subtitle') }}</p>
                             <div class="hero-actions aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                                <Link :href="route('roomTypes.index')" class="btn btn-origin p-5 py-3 mx-3" style="border-radius: 50px !important;">Book
-                                    Your Stay</Link>
-                                <a href="amenities.html" class="btn btn-outline-light p-5 py-3" style="border-radius: 50px">Explore
-                                    Amenities</a>
+                                <Link :href="route('roomTypes.index')" class="btn btn-origin p-5 py-3 mx-3" style="border-radius: 50px !important;">{{ $t('front.home.book_stay') }}</Link>
+                                <a href="amenities.html" class="btn btn-outline-light p-5 py-3" style="border-radius: 50px">{{ $t('front.home.explore_amenities') }}</a>
                             </div>
                         </div>
                     </div>
@@ -25,45 +22,45 @@
                             <form class="booking-form php-email-form" @submit.prevent="submitForm" method="get">
                                 <div class="row align-items-end g-3">
                                     <div class="col-md-3">
-                                        <label for="checkin" class="form-label">Check-in</label>
+                                        <label for="checkin" class="form-label">{{ $t('front.home.check_in') }}</label>
                                         <input type="date" v-model="form.check_in" class="form-control" id="checkin" :min="currentDate()"
                                                required="">
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="checkout" class="form-label">Check-out</label>
+                                        <label for="checkout" class="form-label">{{ $t('front.home.check_out') }}</label>
                                         <input type="date" v-model="form.check_out" class="form-control" id="checkout" :min="addDays(Date.now(), 1)"
                                                required="">
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="guests" class="form-label">Guests</label>
+                                        <label for="guests" class="form-label">{{ $t('front.home.guests') }}</label>
                                         <div class="border bg-white rounded px-4 position-relative cursor-pointer" style="padding: 0.75rem;">
                                             <div class="d-flex justify-content-between flex-grow-1" @click="showGuests = !showGuests">
                                                 <i class="bi bi-people-fill"
                                                    style="font-size: 1rem;font-weight: 400;line-height: 1.5;color: #6e7174;">
                                                 </i>
                                                 <div>
-                                                    {{form.adults}} adults
+                                                    {{form.adults}} {{ $t('front.home.adults') }}
                                                 </div>
                                                 <div>
-                                                    {{form.children}} children
+                                                    {{form.children}} {{ $t('front.home.children') }}
                                                 </div>
                                                 <div>
-                                                    {{form.rooms}} room
+                                                    {{form.rooms}} {{ $t('front.home.room') }}
                                                 </div>
                                                 <i class="bi bi-chevron-down mt-1" style="font-size: 13px;font-weight: 700;line-height: 1.2;"></i>
                                             </div>
                                             <div class="border shadow position-absolute w-full bg-white rounded p-4 d-flex flex-column gap-3"
                                                  style="left: 0; top: 53px;" v-if="showGuests">
                                                 <div>
-                                                    <label for="adults" class="form-label">Adults</label>
+                                                    <label for="adults" class="form-label">{{ $t('front.home.adults') }}</label>
                                                     <input type="number" min="1" v-model="form.adults" class="form-control" id="adults" required="">
                                                 </div>
                                                 <div>
-                                                    <label for="children" class="form-label">Children</label>
+                                                    <label for="children" class="form-label">{{ $t('front.home.children') }}</label>
                                                     <input type="number" min="0" v-model="form.children" class="form-control" id="children" required="">
                                                 </div>
                                                 <div>
-                                                    <label for="room" class="form-label">Room</label>
+                                                    <label for="room" class="form-label">{{ $t('front.home.room') }}</label>
                                                     <input type="number" min="1" v-model="form.rooms" class="form-control" id="room" required="">
                                                 </div>
                                             </div>
@@ -72,7 +69,7 @@
                                     <div class="col-md-2">
                                         <button type="submit" class="btn btn-origin">
                                             <i class="bi bi-search"></i>
-                                            <span class="mx-2">Search</span>
+                                            <span class="mx-2">{{ $t('front.home.search') }}</span>
                                         </button>
                                     </div>
                                 </div>
@@ -88,25 +85,25 @@
                                 <div class="col-6 col-md-3">
                                     <div class="highlight-item">
                                         <i class="bi bi-wifi"></i>
-                                        <div>Free WiFi</div>
+                                        <div>{{ $t('front.home.free_wifi') }}</div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3">
                                     <div class="highlight-item">
                                         <i class="bi bi-p-circle"></i>
-                                        <div>Free Parking</div>
+                                        <div>{{ $t('front.home.free_parking') }}</div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3">
                                     <div class="highlight-item">
                                         <i class="bi bi-cup-hot"></i>
-                                        <div>Room Service</div>
+                                        <div>{{ $t('front.home.room_service') }}</div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3">
                                     <div class="highlight-item">
                                         <i class="bi bi-water"></i>
-                                        <div>Swimming Pool</div>
+                                        <div>{{ $t('front.home.swimming_pool') }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -130,34 +127,29 @@
 
                 <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
                     <div class="about-content">
-                        <h2>Welcome to Grandoria Resort</h2>
-                        <p class="lead">Where luxury meets tranquility in the heart of nature's paradise.</p>
-                        <p>Nestled among rolling hills and pristine landscapes, Grandview Resort has been offering
-                            exceptional hospitality for over three decades. Our commitment to excellence and attention
-                            to detail creates an unforgettable experience for discerning travelers seeking both comfort
-                            and adventure.</p>
-                        <p>From our elegantly appointed suites to our world-class amenities, every aspect of your stay
-                            is designed to exceed expectations. Discover breathtaking views, exquisite dining, and
-                            personalized service that makes every moment special.</p>
+                        <h2>{{ $t('front.home.welcome_title') }}</h2>
+                        <p class="lead">{{ $t('front.home.welcome_subtitle') }}</p>
+                        <p>{{ $t('front.home.welcome_p1') }}</p>
+                        <p>{{ $t('front.home.welcome_p2') }}</p>
 
                         <div class="stats-row">
                             <div class="stat-item">
                                 <div class="stat-number">185</div>
-                                <div class="stat-label">Luxury Rooms</div>
+                                <div class="stat-label">{{ $t('front.home.luxury_rooms') }}</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-number">98%</div>
-                                <div class="stat-label">Guest Satisfaction</div>
+                                <div class="stat-label">{{ $t('front.home.guest_satisfaction') }}</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-number">30</div>
-                                <div class="stat-label">Years of Excellence</div>
+                                <div class="stat-label">{{ $t('front.home.years_experience') }}</div>
                             </div>
                         </div><!-- End Stats Row -->
 
                         <div class="about-actions">
-                            <a href="about.html" class="btn-primary">Our Story</a>
-                            <a href="rooms.html" class="btn-secondary">View Rooms</a>
+                            <a href="about.html" class="btn-primary">{{ $t('front.home.our_story') }}</a>
+                            <a href="rooms.html" class="btn-secondary">{{ $t('front.home.view_rooms') }}</a>
                         </div>
                     </div>
                 </div><!-- End About Content -->
@@ -174,7 +166,7 @@
                         <div class="experience-badge">
                             <div class="badge-content">
                                 <span class="badge-number">30+</span>
-                                <span class="badge-text">Years<br>Experience</span>
+                                <span class="badge-text" v-html="$t('front.home.years_experience').replace(' ', '<br>')"></span>
                             </div>
                         </div>
                     </div>
@@ -192,9 +184,9 @@
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <span class="description-title">Rooms</span>
-            <h2>Rooms</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+            <span class="description-title">{{ $t('front.home.rooms_title') }}</span>
+            <h2>{{ $t('front.home.rooms_title') }}</h2>
+            <p>{{ $t('front.home.rooms_desc') }}</p>
         </div><!-- End Section Title -->
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -211,7 +203,7 @@
                         </div>
                         <div class="room-summary">
                             <h5>{{ roomType.name}}</h5>
-                            <div class="price-tag">{{ money_format(roomType.price) }}<span>/night</span></div>
+                            <div class="price-tag">{{ money_format(roomType.price) }}<span>{{ $t('front.home.per_night') }}</span></div>
                             <div class="basic-amenities">
                                 <i class="bi bi-wifi"></i>
                                 <i class="bi bi-tv"></i>
@@ -223,7 +215,7 @@
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="600">
                 <Link :href="route('roomTypes.index')" class="explore-all-link">
-                    <span>Explore All Accommodations</span>
+                    <span>{{ $t('front.home.explore_all') }}</span>
                     <i class="bi bi-arrow-right"></i>
                 </Link>
             </div>
@@ -237,9 +229,9 @@
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <span class="description-title">Amenities</span>
-            <h2>Amenities</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+            <span class="description-title">{{ $t('front.home.amenities_title') }}</span>
+            <h2>{{ $t('front.home.amenities_title') }}</h2>
+            <p>{{ $t('front.home.amenities_desc') }}</p>
         </div><!-- End Section Title -->
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -255,12 +247,11 @@
                             </div>
                         </div>
                         <div class="facility-info">
-                            <h4>High-Speed Internet</h4>
-                            <p>Complimentary wireless internet access throughout the hotel premises with
-                                enterprise-grade security and unlimited bandwidth for all your connectivity needs.</p>
+                            <h4>{{ $t('front.home.high_speed_internet') }}</h4>
+                            <p>{{ $t('front.home.high_speed_internet_desc') }}</p>
                             <div class="facility-features">
-                                <span><i class="bi bi-check-circle"></i> 24/7 Available</span>
-                                <span><i class="bi bi-check-circle"></i> High Speed</span>
+                                <span><i class="bi bi-check-circle"></i> {{ $t('front.home.available_24_7') }}</span>
+                                <span><i class="bi bi-check-circle"></i> {{ $t('front.home.high_speed') }}</span>
                             </div>
                         </div>
                     </div>
@@ -275,12 +266,11 @@
                             </div>
                         </div>
                         <div class="facility-info">
-                            <h4>Rooftop Pool</h4>
-                            <p>Luxurious rooftop swimming pool with breathtaking city skyline views. Features heated
-                                water, poolside service, and premium lounging areas for ultimate relaxation.</p>
+                            <h4>{{ $t('front.home.rooftop_pool') }}</h4>
+                            <p>{{ $t('front.home.rooftop_pool_desc') }}</p>
                             <div class="facility-features">
-                                <span><i class="bi bi-check-circle"></i> Heated Pool</span>
-                                <span><i class="bi bi-check-circle"></i> City Views</span>
+                                <span><i class="bi bi-check-circle"></i> {{ $t('front.home.heated_pool') }}</span>
+                                <span><i class="bi bi-check-circle"></i> {{ $t('front.home.city_views') }}</span>
                             </div>
                         </div>
                     </div>
@@ -295,12 +285,11 @@
                             </div>
                         </div>
                         <div class="facility-info">
-                            <h4>Valet Parking</h4>
-                            <p>Premium valet parking service with secure underground facility. Professional attendants
-                                ensure your vehicle is safely parked and readily available upon request.</p>
+                            <h4>{{ $t('front.home.valet_parking') }}</h4>
+                            <p>{{ $t('front.home.valet_parking_desc') }}</p>
                             <div class="facility-features">
-                                <span><i class="bi bi-check-circle"></i> Secure</span>
-                                <span><i class="bi bi-check-circle"></i> Valet Service</span>
+                                <span><i class="bi bi-check-circle"></i> {{ $t('front.home.secure') }}</span>
+                                <span><i class="bi bi-check-circle"></i> {{ $t('front.home.valet_service') }}</span>
                             </div>
                         </div>
                     </div>
@@ -315,12 +304,11 @@
                             </div>
                         </div>
                         <div class="facility-info">
-                            <h4>Modern Fitness Center</h4>
-                            <p>Cutting-edge fitness facility featuring premium equipment, personal training services,
-                                and wellness programs designed to maintain your health routine while traveling.</p>
+                            <h4>{{ $t('front.home.fitness_center') }}</h4>
+                            <p>{{ $t('front.home.fitness_center_desc') }}</p>
                             <div class="facility-features">
-                                <span><i class="bi bi-check-circle"></i> 24/7 Access</span>
-                                <span><i class="bi bi-check-circle"></i> Personal Training</span>
+                                <span><i class="bi bi-check-circle"></i> {{ $t('front.home.access_24_7') }}</span>
+                                <span><i class="bi bi-check-circle"></i> {{ $t('front.home.personal_training') }}</span>
                             </div>
                         </div>
                     </div>
@@ -335,12 +323,11 @@
                             </div>
                         </div>
                         <div class="facility-info">
-                            <h4>Signature Restaurant</h4>
-                            <p>Award-winning culinary experience featuring international cuisine crafted by renowned
-                                chefs. Elegant atmosphere with extensive wine selection and impeccable service.</p>
+                            <h4>{{ $t('front.home.fine_dining') }}</h4>
+                            <p>{{ $t('front.home.fine_dining_desc') }}</p>
                             <div class="facility-features">
-                                <span><i class="bi bi-check-circle"></i> Fine Dining</span>
-                                <span><i class="bi bi-check-circle"></i> Wine Selection</span>
+                                <span><i class="bi bi-check-circle"></i> {{ $t('front.home.fine_dining_feature') }}</span>
+                                <span><i class="bi bi-check-circle"></i> {{ $t('front.home.wine_selection') }}</span>
                             </div>
                         </div>
                     </div>
@@ -355,12 +342,11 @@
                             </div>
                         </div>
                         <div class="facility-info">
-                            <h4>Luxury Spa</h4>
-                            <p>Tranquil sanctuary offering therapeutic treatments, rejuvenating massages, and holistic
-                                wellness experiences. Escape the everyday stress in our serene environment.</p>
+                            <h4>{{ $t('front.home.luxury_spa') }}</h4>
+                            <p>{{ $t('front.home.luxury_spa_desc') }}</p>
                             <div class="facility-features">
-                                <span><i class="bi bi-check-circle"></i> Full Service</span>
-                                <span><i class="bi bi-check-circle"></i> Wellness Programs</span>
+                                <span><i class="bi bi-check-circle"></i> {{ $t('front.home.full_service') }}</span>
+                                <span><i class="bi bi-check-circle"></i> {{ $t('front.home.wellness_programs') }}</span>
                             </div>
                         </div>
                     </div>
@@ -482,7 +468,7 @@
 
             <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="300">
                 <a href="gallery.html" class="btn btn-gallery">
-                    <i class="bi bi-collection me-2"></i>Discover Our Full Gallery
+                    <i class="bi bi-collection me-2"></i>{{ $t('front.home.discover_gallery') }}
                 </a>
             </div>
 

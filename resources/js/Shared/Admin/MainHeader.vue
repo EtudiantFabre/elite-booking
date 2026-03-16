@@ -14,7 +14,7 @@
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <Component :is="link.icon" class="icon"/>
                                         </span>
-                                        <span class="nav-link-title"> {{ link.name }}</span>
+                                        <span class="nav-link-title"> {{ $t(link.name) }}</span>
                                     </Link>
 
                                     <a
@@ -29,7 +29,7 @@
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <Component :is="link.icon" class="icon"/>
                                         </span>
-                                        <span class="nav-link-title"> {{ link.name }} </span>
+                                        <span class="nav-link-title"> {{ $t(link.name) }} </span>
                                     </a>
                                     <div class="dropdown-menu" v-if="link.items !== undefined">
                                         <div class="dropdown-menu-columns">
@@ -40,7 +40,7 @@
                                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                                                         <Component v-if="item.icon" :is="item.icon" class="icon"/>
                                                     </span>
-                                                    <span class="nav-link-title"> {{ item.name }} </span>
+                                                    <span class="nav-link-title"> {{ $t(item.name) }} </span>
                                                 </Link>
                                             </div>
                                         </div>
@@ -69,83 +69,83 @@ const page = usePage();
 
 const links = [
     {
-        name: "Home",
+        name: "admin.menu.home",
         icon: h(IconHome),
         routeName: 'admin.dashboard',
     },
     {
-        name: "People",
+        name: "admin.menu.people",
         icon: h(IconUsers),
         items: [
             {
-                name: "Users",
+                name: "admin.menu.users",
                 routeName: 'admin.users.index',
                 icon: h(IconUser)
             },
             {
-                name: "Customers",
+                name: "admin.menu.customers",
                 routeName: 'admin.customers.index',
                 icon: h(IconUserCircle)
             },
             {
-                name: "Roles",
+                name: "admin.menu.roles",
                 routeName: 'admin.roles.index',
                 icon: h(IconShieldLock)
             }
         ]
     },
     {
-        name: "Hotel",
+        name: "admin.menu.hotel",
         icon: h(IconBuildingSkyscraper),
         items: [
             {
-                name: "Countries",
+                name: "admin.menu.countries",
                 routeName: 'admin.countries.index',
                 icon: h(IconWorld)
             },
             {
-                name: "Bed Types",
+                name: "admin.menu.bed_types",
                 routeName: 'admin.bedTypes.index',
                 icon: h(IconBed)
             },
             {
-                name: "Facilities",
+                name: "admin.menu.facilities",
                 routeName: 'admin.facilities.index',
                 icon: h(IconClipboardData)
             },
             {
-                name: "Room Types",
+                name: "admin.menu.room_types",
                 routeName: 'admin.roomTypes.index',
                 icon: h(IconSofa)
             },
             {
-                name: "Rooms",
+                name: "admin.menu.rooms",
                 routeName: 'admin.rooms.index',
                 icon: h(IconBuildingBurjAlArab)
             },
             {
-                name: "Meal Plans",
+                name: "admin.menu.meal_plans",
                 routeName: 'admin.mealPlans.index',
                 icon: h(IconMeat)
             },
             {
-                name: "Cancellation Rules",
+                name: "admin.menu.cancellation_rules",
                 routeName: 'admin.cancellationRules.index',
                 icon: h(IconScale)
             }
         ]
     },
     {
-        name: "Reservation",
+        name: "admin.menu.reservation",
         icon: h(IconCalendarWeek),
         items: [
             {
-                name: "Bookings",
+                name: "admin.menu.bookings",
                 routeName: 'admin.bookings.index',
                 icon: h(IconCalendarCheck)
             },
             {
-                name: "Payments",
+                name: "admin.menu.payments",
                 routeName: 'admin.payments.index',
                 icon: h(IconBrandMastercard)
             },

@@ -56,6 +56,11 @@ class HandleInertiaRequests extends Middleware
                 'type' => fn() => $request->session()->get('type') ?? 'success'
             ],
             'old' => fn() => $request->session()->get('old'),
+            'locale' => app()->getLocale(),
+            'translations' => [
+                'front' => __('front'),
+                'admin' => __('admin'),
+            ],
         ];
     }
 }

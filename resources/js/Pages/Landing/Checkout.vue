@@ -2,13 +2,13 @@
     <!-- Page Title -->
     <div class="page-title light-background">
         <div class="container d-lg-flex justify-content-between align-items-center">
-            <h1 class="mb-2 mb-lg-0">Payment</h1>
+            <h1 class="mb-2 mb-lg-0">{{ $t('front.checkout.title') }}</h1>
             <nav class="breadcrumbs">
                 <ol>
                     <li>
-                        <Link :href="route('home')">Home</Link>
+                        <Link :href="route('home')">{{ $t('front.header.home') }}</Link>
                     </li>
-                    <li class="current">Payment</li>
+                    <li class="current">{{ $t('front.checkout.title') }}</li>
                 </ol>
             </nav>
         </div>
@@ -28,11 +28,11 @@
                             </div>
                             <div class="card-body room-details">
                                 <Link :href="route('roomTypes.show', {roomType: roomType.slug})"><h3
-                                    class="text-lg-start">{{ roomType.name }}l</h3></Link>
+                                    class="text-lg-start">{{ roomType.name }}</h3></Link>
                                 <div class="room-capacity mb-4">
                                     <div class="capacity-item">
                                         <i class="bi bi-people"></i>
-                                        <span>Up to {{ roomType.max_total_guests }} guests</span>
+                                        <span>{{ $t('front.booking.up_to_guests', { count: roomType.max_total_guests }) }}</span>
                                     </div>
                                     <div class="capacity-item">
                                         <i class="bi bi-grid"></i>
@@ -52,17 +52,17 @@
                                         <i class="bi bi-star-fill"></i>
                                         <i class="bi bi-star-fill"></i>
                                     </div>
-                                    <span class="reviews-count">(127 reviews)</span>
+                                    <span class="reviews-count">({{ $t('front.booking.reviews', { count: 127 }) }})</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="hotel-highlights">
-                            <h3 class="text-lg-start m-0">Your booking details</h3>
+                            <h3 class="text-lg-start m-0">{{ $t('front.booking.your_booking_details') }}</h3>
                             <div class="d-flex gap-4 mt-4 pb-3"
                                  style="border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);">
                                 <div class="d-flex flex-column gap-2" style="margin-right: 5px">
-                                    <span>Check-in</span>
+                                    <span>{{ $t('front.booking.check_in') }}</span>
                                     <span class="bold text-black"
                                           style="font-weight: 700">{{
                                             moment(booking.check_in).format('ddd, MMM D, Y')
@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="d-flex flex-column gap-2"
                                      style="border-left: 1px solid color-mix(in srgb, var(--default-color), transparent 90%); padding-left: 2rem">
-                                    <span>Check-out</span>
+                                    <span>{{ $t('front.booking.check_out') }}</span>
                                     <span class="bold text-black"
                                           style="font-weight: 700">{{
                                             moment(booking.check_out).format('ddd, MMM D, Y')
@@ -80,16 +80,15 @@
                                 </div>
                             </div>
                             <div class="mt-4">
-                                <div class="mb-1">You selected</div>
+                                <div class="mb-1">{{ $t('front.booking.you_selected') }}</div>
                                 <div class="bold text-black" style="font-weight: 700">
-                                    {{ diffDays(booking.check_out, booking.check_in) }} nights, {{ booking.rooms_count }} room for
-                                    {{ booking.adults }} adults{{ booking.children > 0 ? `, ${booking.children} children` : '' }}
+                                    {{ $t('front.booking.nights_count', { count: diffDays(booking.check_out, booking.check_in) }) }}, {{ $t('front.booking.rooms_count', { count: booking.rooms_count }) }} {{ $t('front.booking.adults_count', { count: booking.adults }) }}{{ booking.children > 0 ? `, ${$t('front.booking.children_count', { count: booking.children })}` : '' }}
                                 </div>
                             </div>
                         </div>
 
                         <div class="hotel-highlights">
-                            <h3 class="text-lg-start m-0">Your price summary</h3>
+                            <h3 class="text-lg-start m-0">{{ $t('front.booking.price_summary') }}</h3>
                             <div class="d-flex flex-column gap-4 mt-4">
                                 <div class="d-flex justify-content-between" v-for="charge in booking.charges">
                                     <span>
@@ -101,7 +100,7 @@
 
                                 <div class="d-flex justify-content-between">
                                     <span class="bold text-black" style="font-weight: 700;"><i
-                                        class="bi bi-wallet2 me-2"></i>Total Price</span>
+                                        class="bi bi-wallet2 me-2"></i>{{ $t('front.booking.total_price') }}</span>
                                     <span class="bold text-black" style="font-weight: 700;">{{
                                             money_format(booking.total_price)
                                         }}</span>
@@ -112,15 +111,15 @@
                         <div class="booking-guarantees">
                             <div class="guarantee-item">
                                 <i class="bi bi-shield-check"></i>
-                                <span>Secure Booking</span>
+                                <span>{{ $t('front.booking.secure_booking') }}</span>
                             </div>
                             <div class="guarantee-item">
                                 <i class="bi bi-arrow-clockwise"></i>
-                                <span>Flexible Cancellation</span>
+                                <span>{{ $t('front.booking.flexible_cancellation') }}</span>
                             </div>
                             <div class="guarantee-item">
                                 <i class="bi bi-telephone"></i>
-                                <span>24/7 Support</span>
+                                <span>{{ $t('front.booking.support') }}</span>
                             </div>
                         </div>
                     </div>
@@ -130,26 +129,26 @@
                         <div class="form-container">
                             <form class="reservation-form" method="POST" @submit.prevent="handlePay">
                                 <div class="form-section">
-                                    <h4>Pay online</h4>
+                                    <h4>{{ $t('front.checkout.pay_online') }}</h4>
                                     <div class="form-grid">
                                         <div class="form-group full-width">
-                                            <label for="primary-guest" class="form-label">Cardholder's name</label>
+                                            <label for="primary-guest" class="form-label">{{ $t('front.checkout.cardholder_name') }}</label>
                                             <input type="text" class="form-control" id="primary-guest"
                                                    :value="customer.full_name"
                                                    name="primary_guest" required="" disabled>
                                         </div>
                                         <div class="form-group full-width">
-                                            <label for="card-number" class="form-label">Card Number</label>
+                                            <label for="card-number" class="form-label">{{ $t('front.checkout.card_number') }}</label>
                                             <div id="card-number" class="form-control"></div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="card-expiry" class="form-label">Expiration date</label>
+                                            <label for="card-expiry" class="form-label">{{ $t('front.checkout.expiration_date') }}</label>
                                             <div id="card-expiry" class="form-control"></div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="card-cvc" class="form-label">CVC</label>
+                                            <label for="card-cvc" class="form-label">{{ $t('front.checkout.cvc') }}</label>
                                             <div id="card-cvc" class="form-control"></div>
                                         </div>
                                     </div>
@@ -158,7 +157,7 @@
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-primary" :disabled="processing">
                                         <i class="bi bi-wallet2 me-2"></i>
-                                        Pay Reservation
+                                        {{ $t('front.checkout.pay_reservation') }}
                                     </button>
                                 </div>
                             </form>

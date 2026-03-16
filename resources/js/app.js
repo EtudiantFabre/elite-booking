@@ -42,11 +42,18 @@ createInertiaApp({
             .use(plugin)
             .use(Toast)
             .use(ZiggyVue)
+            .mixin({
+                methods: {
+                    $t(key) {
+                        return key.split('.').reduce((o, i) => o ? o[i] : key, this.$page.props.translations) || key;
+                    }
+                }
+            })
             .component('Link', Link)
             .component('Head', Head)
             .mount(el)
     },
-    title: title => `Hotel Homa - ${title}`,
+    title: title => `Hotel Melis - ${title}`,
     progress: {delay: 250, color: '#29d', includeCSS: true, showSpinner: false}
 })
 
