@@ -117,4 +117,20 @@ return [
         'password' => 'Password',
         'password_confirmation' => 'Confirm Password',
     ],
+    'shared' => [
+        'source_code' => 'Source code',
+        'sponsor' => 'Sponsor',
+        'profile' => 'Profile',
+        'change_password' => 'Change Password',
+        'logout' => 'Logout',
+    ],
+    'footer' => [
+        'license' => 'License',
+        'all_rights_reserved' => 'All rights reserved.',
+    ],
+    'notifications' => [
+        'title' => 'Notifications',
+        'archive_all' => 'Archive all',
+        'mark_all_as_read' => 'Mark all as read',
+    ],
 ];

@@ -8,10 +8,10 @@
                 <div class="form-container w-full">
                     <form class="reservation-form" @submit.prevent="submitLogin" method="POST">
                         <div class="form-section mb-3">
-                            <h4>Forget Password</h4>
+                            <h4>{{ $t('front.auth.forget_password.title') }}</h4>
                             <div class="form-grid">
                                 <div class="form-group full-width mb-0">
-                                    <label for="email" class="form-label required">Email</label>
+                                    <label for="email" class="form-label required">{{ $t('front.auth.forget_password.email') }}</label>
                                     <input type="email" class="form-control" id="email"
                                            v-model="form.email"
                                            :class="{'is-invalid': form.errors.email}"
@@ -22,7 +22,7 @@
                             </div>
                             <div class="d-flex justify-content-between mt-4">
                                 <div>
-                                    Already have an account? <Link :href="route('loginForm')">Login</Link>
+                                    {{ $t('front.auth.forget_password.have_account') }} <Link :href="route('loginForm')">{{ $t('front.auth.forget_password.login_link') }}</Link>
                                 </div>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                         <div class="form-actions mt-2">
                             <button type="submit" class="btn btn-primary">
                                 <i class="bi bi-lock me-2" style="font-size: 18px"></i>
-                                Forget Password
+                                {{ $t('front.auth.forget_password.submit') }}
                             </button>
                         </div>
                     </form>

@@ -44,8 +44,23 @@ createInertiaApp({
             .use(ZiggyVue)
             .mixin({
                 methods: {
-                    $t(key) {
-                        return key.split('.').reduce((o, i) => o ? o[i] : key, this.$page.props.translations) || key;
+                    $t(key, params = {}) {
+                        let text = key.split('.').reduce(
+                            (o, i) => (o && o[i] !== undefined ? o[i] : null),
+                            this.$page.props.translations
+                        );
+
+                        if (!text) return key;
+
+                        Object.keys(params).forEach(paramKey => {
+                            const value = params[paramKey];
+
+                            text = text
+                                .replace(new RegExp(`:${paramKey}`, 'g'), value)
+                                .replace(new RegExp(`\\{${paramKey}\\}`, 'g'), value);
+                        });
+
+                        return text;
                     }
                 }
             })

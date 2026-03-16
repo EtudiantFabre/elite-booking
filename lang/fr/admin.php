@@ -117,4 +117,20 @@ return [
         'password' => 'Mot de passe',
         'password_confirmation' => 'Confirmer le mot de passe',
     ],
+    'shared' => [
+        'source_code' => 'Code source',
+        'sponsor' => 'Soutenir',
+        'profile' => 'Profil',
+        'change_password' => 'Changer le mot de passe',
+        'logout' => 'Déconnexion',
+    ],
+    'footer' => [
+        'license' => 'Licence',
+        'all_rights_reserved' => 'Tous droits réservés.',
+    ],
+    'notifications' => [
+        'title' => 'Notifications',
+        'archive_all' => 'Tout archiver',
+        'mark_all_as_read' => 'Tout marquer comme lu',
+    ],
 ];

@@ -47,7 +47,9 @@ Route::middleware(['auth:customer', 'verified.customer'])->withoutMiddleware('au
 
     Route::get('bookings/{booking}/pay', [PaymentController::class, 'create'])->name('bookings.payments.create');
     Route::post('/bookings/{booking}/payments', [PaymentController::class, 'store'])->name('bookings.payments.store');
+    Route::post('/bookings/{booking}/fedapay', [PaymentController::class, 'payWithFedaPay'])->name('bookings.payments.fedapay');
     Route::post('payments/confirm', [PaymentController::class, 'confirmPayment'])->name('payments.confirm');
+    Route::get('payments/fedapay/confirm/{booking}', [PaymentController::class, 'confirmFedaPay'])->name('payments.fedapay.confirm');
     Route::get('bookings/{booking}/success', [PaymentController::class, 'success'])->name('bookings.success');
     Route::get('bookings/{booking}/failed', [PaymentController::class, 'failed'])->name('bookings.failed');
 

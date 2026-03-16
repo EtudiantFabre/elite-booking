@@ -2,7 +2,7 @@
     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
         <div class="card">
             <div class="card-header d-flex">
-                <h3 class="card-title">Notifications</h3>
+                <h3 class="card-title">{{ $t('admin.notifications.title') }}</h3>
                 <div class="btn-close ms-auto" data-bs-dismiss="dropdown"></div>
             </div>
             <div class="list-group list-group-flush list-group-hoverable">
@@ -38,10 +38,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <a href="#" class="btn btn-2 w-100"> Archive all </a>
+                        <a href="#" class="btn btn-2 w-100"> {{ $t('admin.notifications.archive_all') }} </a>
                     </div>
                     <div class="col">
-                        <a href="#" class="btn btn-2 w-100"> Mark all as read </a>
+                        <a href="#" class="btn btn-2 w-100"> {{ $t('admin.notifications.mark_all_as_read') }} </a>
                     </div>
                 </div>
             </div>

@@ -8,10 +8,10 @@
                 <div class="form-container w-full">
                     <form class="reservation-form" @submit.prevent="submitLogin" method="POST">
                         <div class="form-section mb-3">
-                            <h4>Login</h4>
+                            <h4>{{ $t('front.auth.login.title') }}</h4>
                             <div class="form-grid">
                                 <div class="form-group full-width mb-0">
-                                    <label for="email" class="form-label required">Email</label>
+                                    <label for="email" class="form-label required">{{ $t('front.auth.login.email') }}</label>
                                     <input type="email" class="form-control" id="email"
                                            v-model="form.email"
                                            :class="{'is-invalid': form.errors.email}"
@@ -20,7 +20,7 @@
                                          v-text="form.errors.email"></div>
                                 </div>
                                 <div class="form-group full-width mb-0">
-                                    <label for="password" class="form-label required">Password</label>
+                                    <label for="password" class="form-label required">{{ $t('front.auth.login.password') }}</label>
                                     <input type="password" class="form-control" id="password" placeholder="1234"
                                            v-model="form.password"
                                            :class="{'is-invalid': form.errors.password}"
@@ -31,17 +31,17 @@
                                 <div class="form-group full-width mb-0">
                                     <label class="form-check">
                                         <input v-model="form.remember" type="checkbox" class="form-check-input"/>
-                                        <span class="form-check-label">Remember me on this device</span>
+                                        <span class="form-check-label">{{ $t('front.auth.login.remember_me') }}</span>
                                     </label>
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-between mt-4">
                                 <div>
-                                    Don’t have an account yet? <Link :href="route('registerForm')">register</Link>
+                                    {{ $t('front.auth.login.no_account') }} <Link :href="route('registerForm')">{{ $t('front.auth.login.register_link') }}</Link>
                                 </div>
                                 <div>
-                                    <Link :href="route('password.request')">I forgot password</Link>
+                                    <Link :href="route('password.request')">{{ $t('front.auth.login.forgot_password') }}</Link>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                         <div class="form-actions mt-2">
                             <button type="submit" class="btn btn-primary">
                                 <i class="bi bi-unlock me-2" style="font-size: 18px"></i>
-                                Login
+                                {{ $t('front.auth.login.submit') }}
                             </button>
                         </div>
                     </form>

@@ -5,10 +5,10 @@
                 <div class="form-container w-full">
                     <form class="reservation-form" @submit.prevent="submitLogin" method="POST">
                         <div class="form-section mb-3">
-                            <h4>Verify Code</h4>
+                            <h4>{{ $t('front.auth.verify_code.title') }}</h4>
                             <div class="form-grid">
                                 <div class="form-group full-width mb-0">
-                                    <label for="email" class="form-label required">Code</label>
+                                    <label for="email" class="form-label required">{{ $t('front.auth.verify_code.code') }}</label>
                                     <input type="text" class="form-control" id="email"
                                            v-model="form.code"
                                            :class="{'is-invalid': form.errors.code}"
@@ -20,10 +20,10 @@
 
                             <div class="d-flex justify-content-between mt-5">
                                 <div>
-                                    <Link class="btn btn-link p-0" :href="route('resendCode')" method="POST" as="button">Request New Code</Link>
+                                    <Link class="btn btn-link p-0" :href="route('resendCode')" method="POST" as="button">{{ $t('front.auth.verify_code.request_new_code') }}</Link>
                                 </div>
                                 <div>
-                                    <Link class="btn btn-link p-0" :href="route('backRegister')" method="POST" as="button">Back to sign-up</Link>
+                                    <Link class="btn btn-link p-0" :href="route('backRegister')" method="POST" as="button">{{ $t('front.auth.verify_code.back_to_signup') }}</Link>
                                 </div>
                             </div>
 
@@ -31,7 +31,7 @@
                         <div class="form-actions mt-2">
                             <button type="submit" class="btn btn-primary">
                                 <i class="bi bi-shield-lock me-2" style="font-size: 18px"></i>
-                                Verify Code
+                                {{ $t('front.auth.verify_code.submit') }}
                             </button>
                         </div>
                     </form>

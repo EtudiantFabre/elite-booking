@@ -129,35 +129,71 @@
                         <div class="form-container">
                             <form class="reservation-form" method="POST" @submit.prevent="handlePay">
                                 <div class="form-section">
-                                    <h4>{{ $t('front.checkout.pay_online') }}</h4>
-                                    <div class="form-grid">
-                                        <div class="form-group full-width">
-                                            <label for="primary-guest" class="form-label">{{ $t('front.checkout.cardholder_name') }}</label>
-                                            <input type="text" class="form-control" id="primary-guest"
-                                                   :value="customer.full_name"
-                                                   name="primary_guest" required="" disabled>
+                                    <h4>{{ $t('front.checkout.payment_method') }}</h4>
+                                    <div class="payment-methods-grid d-flex gap-3 mb-4" v-if="isStripeConfigured || isFedaPayConfigured">
+                                        <div v-if="isStripeConfigured" class="payment-method-card flex-fill" :class="{'active': paymentMethod === 'stripe'}" @click="paymentMethod = 'stripe'">
+                                            <input type="radio" v-model="paymentMethod" value="stripe" class="d-none">
+                                            <div class="method-details d-flex align-items-center gap-3 p-3 rounded border">
+                                                <i class="bi bi-credit-card fs-4"></i>
+                                                <span>{{ $t('front.checkout.stripe_card') }}</span>
+                                            </div>
                                         </div>
-                                        <div class="form-group full-width">
-                                            <label for="card-number" class="form-label">{{ $t('front.checkout.card_number') }}</label>
-                                            <div id="card-number" class="form-control"></div>
+                                        <div v-if="isFedaPayConfigured" class="payment-method-card flex-fill" :class="{'active': paymentMethod === 'fedapay'}" @click="paymentMethod = 'fedapay'">
+                                            <input type="radio" v-model="paymentMethod" value="fedapay" class="d-none">
+                                            <div class="method-details d-flex align-items-center gap-3 p-3 rounded border">
+                                                <i class="bi bi-phone fs-4"></i>
+                                                <span>{{ $t('front.checkout.fedapay_name') }}</span>
+                                            </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label for="card-expiry" class="form-label">{{ $t('front.checkout.expiration_date') }}</label>
-                                            <div id="card-expiry" class="form-control"></div>
-                                        </div>
+                                    <div v-else class="alert alert-warning">
+                                        {{ $t('front.checkout.no_payment_method') }}
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label for="card-cvc" class="form-label">{{ $t('front.checkout.cvc') }}</label>
-                                            <div id="card-cvc" class="form-control"></div>
+                                    <div v-show="paymentMethod === 'stripe'">
+                                        <h4>{{ $t('front.checkout.pay_online') }} (Stripe)</h4>
+                                        <div class="form-grid">
+                                            <div class="form-group full-width">
+                                                <label for="primary-guest" class="form-label">{{ $t('front.checkout.cardholder_name') }}</label>
+                                                <input type="text" class="form-control" id="primary-guest"
+                                                       :value="customer.full_name"
+                                                       name="primary_guest" required="" disabled>
+                                            </div>
+                                            <div class="form-group full-width">
+                                                <label for="card-number" class="form-label">{{ $t('front.checkout.card_number') }}</label>
+                                                <div id="card-number" class="form-control"></div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="card-expiry" class="form-label">{{ $t('front.checkout.expiration_date') }}</label>
+                                                <div id="card-expiry" class="form-control"></div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="card-cvc" class="form-label">{{ $t('front.checkout.cvc') }}</label>
+                                                <div id="card-cvc" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div v-show="paymentMethod === 'fedapay'">
+                                        <div class="fedapay-info p-3 mb-3 rounded" style="background: color-mix(in srgb, var(--accent-color), transparent 90%)">
+                                            <p class="m-0">{{ $t('front.checkout.fedapay_info') }}</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-primary" :disabled="processing">
-                                        <i class="bi bi-wallet2 me-2"></i>
-                                        {{ $t('front.checkout.pay_reservation') }}
+                                <div class="form-actions" v-if="isStripeConfigured || isFedaPayConfigured">
+                                    <button type="submit" class="btn btn-primary w-100 py-3 d-flex align-items-center justify-content-center gap-2" :disabled="processing">
+                                        <template v-if="processing">
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            {{ $t('front.checkout.processing') }}
+                                        </template>
+                                        <template v-else>
+                                            <i class="bi bi-wallet2"></i>
+                                            {{ paymentMethod === 'fedapay' ? $t('front.checkout.pay_with_fedapay') : $t('front.checkout.pay_reservation') }}
+                                        </template>
                                     </button>
                                 </div>
                             </form>
@@ -182,21 +218,25 @@
 
     const processing = ref(false)
     const errorMessage = ref(null)
-
-    let stripe = null
-    let cardNumber = null
-
-    const {props: {auth: {customer}}} = usePage();
-    const {stripeKey, charges, booking} = defineProps({
+    const {stripeKey, charges, booking, isStripeConfigured, isFedaPayConfigured} = defineProps({
         stripeKey: String,
         roomType: Object,
         booking: Object,
         charges: Array,
+        isStripeConfigured: Boolean,
+        isFedaPayConfigured: Boolean,
     });
+
+    const paymentMethod = ref(isStripeConfigured ? 'stripe' : (isFedaPayConfigured ? 'fedapay' : ''))
+
+    let stripe = null
+    let cardNumber = null
 
     const {display: displayCharge} = useEnum(charges)
 
     onMounted(async () => {
+        if (!isStripeConfigured) return;
+
         stripe = await loadStripe(stripeKey)
         const elements = stripe.elements()
 
@@ -210,9 +250,16 @@
         cardCvc.mount('#card-cvc');
     })
 
+    const {props: {auth: {customer}}} = usePage();
+
     async function handlePay() {
         processing.value = true
         errorMessage.value = null
+
+        if (paymentMethod.value === 'fedapay') {
+            await handleFedaPay();
+            return;
+        }
 
         try {
             const {data} = await axios.post(route('bookings.payments.store', booking.id))
@@ -236,6 +283,19 @@
             processing.value = false
         }
     }
+
+    async function handleFedaPay() {
+        try {
+            const {data} = await axios.post(route('bookings.payments.fedapay', booking.id))
+            if (data.url) {
+                window.location.href = data.url
+            }
+        } catch (e) {
+            errorMessage.value = e.response?.data?.message || e.message
+        } finally {
+            processing.value = false
+        }
+    }
 </script>
 
 <style scoped>
@@ -248,6 +308,38 @@
     font-size: 0.95rem;
     transition: all 0.3s ease;
     width: 100%;
+}
+
+.payment-method-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-method-card .method-details {
+    transition: all 0.3s ease;
+}
+
+.payment-method-card:hover .method-details {
+    border-color: var(--accent-color) !important;
+}
+
+.payment-method-card.active .method-details {
+    border-color: var(--accent-color) !important;
+    background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.payment-method-card.active i {
+    color: var(--accent-color);
+}
+
+.btn-primary {
+    transition: all 0.3s ease;
+}
+
+.btn-primary:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
 }
 </style>
 

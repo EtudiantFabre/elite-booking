@@ -4,14 +4,14 @@
             <div class="row text-center align-items-center flex-row-reverse">
                 <div class="col-lg-auto ms-lg-auto">
                     <ul class="list-inline list-inline-dots mb-0">
-                        <li class="list-inline-item"><a href="./license.html" class="link-secondary">License</a></li>
+                        <li class="list-inline-item"><a href="./license.html" class="link-secondary">{{ $t('admin.footer.license') }}</a></li>
                         <li class="list-inline-item">
-                            <a href="https://github.com/gombeh/hotel_management_system" target="_blank" class="link-secondary" rel="noopener">Source code</a>
+                            <a href="https://github.com/gombeh/hotel_management_system" target="_blank" class="link-secondary" rel="noopener">{{ $t('admin.shared.source_code') }}</a>
                         </li>
                         <li class="list-inline-item">
                             <a href="https://github.com/sponsors/codecalm" target="_blank" class="link-secondary" rel="noopener">
                                 <IconHeart class="icon icon-2 text-pink" />
-                                Sponsor
+                                {{ $t('admin.shared.sponsor') }}
                             </a>
                         </li>
                     </ul>
@@ -20,7 +20,7 @@
                     <ul class="list-inline list-inline-dots mb-0">
                         <li class="list-inline-item">
                             Copyright © 2025
-                            <a href="." class="link-secondary">Homa</a>. All rights reserved.
+                            <a href="." class="link-secondary">Homa</a>. {{ $t('admin.footer.all_rights_reserved') }}
                         </li>
                         <li class="list-inline-item">
                             <a href="./changelog.html" class="link-secondary" rel="noopener"> v1.0.0 </a>

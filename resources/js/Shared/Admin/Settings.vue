@@ -5,11 +5,11 @@
                 <a href="https://github.com/gombeh/hotel_management_system" class="btn btn-5" target="_blank"
                    rel="noreferrer">
                     <IconBrandGithub class="icon icon-2"/>
-                    Source code
+                    {{ $t('admin.shared.source_code') }}
                 </a>
                 <a href="https://github.com/sponsors/codecalm" class="btn btn-6" target="_blank" rel="noreferrer">
                     <IconHeart class="icon icon-2 text-pink"/>
-                    Sponsor
+                    {{ $t('admin.shared.sponsor') }}
                 </a>
             </div>
         </div>
@@ -65,10 +65,10 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <Link :href="route('admin.profile.edit')" class="dropdown-item">Profile</Link>
-                <Link :href="route('admin.password.edit')" class="dropdown-item">Change Password</Link>
+                <Link :href="route('admin.profile.edit')" class="dropdown-item">{{ $t('admin.shared.profile') }}</Link>
+                <Link :href="route('admin.password.edit')" class="dropdown-item">{{ $t('admin.shared.change_password') }}</Link>
                 <div class="dropdown-divider"></div>
-                <Link :href="route('admin.logout')" method="DELETE" class="dropdown-item">Logout</Link>
+                <Link :href="route('admin.logout')" method="DELETE" class="dropdown-item">{{ $t('admin.shared.logout') }}</Link>
             </div>
         </div>
     </div>

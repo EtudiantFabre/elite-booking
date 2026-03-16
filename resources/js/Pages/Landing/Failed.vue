@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="d-flex flex-wrap justify-content-center gap-3">
-                                <Link :href="route('checkout.show', {booking: booking.ref_number})" class="btn btn-danger px-4 py-2 rounded-pill shadow-sm">
+                                <Link :href="route('bookings.payments.create', {booking: booking.id})" class="btn btn-danger px-4 py-2 rounded-pill shadow-sm">
                                     <i class="bi bi-arrow-clockwise me-2"></i> {{ $t('front.failed.retry') }}
                                 </Link>
                                 <Link :href="route('home')" class="btn btn-outline-secondary px-4 py-2 rounded-pill">
