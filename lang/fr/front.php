@@ -109,6 +109,7 @@ return [
         'subtitle' => 'Réservez votre séjour',
         'description' => 'Découvrez une hospitalité inégalée grâce à notre processus de réservation simplifié',
         'up_to_guests' => 'Jusqu\'à :count personnes',
+        'guests' => 'Personnes',
         'reviews' => ':count avis',
         'your_booking_details' => 'Vos détails de réservation',
         'check_in' => 'Arrivée',

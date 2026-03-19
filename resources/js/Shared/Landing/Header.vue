@@ -31,8 +31,8 @@
                     <ul>
                         <li><Link :href="route('home')" :class="{'active': $page.url === '/'}">{{ $t('front.header.home') }}</Link></li>
                         <li><Link :href="route('roomTypes.index')" :class="{'active': $page.url === route('roomTypes.index')}">{{ $t('front.header.rooms') }}</Link></li>
-                        <li><a href="amenities.html">{{ $t('front.header.amenities') }}</a></li>
-                        <li><a href="about.html">{{ $t('front.header.about') }}</a></li>
+                        <li><Link :href="route('amenities')" :class="{'active': $page.url === route('amenities')}">{{ $t('front.header.amenities') }}</Link></li>
+                        <li><Link :href="route('about')" :class="{'active': $page.url === route('about')}">{{ $t('front.header.about') }}</Link></li>
                         <li v-if="!customer"><Link :href="route('login')">{{ $t('front.header.login') }}</Link></li>
                         <li v-if="!customer"><Link :href="route('register')">{{ $t('front.header.register') }}</Link></li>
                         <li class="dropdown" v-if="customer">

@@ -5,9 +5,9 @@
             <div class="container">
                 <div class="row gy-4">
                     <div class="col-lg-4 col-md-6 footer-about">
-                        <a href="index.html" class="logo d-flex align-items-center">
+                        <Link :href="route('home')" class="logo d-flex align-items-center">
                             <span class="sitename">Hotel Homa</span>
-                        </a>
+                        </Link>
                         <div class="footer-contact pt-3">
                             <p>A108 Adam Street</p>
                             <p>New York, NY 535022</p>
@@ -19,9 +19,9 @@
                     <div class="col-lg-2 col-md-3 footer-links">
                         <h4>{{ $t('front.footer.useful_links') }}</h4>
                         <ul>
-                            <li><a href="#">{{ $t('front.header.home') }}</a></li>
-                            <li><a href="#">{{ $t('front.footer.about_us') }}</a></li>
-                            <li><a href="#">{{ $t('front.footer.services') }}</a></li>
+                            <li><Link :href="route('home')">{{ $t('front.header.home') }}</Link></li>
+                            <li><Link :href="route('about')">{{ $t('front.footer.about_us') }}</Link></li>
+                            <li><Link :href="route('amenities')">{{ $t('front.footer.services') }}</Link></li>
                             <li><a href="#">{{ $t('front.footer.terms_of_service') }}</a></li>
                             <li><a href="#">{{ $t('front.footer.privacy_policy') }}</a></li>
                         </ul>

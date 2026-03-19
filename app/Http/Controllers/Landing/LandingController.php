@@ -8,7 +8,7 @@ use App\Models\RoomType;
 
 class LandingController extends Controller
 {
-    public function __invoke()
+    public function index()
     {
         $roomTypes = RoomType::with('media')
             ->active()
@@ -19,5 +19,15 @@ class LandingController extends Controller
         return inertia('Landing/Home', [
             'roomTypes' => RoomTypeResource::collection($roomTypes),
         ]);
+    }
+
+    public function about()
+    {
+        return inertia('Landing/About');
+    }
+
+    public function amenities()
+    {
+        return inertia('Landing/Amenities');
     }
 }

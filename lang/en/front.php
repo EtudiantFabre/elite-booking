@@ -109,6 +109,7 @@ return [
         'subtitle' => 'Reserve Your Stay',
         'description' => 'Experience unmatched hospitality with our streamlined booking process',
         'up_to_guests' => 'Up to :count guests',
+        'guests' => 'Guests',
         'reviews' => ':count reviews',
         'your_booking_details' => 'Your booking details',
         'check_in' => 'Check-in',

@@ -10,7 +10,7 @@
                             <p class="hero-subtitle text-white">{{ $t('front.home.hero_subtitle') }}</p>
                             <div class="hero-actions aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
                                 <Link :href="route('roomTypes.index')" class="btn btn-origin p-5 py-3 mx-3" style="border-radius: 50px !important;">{{ $t('front.home.book_stay') }}</Link>
-                                <a href="amenities.html" class="btn btn-outline-light p-5 py-3" style="border-radius: 50px">{{ $t('front.home.explore_amenities') }}</a>
+                                <Link :href="route('amenities')" class="btn btn-outline-light p-5 py-3" style="border-radius: 50px">{{ $t('front.home.explore_amenities') }}</Link>
                             </div>
                         </div>
                     </div>
@@ -148,8 +148,8 @@
                         </div><!-- End Stats Row -->
 
                         <div class="about-actions">
-                            <a href="about.html" class="btn-primary">{{ $t('front.home.our_story') }}</a>
-                            <a href="rooms.html" class="btn-secondary">{{ $t('front.home.view_rooms') }}</a>
+                            <Link :href="route('about')" class="btn-primary">{{ $t('front.home.our_story') }}</Link>
+                            <Link :href="route('roomTypes.index')" class="btn-secondary">{{ $t('front.home.view_rooms') }}</Link>
                         </div>
                     </div>
                 </div><!-- End About Content -->
@@ -467,9 +467,9 @@
             </div>
 
             <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="300">
-                <a href="gallery.html" class="btn btn-gallery">
+                <Link href="#" class="btn btn-gallery">
                     <i class="bi bi-collection me-2"></i>{{ $t('front.home.discover_gallery') }}
-                </a>
+                </Link>
             </div>
 
         </div>

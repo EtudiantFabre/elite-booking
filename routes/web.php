@@ -14,7 +14,9 @@ use App\Http\Controllers\Landing\PaymentController;
 use App\Http\Controllers\Landing\RoomTypeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', LandingController::class)->middleware('verified.customer')->name('home');
+Route::get('/', [LandingController::class, 'index'])->middleware('verified.customer')->name('home');
+Route::get('/about', [LandingController::class, 'about'])->name('about');
+Route::get('/amenities', [LandingController::class, 'amenities'])->name('amenities');
 Route::get('/rooms', [RoomTypeController::class, 'index'])->name('roomTypes.index');
 Route::get('/rooms/{roomType:slug}', [RoomTypeController::class, 'show'])->name('roomTypes.show');
 Route::get('/login', [AuthenticateController::class, 'loginForm'])->name('loginForm');
