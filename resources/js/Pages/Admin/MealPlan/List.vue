@@ -1,8 +1,8 @@
 <template>
-    <Head title="meal plans" />
+    <Head :title="$t('admin.meal_plans.title')" />
     <div class="row g-2 align-items-center mb-4">
         <div class="col">
-            <h2 class="page-title">Meal Plans</h2>
+            <h2 class="page-title">{{ $t('admin.meal_plans.title') }}</h2>
         </div>
         <!-- Page title actions -->
         <div class="col-auto ms-auto d-print-none">
@@ -11,7 +11,7 @@
                 <button v-if="access.createMealPlan" class="btn btn-primary btn-5 d-none d-sm-inline-block"
                         @click="openModal = !openModal">
                     <IconPlus class="icon icon-2"/>
-                    New Record
+                    {{ $t('admin.actions.new_record') }}
                 </button>
             </div>
             <!-- BEGIN MODAL -->
@@ -24,8 +24,8 @@
             <div class="card-header">
                 <div class="row w-full">
                     <div class="col">
-                        <h3 class="card-title mb-0">Meal Plans</h3>
-                        <p class="text-secondary m-0">List Meal Plans.</p>
+                        <h3 class="card-title mb-0">{{ $t('admin.meal_plans.title') }}</h3>
+                        <p class="text-secondary m-0">{{ $t('admin.messages.list_of', {resource: $t('admin.menu.meal_plans').toLowerCase()}) }}</p>
                     </div>
                 </div>
             </div>
@@ -35,13 +35,13 @@
                     <tr>
                         <th class="w-1"></th>
                         <th>
-                            name
+                            {{ $t('admin.meal_plans.name') }}
                         </th>
                         <th>
-                            code
+                            {{ $t('admin.meal_plans.code') }}
                         </th>
                         <th>
-                            Adult Price
+                            {{ $t('admin.meal_plans.adult_price') }}
                         </th>
                         <th></th>
                     </tr>
@@ -59,20 +59,20 @@
                                 <div class="dropdown" v-if="Object.values(mealPlan.access).some(per => per)">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
                                             data-bs-toggle="dropdown" aria-expanded="true">
-                                        Actions
+                                        {{ $t('admin.actions.actions') }}
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
                                         <button class="dropdown-item align-middle"
                                                 @click="openEditModal(mealPlan)"
                                                 v-if="mealPlan.access.edit">
                                             <IconEdit class="icon icon1"/>
-                                            Edit
+                                            {{ $t('admin.actions.edit') }}
                                         </button>
                                         <button class="dropdown-item"
                                                 @click="() => confirmDelete(route('admin.mealPlans.destroy', mealPlan.id))"
                                                 v-if="mealPlan.access.delete">
                                             <IconTrash class="icon icon1"/>
-                                            Delete
+                                            {{ $t('admin.actions.delete') }}
                                         </button>
                                     </div>
                                 </div>

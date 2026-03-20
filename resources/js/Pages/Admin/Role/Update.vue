@@ -1,12 +1,12 @@
 <template>
-    <Modal title="Edit Roles" formId="editRolesForm">
+    <Modal :title="$t('admin.actions.edit') + ' ' + $t('admin.roles.title')" formId="editRolesForm">
         <form @submit.prevent="submitEdit" method="post" id="editRolesForm">
             <div class="row">
                 <BaseInput
-                    label="Name"
+                    :label="$t('admin.roles.name')"
                     v-model="form.name"
                     :error="form.errors.name"
-                    placeholder="name"
+                    :placeholder="$t('admin.roles.name').toLowerCase()"
                     required
                 />
             </div>

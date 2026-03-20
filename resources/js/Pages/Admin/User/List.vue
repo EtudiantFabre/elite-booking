@@ -1,8 +1,8 @@
 <template>
-    <Head title="users" />
+    <Head :title="$t('admin.menu.users')" />
     <div class="row g-2 align-items-center mb-4">
         <div class="col">
-            <h2 class="page-title">Users</h2>
+            <h2 class="page-title">{{ $t('admin.menu.users') }}</h2>
         </div>
         <!-- Page title actions -->
         <div class="col-auto ms-auto d-print-none">
@@ -12,7 +12,7 @@
                         v-if="access.createUser"
                         @click="openModal = !openModal">
                     <IconPlus class="icon icon-2"/>
-                    New Record
+                    {{ $t('admin.actions.new_record') }}
                 </button>
             </div>
             <!-- BEGIN MODAL -->
@@ -25,8 +25,8 @@
             <div class="card-header">
                 <div class="row w-full">
                     <div class="col">
-                        <h3 class="card-title mb-0">Users</h3>
-                        <p class="text-secondary m-0">List Users.</p>
+                        <h3 class="card-title mb-0">{{ $t('admin.menu.users') }}</h3>
+                        <p class="text-secondary m-0">{{ $t('admin.messages.list_of', {resource: $t('admin.menu.users').toLowerCase()}) }}</p>
                     </div>
                     <div class="col-md-auto col-sm-12">
                         <div class="ms-auto d-flex flex-wrap btn-list">
@@ -49,15 +49,15 @@
                         <sort-head
                             v-model="sorts"
                             name="full-name"
-                            label="Full Name"
+                            :label="$t('admin.users.name')"
                         />
                         <th>
-                            Roles
+                            {{ $t('admin.users.roles') }}
                         </th>
                         <sort-head
                             v-model="sorts"
                             name="email"
-                            label="Email"
+                            :label="$t('admin.users.email')"
                         />
                         <th></th>
                     </tr>
@@ -75,17 +75,17 @@
                             <div class="dropdown" v-if="Object.values(user.access).some(per => per)">
                                 <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
                                         data-bs-toggle="dropdown" aria-expanded="true">
-                                    Actions
+                                    {{ $t('admin.actions.actions') }}
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
                                     <button class="dropdown-item align-middle" @click="openEditModal(user)" v-if="user.access.edit">
                                         <IconEdit class="icon icon1"/>
-                                        Edit
+                                        {{ $t('admin.actions.edit') }}
                                     </button>
                                     <button class="dropdown-item" v-if="user.access.delete"
                                             @click="() => confirmDelete(route('admin.users.destroy', user.id))">
                                         <IconTrash class="icon icon1"/>
-                                        Delete
+                                        {{ $t('admin.actions.delete') }}
                                     </button>
                                 </div>
                             </div>
@@ -96,10 +96,10 @@
             </div>
             <div class="card-footer d-flex align-items-center">
                 <select class="form-select w-auto" v-model="limit" @change="syncFilters">
-                    <option value="15" selected>15 records</option>
-                    <option value="25">25 records</option>
-                    <option value="50">50 records</option>
-                    <option value="100">100 records</option>
+                    <option value="15" selected>15 {{ $t('admin.shared.records') }}</option>
+                    <option value="25">25 {{ $t('admin.shared.records') }}</option>
+                    <option value="50">50 {{ $t('admin.shared.records') }}</option>
+                    <option value="100">100 {{ $t('admin.shared.records') }}</option>
                 </select>
                 <Pagination :links="users.meta.links"/>
             </div>

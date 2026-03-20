@@ -1,13 +1,13 @@
 <template>
-    <Head title="permissions" />
+    <Head :title="$t('admin.roles.permissions')" />
     <div class="row g-2 align-items-center mb-4">
         <div class="col">
-            <h2 class="page-title text-capitalize">{{ role.name }} Role Permissions</h2>
+            <h2 class="page-title text-capitalize">{{ $t('admin.roles.permissions_for', {role: role.name}) }}</h2>
         </div>
         <div class="col-auto ms-auto">
             <Link class="btn btn-1" :href="route('admin.roles.index')">
                 <IconArrowLeft class="icon"/>
-                Back
+                {{ $t('admin.actions.back') }}
             </Link>
         </div>
     </div>
@@ -15,12 +15,12 @@
         <div class="card">
             <div class="card-header">
                 <div class="row g-2 align-items-center w-full my-2">
-                    <span class="col m-0">Permissions</span>
+                    <span class="col m-0">{{ $t('admin.roles.permissions') }}</span>
                     <label class="form-check m-0 ms-auto col-auto">
                         <input class="form-check-input" type="checkbox"
                                @change="toggleAllPerms($event)"
                                :checked="allSelected()">
-                        All
+                        {{ $t('admin.roles.all') }}
                     </label>
                 </div>
             </div>
@@ -55,7 +55,7 @@
             <div class="card-footer text-end">
                 <button type="submit" class="btn btn-primary ms-auto" form="syncPermissions">
                     <IconDeviceFloppy class="icon"/>
-                    <span>Save</span>
+                    <span>{{ $t('admin.actions.save') }}</span>
                 </button>
             </div>
         </div>

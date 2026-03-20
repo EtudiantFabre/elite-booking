@@ -38,7 +38,7 @@ class CancellationRuleController extends Controller
 
         CancellationRule::create($data);
 
-        return redirect()->back()->with('message', 'Cancellation Rule created.');
+        return redirect()->back()->with('message', __('admin.messages.created', ['resource' => __('admin.cancellation_rules.singular')]));
     }
 
     public function update(EditRequest $request, CancellationRule $cancellationRule)
@@ -47,7 +47,7 @@ class CancellationRuleController extends Controller
 
         $cancellationRule->update($data);
 
-        return redirect()->back()->with('message', 'Cancellation Rule updated.');
+        return redirect()->back()->with('message', __('admin.messages.updated', ['resource' => __('admin.cancellation_rules.singular')]));
     }
 
 
@@ -55,6 +55,6 @@ class CancellationRuleController extends Controller
     {
         $cancellationRule->delete();
 
-        return redirect()->back()->with('message', 'Cancellation Rule deleted.');
+        return redirect()->back()->with('message', __('admin.messages.deleted', ['resource' => __('admin.cancellation_rules.singular')]));
     }
 }

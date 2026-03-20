@@ -1,8 +1,8 @@
 <template>
-    <Head title="room types"/>
+    <Head :title="$t('admin.room_types.title')"/>
     <div class="row g-2 align-items-center mb-4">
         <div class="col">
-            <h2 class="page-title">Room Types</h2>
+            <h2 class="page-title">{{ $t('admin.room_types.title') }}</h2>
         </div>
         <!-- Page title actions -->
         <div class="col-auto ms-auto d-print-none">
@@ -12,7 +12,7 @@
                       class="btn btn-primary btn-5 d-none d-sm-inline-block"
                       v-if="access.createRoomType">
                     <IconPlus class="icon icon-2"/>
-                    New Record
+                    {{ $t('admin.actions.new_record') }}
                 </Link>
             </div>
             <!-- BEGIN MODAL -->
@@ -25,8 +25,8 @@
             <div class="card-header">
                 <div class="row w-full">
                     <div class="col">
-                        <h3 class="card-title mb-0">Room Types</h3>
-                        <p class="text-secondary m-0">List Room Types.</p>
+                        <h3 class="card-title mb-0">{{ $t('admin.room_types.title') }}</h3>
+                        <p class="text-secondary m-0">{{ $t('admin.messages.list_of', {resource: $t('admin.menu.room_types').toLowerCase()}) }}</p>
                     </div>
                     <div class="col-md-auto col-sm-12 d-flex gap-2">
                         <div class="input-group input-group-flat w-auto">
@@ -39,7 +39,7 @@
                         <div class="w-auto">
                             <select-box
                                 class="h-full"
-                                placeholder="All Status"
+                                :placeholder="$t('admin.rooms.all_status')"
                                 v-model="filters.status"
                                 :options="statuses"/>
                         </div>
@@ -51,14 +51,14 @@
                     <thead>
                     <tr>
                         <th class="w-1"></th>
-                        <sort-head name="name" label="Name" v-model="sorts"/>
-                        <sort-head name="size" label="Size" v-model="sorts"/>
-                        <sort-head name="max_total_guests" label="Max Guests" v-model="sorts"/>
+                        <sort-head name="name" :label="$t('admin.room_types.name')" v-model="sorts"/>
+                        <sort-head name="size" :label="$t('admin.room_types.size')" v-model="sorts"/>
+                        <sort-head name="max_total_guests" :label="$t('admin.room_types.max_guests')" v-model="sorts"/>
                         <th>
-                            Available Rooms
+                            {{ $t('admin.room_types.available_rooms') }}
                         </th>
-                        <sort-head name="price" label="Price" v-model="sorts"/>
-                        <sort-head name="status" label="Status" v-model="sorts"/>
+                        <sort-head name="price" :label="$t('admin.room_types.price')" v-model="sorts"/>
+                        <sort-head name="status" :label="$t('admin.rooms.status')" v-model="sorts"/>
                         <th></th>
                     </tr>
                     </thead>
@@ -83,25 +83,25 @@
                             <div class="dropdown" v-if="Object.values(roomType.access).some(per => per) || can.viewRooms">
                                 <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
                                         data-bs-toggle="dropdown" aria-expanded="true">
-                                    Actions
+                                    {{ $t('admin.actions.actions') }}
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
                                     <Link :href="route('admin.rooms.index', {'filters[room_type_id]': roomType.id})"
                                           class="dropdown-item align-middle"
                                           v-if="access.viewRooms">
                                         <IconDoor class="icon icon1"/>
-                                        Rooms
+                                        {{ $t('admin.menu.rooms') }}
                                     </Link>
                                     <Link :href="route('admin.roomTypes.edit', roomType.id)"
                                           class="dropdown-item align-middle"
                                           v-if="roomType.access.edit">
                                         <IconEdit class="icon icon1"/>
-                                        Edit
+                                        {{ $t('admin.actions.edit') }}
                                     </Link>
                                     <button class="dropdown-item" v-if="roomType.access.delete"
                                             @click="() => confirmDelete(route('admin.roomTypes.destroy', roomType.id))">
                                         <IconTrash class="icon icon1"/>
-                                        Delete
+                                        {{ $t('admin.actions.delete') }}
                                     </button>
                                 </div>
                             </div>
@@ -112,10 +112,10 @@
             </div>
             <div class="card-footer d-flex align-items-center">
                 <select class="form-select w-auto" v-model="limit" @change="syncFilters">
-                    <option value="15" selected>15 records</option>
-                    <option value="25">25 records</option>
-                    <option value="50">50 records</option>
-                    <option value="100">100 records</option>
+                    <option value="15" selected>15 {{ $t('admin.shared.records') }}</option>
+                    <option value="25">25 {{ $t('admin.shared.records') }}</option>
+                    <option value="50">50 {{ $t('admin.shared.records') }}</option>
+                    <option value="100">100 {{ $t('admin.shared.records') }}</option>
                 </select>
                 <Pagination :links="roomTypes.meta.links"/>
             </div>

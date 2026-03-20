@@ -83,7 +83,7 @@ class RoomTypeController extends Controller
             $roomType->bedTypes()->sync($bedTypes);
         });
 
-        return redirect()->route('admin.roomTypes.create')->with('message', 'Room type created.');
+        return redirect()->route('admin.roomTypes.create')->with('message', __('admin.messages.created', ['resource' => __('admin.room_types.singular')]));
     }
 
     public function edit(RoomType $roomType)
@@ -117,12 +117,12 @@ class RoomTypeController extends Controller
             $roomType->bedTypes()->sync($bedTypes);
         });
 
-        return redirect()->back()->with('message', 'Room type updated.');
+        return redirect()->back()->with('message', __('admin.messages.updated', ['resource' => __('admin.room_types.singular')]));
     }
 
     public function destroy(RoomType $roomType)
     {
         $roomType->delete();
-        return redirect()->back()->with('message', 'Room type deleted.');
+        return redirect()->back()->with('message', __('admin.messages.deleted', ['resource' => __('admin.room_types.singular')]));
     }
 }

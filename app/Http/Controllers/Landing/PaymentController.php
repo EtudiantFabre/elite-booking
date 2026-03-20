@@ -61,7 +61,7 @@ class PaymentController extends Controller
 
         $intent = PaymentIntent::create([
             'amount' => $booking->total_price * 100,
-            'currency' => 'usd',
+            'currency' => strtolower(config('hotel.currency')),
             'metadata' => [
                 'user_id' => auth('customer')->id(),
                 'booking_id' => $booking->id,
@@ -207,11 +207,12 @@ class PaymentController extends Controller
 
     public function success(Booking $booking)
     {
-        if (
-            !$booking->isPaid() ||
-            $booking->customer_id !== auth('customer')->id()
-        ) {
+        if ($booking->customer_id !== auth('customer')->id()) {
             abort(403);
+        }
+
+        if ($booking->isPayable()) {
+            return redirect()->route('bookings.payments.create', $booking);
         }
 
         $roomType = RoomType::whereHas('rooms.bookings', fn($query) => $query->whereKey($booking->id))->first();

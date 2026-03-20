@@ -1,8 +1,8 @@
 <template>
-    <Head title="list payments" />
+    <Head :title="$t('admin.actions.list') + ' ' + $t('admin.menu.payments')" />
     <div class="row g-2 align-items-center mb-4">
         <div class="col">
-            <h2 class="page-title">Payment</h2>
+            <h2 class="page-title">{{ $t('admin.menu.payments') }}</h2>
         </div>
     </div>
 
@@ -11,39 +11,39 @@
             <div class="card-header d-block">
                 <div class="row w-full">
                     <div class="col">
-                        <h3 class="card-title mb-0">Payments</h3>
-                        <p class="text-secondary m-0">List Payments.</p>
+                        <h3 class="card-title mb-0">{{ $t('admin.menu.payments') }}</h3>
+                        <p class="text-secondary m-0">{{ $t('admin.messages.list_of', {resource: $t('admin.menu.payments').toLowerCase()}) }}</p>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-3">
                         <select-box
-                            placeholder="All Customers"
+                            :placeholder="$t('admin.bookings.all_customers')"
                             v-model="filters.customer_id"
                             :options="customers"/>
                     </div>
                     <div class="col-2">
                         <select-box
-                            placeholder="All Type"
+                            :placeholder="$t('admin.payments.all_type')"
                             v-model="filters.type"
                             :options="selectType"/>
                     </div>
                     <div class="col-2">
                         <select-box
-                            placeholder="All Payment Method"
+                            :placeholder="$t('admin.payments.all_payment_method')"
                             v-model="filters.payment_method"
                             :options="selectMethods"/>
                     </div>
                     <div class="col-2">
                         <select-box
-                            placeholder="All Status"
+                            :placeholder="$t('admin.payments.all_status')"
                             v-model="filters.status"
                             :options="selectStatuses"/>
                     </div>
                     <div class="col-2">
                         <DatePicker
                             v-model="filters.paid_at"
-                            placeholder="Paid-at"
+                            :placeholder="$t('admin.payments.paid_at')"
                             range multi-calendars
                             :time-config="{ enableTimePicker: false }"
                         />
@@ -58,13 +58,13 @@
                     <thead>
                     <tr>
                         <th class="w-1"></th>
-                        <th>Customer</th>
-                        <sort-head name="amount" v-model="sorts" label="Amount"/>
-                        <sort-head name="type" v-model="sorts" label="Type"/>
-                        <sort-head name="payment_method" v-model="sorts" label="Payment Method"/>
-                        <sort-head name="status" v-model="sorts" label="Status"/>
-                        <sort-head name="paid_at" v-model="sorts" label="Paid At"/>
-                        <sort-head name="created_at" v-model="sorts" label="Created At"/>
+                        <th>{{ $t('admin.dashboard.customer') }}</th>
+                        <sort-head name="amount" v-model="sorts" :label="$t('admin.payments.amount')"/>
+                        <sort-head name="type" v-model="sorts" :label="$t('admin.payments.type')"/>
+                        <sort-head name="payment_method" v-model="sorts" :label="$t('admin.payments.payment_method')"/>
+                        <sort-head name="status" v-model="sorts" :label="$t('admin.payments.status')"/>
+                        <sort-head name="paid_at" v-model="sorts" :label="$t('admin.payments.paid_at')"/>
+                        <sort-head name="created_at" v-model="sorts" :label="$t('admin.payments.created_at')"/>
                         <th></th>
                     </tr>
                     </thead>
@@ -97,31 +97,31 @@
                                 <div class="dropdown" v-if="Object.values(payment.access).some(per => per)">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
                                             data-bs-toggle="dropdown" aria-expanded="true">
-                                        Actions
+                                        {{ $t('admin.actions.actions') }}
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
                                         <button class="dropdown-item align-middle"
                                                 @click="openEditModal(payment)"
                                                 v-if="payment.access.edit">
                                             <IconEdit class="icon icon1"/>
-                                            Edit
+                                            {{ $t('admin.actions.edit') }}
                                         </button>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                         <tr v-else>
-                            <td colspan="8" class="text-center">Payments Record Not exists.</td>
+                            <td colspan="8" class="text-center">{{ $t('admin.payments.not_exists') }}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="card-footer d-flex align-items-center">
                 <select class="form-select w-auto" v-model="limit" @change="syncFilters">
-                    <option value="15" selected>15 records</option>
-                    <option value="25">25 records</option>
-                    <option value="50">50 records</option>
-                    <option value="100">100 records</option>
+                    <option value="15" selected>15 {{ $t('admin.shared.records') }}</option>
+                    <option value="25">25 {{ $t('admin.shared.records') }}</option>
+                    <option value="50">50 {{ $t('admin.shared.records') }}</option>
+                    <option value="100">100 {{ $t('admin.shared.records') }}</option>
                 </select>
                 <Pagination :links="payments.meta.links"/>
             </div>

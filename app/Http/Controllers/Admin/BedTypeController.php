@@ -37,7 +37,7 @@ class BedTypeController extends Controller
 
         BedType::create($data);
 
-        return redirect()->back()->with('message', 'Bed Type created.');
+        return redirect()->back()->with('message', __('admin.messages.created', ['resource' => __('admin.bed_types.singular')]));
     }
 
     public function update(EditRequest $request, BedType $bedType)
@@ -46,7 +46,7 @@ class BedTypeController extends Controller
 
         $bedType->update($data);
 
-        return redirect()->back()->with('message', 'Bed Type updated.');
+        return redirect()->back()->with('message', __('admin.messages.updated', ['resource' => __('admin.bed_types.singular')]));
     }
 
 
@@ -54,6 +54,6 @@ class BedTypeController extends Controller
     {
         $bedType->delete();
 
-        return redirect()->back()->with('message', 'Bed Type deleted.');
+        return redirect()->back()->with('message', __('admin.messages.deleted', ['resource' => __('admin.bed_types.singular')]));
     }
 }

@@ -28,8 +28,8 @@ class RoomTypeFactory extends Factory
             'max_adult' => $maxAdult = mt_rand(2, 8),
             'max_children'=>  $maxChildren = mt_rand(1, 2),
             'max_total_guests' => $maxAdult + $maxChildren,
-            'price' => fake()->randomElement([50, 100, 200, 300, 400, 500, 700, 1000]),
-            'extra_bed_price' => 50,
+            'price' => fake()->randomElement([25000, 50000, 75000, 100000, 150000, 200000, 250000, 300000]),
+            'extra_bed_price' => 5000,
             'status' => RoomTypeStatus::Active,
         ];
     }

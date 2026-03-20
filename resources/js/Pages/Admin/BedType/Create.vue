@@ -1,24 +1,24 @@
 <template>
-    <Modal title="New Bed Types" formId="createBedTypeForm">
+    <Modal :title="$t('admin.actions.create') + ' ' + $t('admin.bed_types.title')" formId="createBedTypeForm">
         <form @submit.prevent="submitCreate" method="post" id="createBedTypeForm" class="gap-inputs">
             <div class="row">
                 <BaseInput
-                    label="Name"
+                    :label="$t('admin.bed_types.name')"
                     v-model="form.name"
                     :error="form.errors.name"
-                    placeholder="name"
+                    :placeholder="$t('admin.bed_types.name')"
                     required
                 />
             </div>
             <div class="row">
                 <BaseInput
-                    label="Capacity"
+                    :label="$t('admin.bed_types.capacity')"
                     type="number"
                     min="1"
                     max="2"
                     v-model="form.capacity"
                     :error="form.errors.capacity"
-                    placeholder="your capacity"
+                    :placeholder="$t('admin.bed_types.capacity')"
                     required
                 />
             </div>

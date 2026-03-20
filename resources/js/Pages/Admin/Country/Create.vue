@@ -1,21 +1,21 @@
 <template>
-    <Modal title="New Countries" formId="createCountryForm">
+    <Modal :title="$t('admin.actions.create') + ' ' + $t('admin.countries.title')" formId="createCountryForm">
         <form @submit.prevent="submitCreate" method="post" id="createCountryForm" class="gap-inputs">
             <div class="row">
                 <BaseInput
-                    label="Name"
+                    :label="$t('admin.countries.name')"
                     v-model="form.name"
                     :error="form.errors.name"
-                    placeholder="your name"
+                    :placeholder="$t('admin.countries.name').toLowerCase()"
                     required
                 />
             </div>
             <div class="row">
                 <BaseInput
-                    label="Short"
+                    :label="$t('admin.countries.short')"
                     v-model="form.short"
                     :error="form.errors.short"
-                    placeholder="your short"
+                    :placeholder="$t('admin.countries.short').toLowerCase()"
                     required
                 />
             </div>

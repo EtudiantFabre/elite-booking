@@ -64,7 +64,7 @@ class UserController extends Controller
         $user = User::create($data);
         $user->roles()->sync($data['roles']);
 
-        return redirect()->back()->with('message', 'User created.');
+        return redirect()->back()->with('message', __('admin.messages.created', ['resource' => __('admin.users.singular')]));
     }
 
 
@@ -77,7 +77,7 @@ class UserController extends Controller
         $user->update($data);
         $user->roles()->sync($data['roles']);
 
-        return redirect()->back()->with('message', 'User updated.');
+        return redirect()->back()->with('message', __('admin.messages.updated', ['resource' => __('admin.users.singular')]));
     }
 
 
@@ -85,6 +85,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->back()->with('message', 'User deleted.');
+        return redirect()->back()->with('message', __('admin.messages.deleted', ['resource' => __('admin.users.singular')]));
     }
 }

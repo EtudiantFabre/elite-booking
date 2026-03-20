@@ -21,7 +21,7 @@ class PasswordController extends Controller
         $data = $request->validate([
             'current_password' => ['required','string', function ($attribute, $value, $fail) use($user) {
                 if (!Hash::check($value, $user->password)) {
-                    $fail(__('The current password is incorrect.'));
+                    $fail(__('admin.messages.current_password_incorrect'));
                 }
             }],
             'password' => 'required|string|min:8|confirmed|different:current_password'
@@ -35,6 +35,6 @@ class PasswordController extends Controller
             route('admin.password.request')
         ));
 
-        return redirect()->back()->with('message', 'Password changed successfully.');
+        return redirect()->back()->with('message', __('admin.messages.password_changed'));
     }
 }

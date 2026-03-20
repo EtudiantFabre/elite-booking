@@ -49,25 +49,25 @@ class DatabaseSeeder extends Seeder
         $countries = Country::factory(50)->create();
 
         $bedTypes = [
-            'Single' => 1,
+            'Simple' => 1,
             'Standard' => 2,
-            'King' => 2,
-            'Royal' => 2
+            'King Size' => 2,
+            'Royale' => 2
         ];
 
         $bedTypes = array_map(fn($name, $quantity) => BedType::create(['name' => $name, 'capacity' => $quantity]),
             array_keys($bedTypes), $bedTypes);
 
         $facilities = [
-            'Private bathroom',
-            'Flat-screen TV',
-            'TerraceFree',
-            'Wifi',
-            'Free toiletries',
-            'Shower',
-            'Toilet',
-            'Hardwood or parquet floors',
-            'Towels',
+            'Salle de bain privée',
+            'Télévision à écran plat',
+            'Terrasse',
+            'Wifi gratuit',
+            'Articles de toilette gratuits',
+            'Douche',
+            'Toilettes',
+            'Parquet',
+            'Serviettes',
             'Shopping'
         ];
 
@@ -76,48 +76,29 @@ class DatabaseSeeder extends Seeder
         ]), $facilities);
 
         $roomTypes = [
-            'Single Room',
-
-            'Double Room',
-
-            'Twin Room',
-
-            'Triple Room',
-
-            'Quad Room',
-
-            'Family Room',
-
-            'King Room',
-
-            'Queen Room',
-
-            'Studio Room',
-
-            'Deluxe Room',
-
-            'Superior Room',
-
-            'Executive Room',
-
-            'Junior Suite',
-
+            'Chambre Simple',
+            'Chambre Double',
+            'Chambre Twin',
+            'Chambre Triple',
+            'Chambre Quadruple',
+            'Chambre Familiale',
+            'Chambre King',
+            'Chambre Queen',
+            'Studio',
+            'Chambre Deluxe',
+            'Chambre Supérieure',
+            'Chambre Exécutive',
+            'Suite Junior',
             'Suite',
-            'Presidential Suite',
-
-            'Connecting Room',
-
-            'Adjacent Room',
-
-            'Accessible Room',
-
-            'Smoking Room',
-
-            'Non-Smoking Room',
+            'Suite Présidentielle',
+            'Chambres Communicantes',
+            'Chambres Adjacentes',
+            'Chambre Accessible',
+            'Chambre Fumeur',
         ];
 
         $roomTypes = collect($roomTypes)->map(function ($name) {
-            return RoomType::factory()->create(['name' => $name, 'slug' => \Str::slug($name,)]);
+            return RoomType::factory()->create(['name' => $name, 'slug' => \Str::slug($name)]);
         });
 
         $roomTypes->map(function ($roomType) use ($bedTypes, $facilities) {
@@ -131,11 +112,11 @@ class DatabaseSeeder extends Seeder
 
 
         $mealPlans = [
-            ['code' => 'RO', 'name' => 'Room Only', 'description' => 'No meals included', 'adult_price' => 0.00, 'child_price' => 0.00, 'infant_price' => 0.00],
-            ['code' => 'BB', 'name' => 'Bed & Breakfast', 'description' => 'Breakfast included', 'adult_price' => 10.00, 'child_price' => 8.00, 'infant_price' => 0.00],
-            ['code' => 'HB', 'name' => 'Half Board', 'description' => 'Breakfast + Dinner', 'adult_price' => 25.00, 'child_price' => 20, 'infant_price' => 0.00],
-            ['code' => 'FB', 'name' => 'Full Board', 'description' => 'Breakfast + Lunch + Dinner', 'adult_price' => 40.00, 'child_price' => 30, 'infant_price' => 5.00],
-            ['code' => 'AI', 'name' => 'All Inclusive', 'description' => 'All meals + drinks', 'adult_price' => 65.00, 'child_price' => 50.00, 'infant_price' => 10.00]
+            ['code' => 'RO', 'name' => 'Hébergement seul', 'description' => 'Aucun repas inclus', 'adult_price' => 0, 'child_price' => 0, 'infant_price' => 0],
+            ['code' => 'BB', 'name' => 'Petit-déjeuner inclus', 'description' => 'Petit-déjeuner inclus', 'adult_price' => 5000, 'child_price' => 3000, 'infant_price' => 0],
+            ['code' => 'HB', 'name' => 'Demi-pension', 'description' => 'Petit-déjeuner + Dîner', 'adult_price' => 15000, 'child_price' => 10000, 'infant_price' => 0],
+            ['code' => 'FB', 'name' => 'Pension complète', 'description' => 'Petit-déjeuner + Déjeuner + Dîner', 'adult_price' => 25000, 'child_price' => 15000, 'infant_price' => 5000],
+            ['code' => 'AI', 'name' => 'Tout compris', 'description' => 'Tous les repas + boissons', 'adult_price' => 45000, 'child_price' => 30000, 'infant_price' => 10000]
         ];
 
         foreach ($mealPlans as $mealPlan) {
@@ -147,25 +128,25 @@ class DatabaseSeeder extends Seeder
                 'min_days_before' => 0,
                 'max_days_before' => 1,
                 'penalty_percent' => 100,
-                'description' => 'No refund for cancellations made within 1 day before check-in',
+                'description' => 'Aucun remboursement pour les annulations effectuées moins de 1 jour avant l\'arrivée',
             ],
             [
                 'min_days_before' => 2,
                 'max_days_before' => 3,
                 'penalty_percent' => 50,
-                'description' => '50% refund for cancellations made 2–3 days before check-in',
+                'description' => 'Remboursement de 50 % pour les annulations effectuées 2 à 3 jours avant l\'arrivée',
             ],
             [
                 'min_days_before' => 4,
                 'max_days_before' => 7,
                 'penalty_percent' => 25,
-                'description' => '25% cancellation fee for cancellations 4–7 days before check-in',
+                'description' => 'Frais d\'annulation de 25 % pour les annulations effectuées 4 à 7 jours avant l\'arrivée',
             ],
             [
                 'min_days_before' => 8,
                 'max_days_before' => 999,
                 'penalty_percent' => 0,
-                'description' => 'Free cancellation for bookings cancelled 8 or more days before check-in',
+                'description' => 'Annulation gratuite pour les réservations annulées 8 jours ou plus avant l\'arrivée',
             ],
         ];
 

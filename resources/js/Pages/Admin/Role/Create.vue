@@ -1,12 +1,12 @@
 <template>
-    <Modal title="New Roles" formId="createRoleForm">
+    <Modal :title="$t('admin.actions.create') + ' ' + $t('admin.roles.title')" formId="createRoleForm">
         <form @submit.prevent="submitCreate" method="post" id="createRoleForm">
             <div class="row">
                 <BaseInput
-                    label="Name"
+                    :label="$t('admin.roles.name')"
                     v-model="form.name"
                     :error="form.errors.name"
-                    placeholder="name"
+                    :placeholder="$t('admin.roles.name').toLowerCase()"
                     required
                 />
             </div>

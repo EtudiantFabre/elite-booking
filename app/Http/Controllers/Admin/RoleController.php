@@ -40,7 +40,7 @@ class RoleController extends Controller
 
        Role::create($data);
 
-        return redirect()->back()->with('message', 'Role created.');
+        return redirect()->back()->with('message', __('admin.messages.created', ['resource' => __('admin.roles.singular')]));
     }
 
 
@@ -52,13 +52,13 @@ class RoleController extends Controller
 
         $role->update($data);
 
-        return redirect()->back()->with('message', 'Role updated.');
+        return redirect()->back()->with('message', __('admin.messages.updated', ['resource' => __('admin.roles.singular')]));
     }
 
 
     public function destroy(Role $role)
     {
         $role->delete();
-        return redirect()->back()->with('message', 'Role deleted.');
+        return redirect()->back()->with('message', __('admin.messages.deleted', ['resource' => __('admin.roles.singular')]));
     }
 }

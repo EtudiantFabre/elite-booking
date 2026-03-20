@@ -85,7 +85,7 @@ class CustomerController extends Controller
 
         Customer::create($data);
 
-        return redirect()->back()->with('message', 'Customer created.');
+        return redirect()->back()->with('message', __('admin.messages.created', ['resource' => __('admin.customers.singular')]));
     }
 
 
@@ -108,7 +108,7 @@ class CustomerController extends Controller
             }
         }
 
-        return redirect()->back()->with('message', 'Customer updated.');
+        return redirect()->back()->with('message', __('admin.messages.updated', ['resource' => __('admin.customers.singular')]));
     }
 
 
@@ -116,6 +116,6 @@ class CustomerController extends Controller
     {
         $customer->delete();
 
-        return redirect()->back()->with('message', 'Customer deleted.');
+        return redirect()->back()->with('message', __('admin.messages.deleted', ['resource' => __('admin.customers.singular')]));
     }
 }

@@ -75,7 +75,7 @@ class RoomController extends Controller
 
         Room::create($data);
 
-        return redirect()->back()->with('message', 'Room created.');
+        return redirect()->back()->with('message', __('admin.messages.created', ['resource' => __('admin.rooms.singular')]));
     }
 
 
@@ -85,7 +85,7 @@ class RoomController extends Controller
 
         $room->update($data);
 
-        return redirect()->back()->with('message', 'Room updated.');
+        return redirect()->back()->with('message', __('admin.messages.updated', ['resource' => __('admin.rooms.singular')]));
     }
 
     /**
@@ -95,6 +95,6 @@ class RoomController extends Controller
     {
         $room->delete();
 
-        return redirect()->back()->with('message', 'Room deleted.');
+        return redirect()->back()->with('message', __('admin.messages.deleted', ['resource' => __('admin.rooms.singular')]));
     }
 }

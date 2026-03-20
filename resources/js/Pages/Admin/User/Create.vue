@@ -1,22 +1,22 @@
 <template>
-    <Modal title="New Users" formId="createUserForm">
+    <Modal :title="$t('admin.actions.create') + ' ' + $t('admin.menu.users')" formId="createUserForm">
         <form @submit.prevent="submitCreate" method="post" id="createUserForm" class="gap-inputs">
             <div class="row">
                 <div class="col-lg-6">
                     <BaseInput
-                        label="First Name"
+                        :label="$t('admin.users.first_name')"
                         v-model="form.first_name"
                         :error="form.errors.first_name"
-                        placeholder="your name"
+                        :placeholder="$t('admin.users.first_name').toLowerCase()"
                         required
                     />
                 </div>
                 <div class="col-lg-6">
                     <BaseInput
-                        label="Last Name"
+                        :label="$t('admin.users.last_name')"
                         v-model="form.last_name"
                         :error="form.errors.last_name"
-                        placeholder="your family"
+                        :placeholder="$t('admin.users.last_name').toLowerCase()"
                         required
                     />
                 </div>
@@ -24,21 +24,21 @@
             <div class="row">
                 <div class="col-lg-6">
                     <BaseInput
-                        label="Email"
+                        :label="$t('admin.users.email')"
                         type="email"
                         v-model="form.email"
                         :error="form.errors.email"
-                        placeholder="your email"
+                        :placeholder="$t('admin.users.email').toLowerCase()"
                         required
                     />
                 </div>
                 <div class="col-lg-6">
                     <BaseInput
-                        label="Password"
+                        :label="$t('admin.users.password')"
                         type="password"
                         v-model="form.password"
                         :error="form.errors.password"
-                        placeholder="your password"
+                        :placeholder="$t('admin.users.password').toLowerCase()"
                         required
                     />
                 </div>
@@ -50,11 +50,11 @@
                                name="roles"
                                :error="form.errors.roles || form.errors['roles.0']"
                                multiple=""
-                               label="Select Roles">
+                               :label="$t('admin.users.select_roles')">
                     </SelectBox>
                 </div>
                 <div class="col-lg-6">
-                    <div class="form-label">Sex</div>
+                    <div class="form-label">{{ $t('admin.users.sex') }}</div>
                     <RadioButton v-model="form.sex" :options="sexes"/>
                 </div>
             </div>

@@ -1,8 +1,8 @@
 <template>
-    <Head title="facilities" />
+    <Head :title="$t('admin.facilities.title')" />
     <div class="row g-2 align-items-center mb-4">
         <div class="col">
-            <h2 class="page-title">Facilities</h2>
+            <h2 class="page-title">{{ $t('admin.facilities.title') }}</h2>
         </div>
         <!-- Page title actions -->
         <div class="col-auto ms-auto d-print-none">
@@ -11,7 +11,7 @@
                 <button v-if="access.createFacility" class="btn btn-primary btn-5 d-none d-sm-inline-block"
                         @click="openModal = !openModal">
                     <IconPlus class="icon icon-2"/>
-                    New Record
+                    {{ $t('admin.actions.new_record') }}
                 </button>
             </div>
             <!-- BEGIN MODAL -->
@@ -24,8 +24,8 @@
             <div class="card-header">
                 <div class="row w-full">
                     <div class="col">
-                        <h3 class="card-title mb-0">Facilities</h3>
-                        <p class="text-secondary m-0">List Facilities.</p>
+                        <h3 class="card-title mb-0">{{ $t('admin.facilities.title') }}</h3>
+                        <p class="text-secondary m-0">{{ $t('admin.messages.list_of', {resource: $t('admin.menu.facilities').toLowerCase()}) }}</p>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                     <tr>
                         <th class="w-1"></th>
                         <th>
-                            name
+                            {{ $t('admin.facilities.name') }}
                         </th>
                         <th></th>
                     </tr>
@@ -51,20 +51,20 @@
                                 <div class="dropdown" v-if="Object.values(facility.access).some(per => per)">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
                                             data-bs-toggle="dropdown" aria-expanded="true">
-                                        Actions
+                                        {{ $t('admin.actions.actions') }}
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
                                         <button class="dropdown-item align-middle"
                                                 @click="openEditModal(facility)"
                                                 v-if="facility.access.edit">
                                             <IconEdit class="icon icon1"/>
-                                            Edit
+                                            {{ $t('admin.actions.edit') }}
                                         </button>
                                         <button class="dropdown-item"
                                                 @click="() => confirmDelete(route('admin.facilities.destroy', facility.id))"
                                                 v-if="facility.access.delete">
                                             <IconTrash class="icon icon1"/>
-                                            Delete
+                                            {{ $t('admin.actions.delete') }}
                                         </button>
                                     </div>
                                 </div>

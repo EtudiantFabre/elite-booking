@@ -45,7 +45,7 @@ class BookingCancelController extends Controller
         ]);
 
         if(!in_array($booking->status, [BookingStatus::RESERVED, BookingStatus::CHECK_IN])) {
-            return redirect()->back()->with(['message' => 'This booking cannot be cancelled at the moment. Please check the booking status.', 'type' => 'error']);
+            return redirect()->back()->with(['message' => __('admin.messages.booking_cannot_be_cancelled'), 'type' => 'error']);
         }
 
         DB::Transaction(function () use ($booking, $data) {
@@ -76,6 +76,6 @@ class BookingCancelController extends Controller
             ]);
         });
 
-        return redirect()->back()->with(['message' => 'Your booking has been successfully cancelled. Refund and cancellation fee applied.',]);
+        return redirect()->back()->with(['message' => __('admin.messages.booking_cancelled_success'),]);
     }
 }

@@ -1,17 +1,17 @@
 <template>
-    <Modal title="New Facilities" formId="createFacilityForm">
+    <Modal :title="$t('admin.actions.create') + ' ' + $t('admin.facilities.title')" formId="createFacilityForm">
         <form @submit.prevent="submitCreate" method="post" id="createFacilityForm" class="gap-inputs">
             <div class="row">
                 <BaseInput
-                    label="Name"
+                    :label="$t('admin.facilities.name')"
                     v-model="form.name"
                     :error="form.errors.name"
-                    placeholder="name"
+                    :placeholder="$t('admin.facilities.name')"
                     required
                 />
             </div>
             <div class="row">
-                <FilepondUploader v-model="form.icon" label="Icon"/>
+                <FilepondUploader v-model="form.icon" :label="$t('admin.shared.icon') || 'Icon'"/>
             </div>
         </form>
     </Modal>

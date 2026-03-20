@@ -1,8 +1,8 @@
 <template>
-    <Head title="list payments booking" />
+    <Head :title="$t('admin.payments.list')" />
     <div class="row g-2 align-items-center mb-4">
         <div class="col">
-            <h2 class="page-title">list payments booking  ({{booking.customer.full_name}})</h2>
+            <h2 class="page-title">{{ $t('admin.payments.list') }} ({{booking.customer.full_name}})</h2>
         </div>
         <!-- Page title actions -->
         <div class="col-auto ms-auto d-print-none">
@@ -11,11 +11,11 @@
                         class="btn btn-primary btn-5 d-none d-sm-inline-block"
                         @click="openModal = !openModal">
                     <IconPlus class="icon icon-2"/>
-                    New Record
+                    {{ $t('admin.actions.new_record') }}
                 </button>
                 <Link class="btn btn-1" :href="route('admin.bookings.index')">
                     <IconArrowLeft class="icon"/>
-                    Back
+                    {{ $t('admin.actions.back') }}
                 </Link>
             </div>
             <!-- BEGIN MODAL -->
@@ -28,8 +28,8 @@
             <div class="card-header">
                 <div class="row w-full">
                     <div class="col">
-                        <h3 class="card-title mb-0">Payments</h3>
-                        <p class="text-secondary m-0">List Payments.</p>
+                        <h3 class="card-title mb-0">{{ $t('admin.menu.payments') }}</h3>
+                        <p class="text-secondary m-0">{{ $t('admin.messages.list_of', {resource: $t('admin.menu.payments').toLowerCase()}) }}</p>
                     </div>
                 </div>
             </div>
@@ -39,15 +39,15 @@
                     <tr>
                         <th class="w-1"></th>
                         <th>
-                            amount
+                            {{ $t('admin.payments.amount') }}
                         </th>
                         <th>
-                            type
+                            {{ $t('admin.payments.type') }}
                         </th>
-                        <th>payment method</th>
-                        <th>status</th>
-                        <th>paid_at</th>
-                        <th>created At</th>
+                        <th>{{ $t('admin.payments.payment_method') }}</th>
+                        <th>{{ $t('admin.payments.status') }}</th>
+                        <th>{{ $t('admin.payments.paid_at') }}</th>
+                        <th>{{ $t('admin.payments.created_at') }}</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -79,25 +79,25 @@
                                 <div class="dropdown" v-if="Object.values(payment.access).some(per => per)">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
                                             data-bs-toggle="dropdown" aria-expanded="true">
-                                        Actions
+                                        {{ $t('admin.actions.actions') }}
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
                                         <button class="dropdown-item align-middle"
                                                 @click="openEditModal(payment)"
                                                 v-if="payment.access.edit">
                                             <IconEdit class="icon icon1"/>
-                                            Edit
+                                            {{ $t('admin.actions.edit') }}
                                         </button>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                         <tr v-else>
-                            <td colspan="8" class="text-center">Payments Record Not exists.</td>
+                            <td colspan="8" class="text-center">{{ $t('admin.payments.not_found') }}</td>
                         </tr>
                         <tr class="border-top-wide">
-                            <td colspan="4" class="text-center">Total Price: {{ money_format(booking.total_price) }}</td>
-                            <td colspan="4" class="text-center">Deposit Amount: {{
+                            <td colspan="4" class="text-center">{{ $t('admin.bookings.total_price') }}: {{ money_format(booking.total_price) }}</td>
+                            <td colspan="4" class="text-center">{{ $t('admin.bookings.paid_amount') }}: {{
                                     money_format(booking.deposit_amount)
                                 }}</td>
                         </tr>

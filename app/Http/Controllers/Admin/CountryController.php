@@ -55,7 +55,7 @@ class CountryController extends Controller
 
         Country::create($data);
 
-        return redirect()->back()->with('message', 'Country created.');
+        return redirect()->back()->with('message', __('admin.messages.created', ['resource' => __('admin.countries.singular')]));
     }
 
     public function update(EditRequest $request, Country $country)
@@ -64,7 +64,7 @@ class CountryController extends Controller
 
         $country->update($data);
 
-        return redirect()->back()->with('message', 'Country updated.');
+        return redirect()->back()->with('message', __('admin.messages.updated', ['resource' => __('admin.countries.singular')]));
     }
 
 
@@ -72,6 +72,6 @@ class CountryController extends Controller
     {
         $country->delete();
 
-        return redirect()->back()->with('message', 'Country deleted.');
+        return redirect()->back()->with('message', __('admin.messages.deleted', ['resource' => __('admin.countries.singular')]));
     }
 }

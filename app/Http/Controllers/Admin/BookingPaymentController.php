@@ -56,7 +56,7 @@ class BookingPaymentController extends Controller
 
         DB::Transaction(fn () => $booking->payments()->create($data));
 
-        return redirect()->back()->with('message', 'Payment created.');
+        return redirect()->back()->with('message', __('admin.messages.created', ['resource' => __('admin.payments.singular')]));
     }
 
 
@@ -78,6 +78,6 @@ class BookingPaymentController extends Controller
         DB::Transaction(fn () => $payment->save());
 
 
-        return redirect()->back()->with('message', 'Payment updated.');
+        return redirect()->back()->with('message', __('admin.messages.updated', ['resource' => __('admin.payments.singular')]));
     }
 }

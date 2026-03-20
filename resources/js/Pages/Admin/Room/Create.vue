@@ -1,20 +1,20 @@
 <template>
-    <Modal title="New Rooms" formId="createRoomForm">
+    <Modal :title="$t('admin.actions.create') + ' ' + $t('admin.menu.rooms')" formId="createRoomForm">
         <form @submit.prevent="submitCreate" method="post" id="createRoomForm" class="gap-inputs">
             <div class="row">
                 <BaseInput
                     type="number"
                     min="1"
-                    label="Room Number"
+                    :label="$t('admin.rooms.room_number')"
                     v-model="form.room_number"
                     :error="form.errors.room_number"
-                    placeholder="Your room number"
+                    :placeholder="$t('admin.rooms.placeholder.room_number')"
                     required/>
             </div>
             <div class="row">
                 <select-box
-                    label="Room Type"
-                    placeholder="Choose Your Room Type"
+                    :label="$t('admin.rooms.type')"
+                    :placeholder="$t('admin.rooms.placeholder.choose_type')"
                     v-model="form.room_type_id"
                     :options="roomTypes"
                     required
@@ -24,15 +24,15 @@
                 <BaseInput
                     type="number"
                     min="1"
-                    label="Floor Number"
+                    :label="$t('admin.rooms.floor_number')"
                     v-model="form.floor_number"
                     :error="form.errors.floor_number"
-                    placeholder="Your floor number"
+                    :placeholder="$t('admin.rooms.placeholder.floor_number')"
                     required/>
             </div>
             <div class="row">
                 <select-box
-                    label="Status"
+                    :label="$t('admin.rooms.status')"
                     v-model="form.status"
                     :options="statuses"
                     required
@@ -40,7 +40,7 @@
             </div>
             <div class="row">
                 <select-box
-                    label="Smoking Preference"
+                    :label="$t('admin.rooms.smoking_preference')"
                     v-model="form.smoking_preference"
                     :options="smoking"
                     required

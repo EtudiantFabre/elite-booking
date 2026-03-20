@@ -38,6 +38,6 @@ class RolePermissionController extends Controller
 
         app()->make(PermissionRegistrar::class)->forgetCachedPermissions();
 
-        return redirect()->back()->with("message", "Permissions added to role successfully");
+        return redirect()->back()->with("message", __('admin.messages.permissions_updated'));
     }
 }

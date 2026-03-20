@@ -11,6 +11,7 @@ return [
         'guests' => 'Personnes',
         'adults' => 'adultes',
         'children' => 'enfants',
+        'infant' => 'nourrisson',
         'room' => 'chambre',
         'search' => 'Rechercher',
         'free_wifi' => 'Wi-Fi Gratuit',
@@ -370,5 +371,10 @@ return [
         'graphic_design' => 'Design Graphique',
         'all_rights_reserved' => 'Tous droits réservés',
         'designed_by' => 'Conçu par',
+    ],
+    'messages' => [
+        'profile_updated' => 'Votre profil a été mis à jour avec succès.',
+        'password_changed' => 'Votre mot de passe a été modifié avec succès.',
+        'current_password_incorrect' => 'Le mot de passe actuel est incorrect.',
     ],
 ];

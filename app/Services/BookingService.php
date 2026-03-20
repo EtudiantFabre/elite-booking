@@ -176,11 +176,11 @@ class BookingService
             $roomType = $roomTypes->where('id', $room['type_id'])->first();
 
             if (!$roomType) {
-                return ["rooms.{$i}.type_id" => 'Your Room type is not available'];
+                return ["rooms.{$i}.type_id" => __('admin.messages.room_type_not_available')];
             }
 
             if ($room['quantity'] > $roomType->rooms->count()) {
-                return ["rooms.{$i}.quantity" => 'Number of rooms not available'];
+                return ["rooms.{$i}.quantity" => __('admin.messages.quantity_not_available')];
             }
 
             return [null];

@@ -1,19 +1,19 @@
 <template>
-    <Head title="Create Booking"/>
+    <Head :title="$t('admin.actions.create') + ' ' + $t('admin.menu.bookings')"/>
     <div class="row g-2 align-items-center mb-4">
         <div class="col">
-            <h2 class="page-title text-capitalize">Create Booking</h2>
+            <h2 class="page-title text-capitalize">{{ $t('admin.actions.create') }} {{ $t('admin.menu.bookings') }}</h2>
         </div>
         <div class="col-auto ms-auto">
             <Link class="btn btn-1" :href="route('admin.bookings.index')">
                 <IconArrowLeft class="icon"/>
-                Back
+                {{ $t('admin.actions.back') }}
             </Link>
         </div>
     </div>
     <div class="row">
         <div class="card">
-            <div class="card-header">Create Booking</div>
+            <div class="card-header">{{ $t('admin.actions.create') }} {{ $t('admin.menu.bookings') }}</div>
             <div class="card-body">
                 <form id="createRoomTypes" method="post" @submit.prevent="handleCreateRoomType"
                       class="gap-inputs">
@@ -22,7 +22,7 @@
                             <base-input
                                 type="number"
                                 min="1"
-                                label="Adult"
+                                :label="$t('admin.room_types.max_adult')"
                                 v-model="form.adults"
                                 :error="form.errors.adult"
                                 placeholder="2"
@@ -32,7 +32,7 @@
                         <div class="col-6">
                             <base-input
                                 type="number"
-                                label="Children"
+                                :label="$t('admin.room_types.max_children')"
                                 min="0"
                                 max="10"
                                 v-model="form.children"
@@ -43,16 +43,16 @@
                     </div>
                     <div class="row col-8" v-if="form.children_age.length">
                         <Repeater
-                            label="Children Ages"
+                            :label="$t('admin.bookings.guests') + ' ' + $t('admin.room_types.max_children')"
                             v-model="form.children_age"
                             :errors="form.errors"
                             name="children_age"
                             :with-actions="false"
-                            :heads="['Age']">
+                            :heads="[$t('admin.shared.quantity')]">
                             <template #default="{ item, index }" :key="index">
                                 <td>
                                     <select-box
-                                        placeholder="Choose Your Child Age"
+                                        :placeholder="$t('admin.bookings.choose_child_age')"
                                         :options="ages"
                                         v-model="item.age"
                                         :error="item.errors?.age"
@@ -66,7 +66,7 @@
                         <div class="col-6">
                             <base-input
                                 type="date"
-                                label="Check In"
+                                :label="$t('admin.bookings.check_in')"
                                 :min="currentDate()"
                                 v-model="form.check_in"
                                 :error="form.errors.check_in"
@@ -76,7 +76,7 @@
                         <div class="col-6">
                             <base-input
                                 type="date"
-                                label="Check Out"
+                                :label="$t('admin.bookings.check_out')"
                                 :min="addDays(Date.now(), 1)"
                                 v-model="form.check_out"
                                 :error="form.errors.check_out"
@@ -88,7 +88,7 @@
                     <div class="row">
                         <div class="col-6">
                             <select-box
-                                label="Smoking Preference"
+                                :label="$t('admin.rooms.smoking_preference')"
                                 v-model="form.smoking_preference"
                                 :options="smoking"
                                 required
@@ -97,17 +97,17 @@
                     </div>
                     <div class="row">
                         <Repeater
-                            label="Rooms"
+                            :label="$t('admin.bookings.rooms')"
                             v-model="form.rooms"
                             :errors="form.errors"
                             name="rooms"
-                            :heads="['Room Type', 'Quantity']"
+                            :heads="[$t('admin.rooms.type'), $t('admin.shared.quantity')]"
                             :with-actions="!!roomTypes"
                             :default-row="{type_id: '', quantity: 1}">
                             <template #default="{ item, index }" :key="index" v-if="roomTypes">
                                 <td>
                                     <select-box
-                                        placeholder="Choose Your Room Type"
+                                        :placeholder="$t('admin.bookings.choose_room_type')"
                                         :options="roomTypes"
                                         v-model="item.type_id"
                                         :error="item.errors?.type_id">
@@ -119,7 +119,7 @@
                                         min="1"
                                         v-model="item.quantity"
                                         :error="item.errors?.quantity"
-                                        placeholder="Your quantity"/>
+                                        :placeholder="$t('admin.shared.quantity').toLowerCase()"/>
                                 </td>
                             </template>
                         </Repeater>
@@ -127,8 +127,8 @@
                     <div class="row">
                         <div class="col-6">
                             <select-box
-                                label="Customer"
-                                placeholder="Choose Your Customer"
+                                :label="$t('admin.dashboard.customer')"
+                                :placeholder="$t('admin.bookings.choose_customer')"
                                 :options="customers"
                                 v-model="form.customer_id"
                                 :error="form.errors.customer_id"
@@ -137,8 +137,8 @@
                         </div>
                         <div class="col-6">
                             <select-box
-                                label="Meal Plan"
-                                placeholder="Choose Your Meal Plan"
+                                :label="$t('admin.menu.meal_plans')"
+                                :placeholder="$t('admin.bookings.choose_meal_plan')"
                                 :options="mealPlans"
                                 v-model="form.meal_plan_id"
                                 :error="form.errors.meal_plan_id"
@@ -148,47 +148,47 @@
                     </div>
                     <div class="row">
                         <base-textarea
-                            label="Special Requests"
-                            placeholder="add extra pillow"
+                            :label="$t('admin.bookings.special_requests')"
+                            :placeholder="$t('admin.bookings.special_requests').toLowerCase()"
                             v-model="form.special_requests"
                             :error="form.errors.special_requests">
                         </base-textarea>
                     </div>
                     <div class="row">
                         <base-switch
-                            label="Check In Now"
+                            :label="$t('admin.bookings.check_in_now')"
                             v-model="form.check_in_now"/>
                     </div>
                 </form>
                 <div class="card mt-4 bg-primary-lt" v-if="prices">
                     <div class="card-body">
                         <div class="card-title">
-                            Prices for {{ prices.nights }} Night / {{ prices.nights + 1 }} Day
+                            {{ $t('admin.bookings.prices_for', {nights: prices.nights, days: prices.nights + 1}) }}
                         </div>
                         <div class="row mt-4">
                             <div class="col d-flex flex-column gap-4">
-                                <div>Total Rooms Price: <span class="text-green bold">{{
+                                <div>{{ $t('admin.bookings.total_rooms_price') }}: <span class="text-green bold">{{
                                         money_format(prices.totalRooms)
                                     }}</span>
                                 </div>
                                 <div :title="`$${roomType.price} / per night`" v-for="roomType in prices.roomTypes">
-                                    {{ roomType.name }} Room Price (x{{ roomType.rooms }}):
+                                    {{ roomType.name }} {{ $t('admin.bookings.room') }} {{ $t('admin.room_types.price') }} (x{{ roomType.rooms }}):
                                     <span class="text-green bold">{{ money_format(roomType.totalPrice) }}</span>
                                 </div>
                             </div>
                             <div class="col d-flex flex-column gap-4">
-                                <div>Total Meal plan Price: <span class="text-green bold">{{
+                                <div>{{ $t('admin.bookings.total_meal_plan_price') }}: <span class="text-green bold">{{
                                         money_format(prices.mealPlan)
                                     }}</span>
                                 </div>
                                 <div v-for="mealPlan in prices.mealPlanAges" :title="`$${mealPlan.price} / per night`">
-                                    {{ capitalize(mealPlan.name) }} Meal plan Price (x{{ mealPlan.count }}):
+                                    {{ $t(`admin.shared.${mealPlan.name}`) || mealPlan.name }} {{ $t('admin.menu.meal_plans') }} {{ $t('admin.room_types.price') }} (x{{ mealPlan.count }}):
                                     <span class="text-green bold">{{ money_format(mealPlan.totalPrice) }}</span>
                                 </div>
                             </div>
                             <div class="col d-flex flex-column gap-4">
-                                <div>Tax: <span class="text-green bold">{{ money_format(prices.tax) }}</span></div>
-                                <div>Total Price: <span class="text-green bold">{{ money_format(prices.total) }}</span></div>
+                                <div>{{ $t('admin.bookings.tax') }}: <span class="text-green bold">{{ money_format(prices.tax) }}</span></div>
+                                <div>{{ $t('admin.bookings.total_price') }}: <span class="text-green bold">{{ money_format(prices.total) }}</span></div>
                             </div>
                         </div>
                     </div>
@@ -197,7 +197,7 @@
             <div class="card-footer text-end">
                 <button type="submit" class="btn btn-primary ms-auto" form="createRoomTypes">
                     <IconDeviceFloppy class="icon"/>
-                    <span>Save</span>
+                    <span>{{ $t('admin.actions.save') }}</span>
                 </button>
             </div>
         </div>
@@ -207,7 +207,8 @@
 import {defineProps, ref, watch} from "vue"
 import {IconDeviceFloppy, IconArrowLeft} from "@tabler/icons-vue";
 import BaseInput from "../../../Components/BaseInput.vue";
-import {useForm} from "@inertiajs/vue3";
+import {useForm, usePage} from "@inertiajs/vue3";
+import {useTrans} from "../../../Composables/useTrans.js";
 import SelectBox from "../../../Components/SelectBox.vue";
 import {useEnum} from "../../../Composables/useEnum.js";
 import Repeater from "../../../Components/Repeater.vue";
@@ -221,6 +222,8 @@ const props = defineProps({
     smokingPreferences: Array,
 });
 
+const page = usePage();
+const { t } = useTrans();
 const roomTypes = ref(null);
 const prices = ref(null);
 
@@ -247,21 +250,21 @@ const form = useForm({
 });
 
 const ages = Object.fromEntries(
-    Array.from({length: 13}, (_, i) => [i, `${i} years old`])
+    Array.from({length: 13}, (_, i) => [i, `${i} ${t('admin.bookings.child_age')}`])
 );
 
 function changeCheckOut() {
     form.setError('check_out', '');
     if (!form.check_in) {
         form.check_out = '';
-        form.setError('check_out', 'You first must select check-in');
+        form.setError('check_out', t('admin.bookings.error_select_checkin'));
     }
 
     const diffDay = diffDays(form.check_in, form.check_out, false);
 
     if (diffDay < 1) {
         form.check_out = '';
-        form.setError('check_out', 'The check-out date must be after the check-in date');
+        form.setError('check_out', t('admin.bookings.error_checkout_after_checkin'));
     }
 }
 

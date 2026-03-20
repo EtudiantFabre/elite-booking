@@ -41,7 +41,7 @@ class FacilityController extends Controller
         $facility = Facility::create($data);
         UploadFiles::handle($facility, $data['icon'],);
 
-        return redirect()->back()->with('message', 'Facility created.');
+        return redirect()->back()->with('message', __('admin.messages.created', ['resource' => __('admin.facilities.singular')]));
     }
 
     public function update(Request $request, Facility $facility)
@@ -54,7 +54,7 @@ class FacilityController extends Controller
         $facility->update($data);
         UploadFiles::handle($facility, $data['icon'], hasDeleteAllFiles: true);
 
-        return redirect()->back()->with('message', 'Facility updated.');
+        return redirect()->back()->with('message', __('admin.messages.updated', ['resource' => __('admin.facilities.singular')]));
     }
 
 
@@ -62,6 +62,6 @@ class FacilityController extends Controller
     {
         $facility->delete();
 
-        return redirect()->back()->with('message', 'Facility deleted.');
+        return redirect()->back()->with('message', __('admin.messages.deleted', ['resource' => __('admin.facilities.singular')]));
     }
 }

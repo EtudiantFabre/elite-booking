@@ -1,19 +1,19 @@
 <template>
-    <Modal title="New Payments" formId="createPaymentForm">
+    <Modal :title="$t('admin.payments.new')" formId="createPaymentForm">
         <form @submit.prevent="submitCreate" method="post" id="createPaymentForm" class="gap-inputs">
             <div class="row">
                 <BaseInput
-                    label="Amount"
+                    :label="$t('admin.payments.amount')"
                     v-model="form.amount"
                     :error="form.errors.amount"
-                    placeholder="amount"
+                    :placeholder="$t('admin.payments.amount').toLowerCase()"
                     required
                 />
             </div>
             <div class="row">
                 <select-box
-                    label="Method"
-                    placeholder="Choose Your Payment Method"
+                    :label="$t('admin.payments.payment_method')"
+                    :placeholder="$t('admin.payments.all_payment_method')"
                     :options="selectMethods"
                     v-model="form.payment_method"
                     :error="form.errors.payment_method"
@@ -22,8 +22,8 @@
             </div>
             <div class="row">
                 <select-box
-                    label="Status"
-                    placeholder="Choose Your Payment Status"
+                    :label="$t('admin.payments.status')"
+                    :placeholder="$t('admin.payments.all_status')"
                     :options="selectStatuses"
                     v-model="form.status"
                     :error="form.errors.status"
@@ -33,17 +33,17 @@
             <div class="row">
                 <div class="row">
                     <BaseInput
-                        label="Reference"
+                        :label="$t('admin.payments.reference')"
                         v-model="form.reference"
                         :error="form.errors.reference"
-                        placeholder="reference"
+                        :placeholder="$t('admin.payments.reference').toLowerCase()"
                         />
                 </div>
             </div>
             <div class="row">
                 <base-textarea
-                    label="Note"
-                    placeholder="some information"
+                    :label="$t('admin.payments.note')"
+                    :placeholder="$t('admin.payments.note').toLowerCase()"
                     v-model="form.note"
                     :error="form.errors.note">
                 </base-textarea>

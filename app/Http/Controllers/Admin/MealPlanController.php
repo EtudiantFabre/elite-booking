@@ -37,7 +37,7 @@ class MealPlanController extends Controller
 
         MealPlan::create($data);
 
-        return redirect()->back()->with('message', 'Meal plan created.');
+        return redirect()->back()->with('message', __('admin.messages.created', ['resource' => __('admin.meal_plans.singular')]));
     }
 
     public function update(EditRequest $request, MealPlan $mealPlan)
@@ -46,7 +46,7 @@ class MealPlanController extends Controller
 
         $mealPlan->update($data);
 
-        return redirect()->back()->with('message', 'Meal plan updated.');
+        return redirect()->back()->with('message', __('admin.messages.updated', ['resource' => __('admin.meal_plans.singular')]));
     }
 
 
@@ -54,6 +54,6 @@ class MealPlanController extends Controller
     {
         $mealPlan->delete();
 
-        return redirect()->back()->with('message', 'Meal plan deleted.');
+        return redirect()->back()->with('message', __('admin.messages.deleted', ['resource' => __('admin.meal_plans.singular')]));
     }
 }

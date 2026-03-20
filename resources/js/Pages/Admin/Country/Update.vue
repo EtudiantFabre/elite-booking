@@ -1,21 +1,21 @@
 <template>
-    <Modal title="Edit Countries" formId="editCountryForm">
+    <Modal :title="$t('admin.actions.edit') + ' ' + $t('admin.countries.title')" formId="editCountryForm">
         <form @submit.prevent="submitEdit" method="post" id="editCountryForm" class="gap-inputs">
             <div class="row">
                 <BaseInput
-                    label="Name"
+                    :label="$t('admin.countries.name')"
                     v-model="form.name"
                     :error="form.errors.name"
-                    placeholder="your name"
+                    :placeholder="$t('admin.countries.name').toLowerCase()"
                     required
                 />
             </div>
             <div class="row">
                 <BaseInput
-                    label="Short"
+                    :label="$t('admin.countries.short')"
                     v-model="form.short"
                     :error="form.errors.short"
-                    placeholder="your short"
+                    :placeholder="$t('admin.countries.short').toLowerCase()"
                     required
                 />
             </div>

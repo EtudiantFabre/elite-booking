@@ -17,7 +17,7 @@ class DashboardController extends Controller
         // Upcoming Booking
         $upcoming_booking = Booking::with('rooms.type')->where('customer_id', $customer->id)
             ->whereDate('check_in', '>=', now())
-            ->whereIn('status', [BookingStatus::RESERVED, BookingStatus::RESERVED])
+            ->whereIn('status', [BookingStatus::RESERVED, BookingStatus::CHECK_IN])
             ->orderBy('check_in')
             ->first();
 

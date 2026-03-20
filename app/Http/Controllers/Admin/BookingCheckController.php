@@ -17,14 +17,14 @@ class BookingCheckController extends Controller
     {
         if($booking->check_in->gt(now()->startOfDay())) {
             return redirect()->back()->with([
-                'message' => 'Check-in can only be done on the booking date.',
+                'message' => __('admin.messages.checkin_on_date'),
                 'type' => 'error'
             ]);
         }
 
         if($booking->status !== BookingStatus::RESERVED) {
             return redirect()->back()->with([
-                'message' => 'Only reserved bookings can be checked in.',
+                'message' => __('admin.messages.checkin_only_reserved'),
                 'type' => 'error'
             ]);
         }
@@ -44,7 +44,7 @@ class BookingCheckController extends Controller
         });
 
 
-        return redirect()->back()->with(['message' => 'Booking has been successfully checked in.']);
+        return redirect()->back()->with(['message' => __('admin.messages.checkin_success')]);
     }
 
     #[Authorize("checkOut", 'booking')]
@@ -52,21 +52,21 @@ class BookingCheckController extends Controller
     {
         if($booking->check_out->gt(now()->startOfDay())) {
             return redirect()->back()->with([
-                'message' => 'Check-out can only be done on the booking checkout date.',
+                'message' => __('admin.messages.checkout_on_date'),
                 'type' => 'error'
             ]);
         }
 
         if($booking->status !== BookingStatus::CHECK_IN) {
             return redirect()->back()->with([
-                'message' => 'Only bookings that have been checked in can be checked out.',
+                'message' => __('admin.messages.checkout_only_checked_in'),
                 'type' => 'error'
             ]);
         }
 
         if($booking->payment_status !== BookingPayment::PAID) {
             return redirect()->back()->with([
-                'message' => 'The customer has not completed full payment.',
+                'message' => __('admin.messages.checkout_full_payment'),
                 'type' => 'error'
             ]);
         }
@@ -85,6 +85,6 @@ class BookingCheckController extends Controller
             ]);
         });
 
-        return redirect()->back()->with(['message' => 'Booking has been successfully checked out.']);
+        return redirect()->back()->with(['message' => __('admin.messages.checkout_success')]);
     }
 }

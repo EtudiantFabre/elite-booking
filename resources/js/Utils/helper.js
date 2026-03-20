@@ -61,10 +61,11 @@ export function getMediaUrl(media, conversion = null) {
 
 
 export function money_format(price) {
-    const formatter = new Intl.NumberFormat('en-US', {
+    const formatter = new Intl.NumberFormat('fr-FR', {
         style: 'currency',
-        currency: 'USD',
-        trailingZeroDisplay: 'stripIfInteger'
+        currency: 'XOF',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
     });
 
     return formatter.format(price);

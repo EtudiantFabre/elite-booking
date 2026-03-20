@@ -1,24 +1,24 @@
 <template>
-    <Modal title="Edit Bed Types" formId="editBedTypesForm">
+    <Modal :title="$t('admin.actions.edit') + ' ' + $t('admin.bed_types.title')" formId="editBedTypesForm">
         <form @submit.prevent="submitEdit" method="post" id="editBedTypesForm">
             <div class="mb-3">
                 <BaseInput
-                    label="Name"
+                    :label="$t('admin.bed_types.name')"
                     v-model="form.name"
                     :error="form.errors.name"
-                    placeholder="name"
+                    :placeholder="$t('admin.bed_types.name')"
                     required
                 />
             </div>
             <div class="mb-3">
                 <BaseInput
-                    label="Capacity"
+                    :label="$t('admin.bed_types.capacity')"
                     type="number"
                     min="1"
                     max="2"
                     v-model="form.capacity"
                     :error="form.errors.capacity"
-                    placeholder="your capacity"
+                    :placeholder="$t('admin.bed_types.capacity')"
                     required
                 />
             </div>

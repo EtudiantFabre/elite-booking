@@ -1,8 +1,8 @@
 <template>
-    <Head title="customers"/>
+    <Head :title="$t('admin.menu.customers')"/>
     <div class="row g-2 align-items-center mb-4">
         <div class="col">
-            <h2 class="page-title">Customers</h2>
+            <h2 class="page-title">{{ $t('admin.menu.customers') }}</h2>
         </div>
         <!-- Page title actions -->
         <div class="col-auto ms-auto d-print-none">
@@ -12,7 +12,7 @@
                         v-if="access.createCustomer"
                         @click="openModal = !openModal">
                     <IconPlus class="icon icon-2"/>
-                    New Record
+                    {{ $t('admin.actions.new_record') }}
                 </button>
             </div>
             <!-- BEGIN MODAL -->
@@ -25,8 +25,8 @@
             <div class="card-header">
                 <div class="row w-full">
                     <div class="col">
-                        <h3 class="card-title mb-0">Customers</h3>
-                        <p class="text-secondary m-0">List Customers.</p>
+                        <h3 class="card-title mb-0">{{ $t('admin.menu.customers') }}</h3>
+                        <p class="text-secondary m-0">{{ $t('admin.messages.list_of', {resource: $t('admin.menu.customers').toLowerCase()}) }}</p>
                     </div>
                     <div class="col-md-auto col-sm-12 d-flex gap-2">
                         <div class="ms-auto d-flex flex-wrap btn-list">
@@ -41,7 +41,7 @@
                         <div class="w-auto">
                             <select-box
                                 class="h-full"
-                                placeholder="All Status"
+                                :placeholder="$t('admin.customers.all_status')"
                                 v-model="filters.status"
                                 :options="statusesSelect"/>
                         </div>
@@ -56,17 +56,17 @@
                         <sort-head
                             v-model="sorts"
                             name="full-name"
-                            label="Full Name"
+                            :label="$t('admin.customers.name')"
                         />
                         <sort-head
                             v-model="sorts"
                             name="email"
-                            label="Email"
+                            :label="$t('admin.customers.email')"
                         />
                         <sort-head
                             v-model="sorts"
                             name="status"
-                            label="Status"
+                            :label="$t('admin.customers.status')"
                         />
                         <th></th>
                     </tr>
@@ -88,35 +88,35 @@
                             <div class="dropdown" v-if="Object.values(customer.access).some(per => per)">
                                 <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
                                         data-bs-toggle="dropdown" aria-expanded="true">
-                                    Actions
+                                    {{ $t('admin.actions.actions') }}
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
                                     <Link class="dropdown-item align-middle" :href="route('admin.customers.show', customer.id)"
                                             v-if="customer.access.show">
                                         <IconEye class="icon icon1"/>
-                                        Show
+                                        {{ $t('admin.customers.show') }}
                                     </Link>
                                     <Link class="dropdown-item align-middle"
                                           :href="route('admin.bookings.index', {'filters[customer_id]':customer.id})"
                                           v-if="customer.access.show">
                                         <IconCalendarCheck class="icon icon1"/>
-                                        Bookings
+                                        {{ $t('admin.customers.bookings') }}
                                     </Link>
                                     <Link class="dropdown-item align-middle"
                                           :href="route('admin.payments.index', {'filters[customer_id]':customer.id})"
                                           v-if="customer.access.show">
                                         <IconBrandMastercard class="icon icon1"/>
-                                        Payments
+                                        {{ $t('admin.customers.payments') }}
                                     </Link>
                                     <button class="dropdown-item align-middle" @click="openEditModal(customer)"
                                             v-if="customer.access.edit">
                                         <IconEdit class="icon icon1"/>
-                                        Edit
+                                        {{ $t('admin.actions.edit') }}
                                     </button>
                                     <button class="dropdown-item" v-if="customer.access.delete"
                                             @click="() => confirmDelete(route('admin.customers.destroy', customer.id))">
                                         <IconTrash class="icon icon1"/>
-                                        Delete
+                                        {{ $t('admin.actions.delete') }}
                                     </button>
                                 </div>
                             </div>
@@ -127,10 +127,10 @@
             </div>
             <div class="card-footer d-flex align-items-center">
                 <select class="form-select w-auto" v-model="limit" @change="syncFilters">
-                    <option value="15">15 records</option>
-                    <option value="25">25 records</option>
-                    <option value="50">50 records</option>
-                    <option value="100">100 records</option>
+                    <option value="15">15 {{ $t('admin.shared.records') }}</option>
+                    <option value="25">25 {{ $t('admin.shared.records') }}</option>
+                    <option value="50">50 {{ $t('admin.shared.records') }}</option>
+                    <option value="100">100 {{ $t('admin.shared.records') }}</option>
                 </select>
                 <Pagination :links="customers.meta.links"/>
             </div>

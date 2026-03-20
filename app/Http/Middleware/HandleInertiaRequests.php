@@ -52,14 +52,18 @@ class HandleInertiaRequests extends Middleware
             },
             'csrf_token' => csrf_token(),
             'flash' => [
-                'message' => fn() => $request->session()->get('message'),
-                'type' => fn() => $request->session()->get('type') ?? 'success'
+                'message' => fn() => $request->session()->get('message') ?? $request->session()->get('success') ?? $request->session()->get('error'),
+                'type' => fn() => $request->session()->get('type') ?? ($request->session()->has('success') ? 'success' : ($request->session()->has('error') ? 'error' : 'success'))
             ],
             'old' => fn() => $request->session()->get('old'),
             'locale' => app()->getLocale(),
             'translations' => [
                 'front' => __('front'),
                 'admin' => __('admin'),
+            ],
+            'hotel' => [
+                'currency' => config('hotel.currency'),
+                'currency_symbol' => config('hotel.currency_symbol'),
             ],
         ];
     }

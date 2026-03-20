@@ -1,60 +1,60 @@
 <template>
-    <Modal title="New Meal Plan" formId="createMealPlanForm">
+    <Modal :title="$t('admin.actions.create') + ' ' + $t('admin.meal_plans.title')" formId="createMealPlanForm">
         <form @submit.prevent="submitCreate" method="post" id="createMealPlanForm" class="gap-inputs">
             <div class="row">
                 <BaseInput
-                    label="Name"
+                    :label="$t('admin.meal_plans.name')"
                     v-model="form.name"
                     :error="form.errors.name"
-                    placeholder="name"
+                    :placeholder="$t('admin.meal_plans.name').toLowerCase()"
                     required
                 />
             </div>
             <div class="row">
                 <BaseInput
-                    label="Code"
+                    :label="$t('admin.meal_plans.code')"
                     v-model="form.code"
                     :error="form.errors.code"
-                    placeholder="code"
+                    :placeholder="$t('admin.meal_plans.code').toLowerCase()"
                     required
                 />
             </div>
             <div class="row">
                 <BaseTextarea
-                    label="Description"
+                    :label="$t('admin.meal_plans.description')"
                     v-model="form.description"
                     :error="form.errors.description"
-                    placeholder="description"
+                    :placeholder="$t('admin.meal_plans.description').toLowerCase()"
                 />
             </div>
 
             <div class="row">
                 <BaseInput
-                    label="Adult Price"
+                    :label="$t('admin.meal_plans.adult_price')"
                     type="number"
                     v-model="form.adult_price"
                     :error="form.errors.adult_price"
-                    placeholder="extra price"
+                    :placeholder="$t('admin.room_types.price').toLowerCase()"
                     required
                 />
             </div>
             <div class="row">
                 <BaseInput
-                    label="Child Price"
+                    :label="$t('admin.meal_plans.child_price')"
                     type="number"
                     v-model="form.child_price"
                     :error="form.errors.child_price"
-                    placeholder="extra price"
+                    :placeholder="$t('admin.room_types.price').toLowerCase()"
                     required
                 />
             </div>
             <div class="row">
                 <BaseInput
-                    label="Infant Price"
+                    :label="$t('admin.meal_plans.infant_price')"
                     type="number"
                     v-model="form.infant_price"
                     :error="form.errors.infant_price"
-                    placeholder="extra price"
+                    :placeholder="$t('admin.room_types.price').toLowerCase()"
                     required
                 />
             </div>

@@ -1,17 +1,17 @@
 <template>
-    <Head title="Cancellation Rule" />
+    <Head :title="$t('admin.cancellation_rules.title')" />
     <div class="row g-2 align-items-center mb-4">
         <div class="col">
-            <h2 class="page-title">Cancellation Rules</h2>
+            <h2 class="page-title">{{ $t('admin.cancellation_rules.title') }}</h2>
         </div>
         <!-- Page title actions -->
         <div class="col-auto ms-auto d-print-none">
             <div class="btn-list">
 
-                <button v-if="access.createCancelRule" class="btn btn-primary btn-5 d-none d-sm-inline-block"
+                <button v-if="access.createCancellationRule" class="btn btn-primary btn-5 d-none d-sm-inline-block"
                         @click="openModal = !openModal">
                     <IconPlus class="icon icon-2"/>
-                    New Record
+                    {{ $t('admin.actions.new_record') }}
                 </button>
             </div>
             <!-- BEGIN MODAL -->
@@ -24,8 +24,8 @@
             <div class="card-header">
                 <div class="row w-full">
                     <div class="col">
-                        <h3 class="card-title mb-0">Cancellation Rules</h3>
-                        <p class="text-secondary m-0">List Cancellation Rules.</p>
+                        <h3 class="card-title mb-0">{{ $t('admin.cancellation_rules.title') }}</h3>
+                        <p class="text-secondary m-0">{{ $t('admin.messages.list_of', {resource: $t('admin.menu.cancellation_rules').toLowerCase()}) }}</p>
                     </div>
                 </div>
             </div>
@@ -35,13 +35,13 @@
                     <tr>
                         <th class="w-1"></th>
                         <th>
-                            min days before checkin
+                            {{ $t('admin.cancellation_rules.days_before') + ' (min)' }}
                         </th>
                         <th>
-                            max days before checkin
+                            {{ $t('admin.cancellation_rules.days_before') + ' (max)' }}
                         </th>
                         <th>
-                            penalty percent
+                            {{ $t('admin.cancellation_rules.percentage') }}
                         </th>
                         <th></th>
                     </tr>
@@ -59,20 +59,20 @@
                                 <div class="dropdown" v-if="Object.values(cancellationRule.access).some(per => per)">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
                                             data-bs-toggle="dropdown" aria-expanded="true">
-                                        Actions
+                                        {{ $t('admin.actions.actions') }}
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end">
                                         <button class="dropdown-item align-middle"
                                                 @click="openEditModal(cancellationRule)"
                                                 v-if="cancellationRule.access.edit">
                                             <IconEdit class="icon icon1"/>
-                                            Edit
+                                            {{ $t('admin.actions.edit') }}
                                         </button>
                                         <button class="dropdown-item"
                                                 @click="() => confirmDelete(route('admin.cancellationRules.destroy', cancellationRule.id))"
                                                 v-if="cancellationRule.access.delete">
                                             <IconTrash class="icon icon1"/>
-                                            Delete
+                                            {{ $t('admin.actions.delete') }}
                                         </button>
                                     </div>
                                 </div>
