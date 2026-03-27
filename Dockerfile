@@ -18,7 +18,6 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Configurer GD AVANT installation
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
 
 RUN docker-php-ext-install -j$(nproc) \
@@ -31,27 +30,19 @@ RUN docker-php-ext-install -j$(nproc) \
     pcntl \
     intl \
     gd \
-    ftp
+    ftp \
+    bcmath
 
-# Redis
 RUN pecl install redis && docker-php-ext-enable redis
 
-# Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-# Copier d'abord les fichiers Composer
 COPY composer.json composer.lock ./
 
-# RUN composer install \
-#     --no-interaction \
-#     --prefer-dist \
-#     --optimize-autoloader \
-#     --no-scripts
 RUN composer install -vvv --no-interaction --prefer-dist --no-scripts
 
-# Copier le projet ensuite
 COPY . .
 
 RUN chown -R www-data:www-data /var/www \
