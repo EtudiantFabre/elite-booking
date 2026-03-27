@@ -24,22 +24,30 @@ if [ "$APP_ROLE" = "app" ] || [ -z "$APP_ROLE" ]; then
     until php -r "
     try {
         \$url = getenv('DB_URL');
+
         if (\$url) {
             \$parts = parse_url(\$url);
+
             \$scheme = \$parts['scheme'] ?? 'pgsql';
+            if (\$scheme === 'postgresql' || \$scheme === 'postgres') {
+                \$scheme = 'pgsql';
+            }
+
             \$host = \$parts['host'] ?? 'localhost';
-            \$port = \$parts['port'] ?? 5432;
+            \$port = \$parts['port'] ?? (\$scheme === 'mysql' ? 3306 : 5432);
             \$db   = isset(\$parts['path']) ? ltrim(\$parts['path'], '/') : '';
             \$user = \$parts['user'] ?? '';
             \$pass = \$parts['pass'] ?? '';
+
             new PDO(\"\$scheme:host=\$host;port=\$port;dbname=\$db\", \$user, \$pass);
         } else {
             \$driver = getenv('DB_CONNECTION') ?: 'pgsql';
             \$host = getenv('DB_HOST');
-            \$port = getenv('DB_PORT') ?: 5432;
+            \$port = getenv('DB_PORT') ?: (\$driver === 'mysql' ? 3306 : 5432);
             \$db = getenv('DB_DATABASE');
             \$user = getenv('DB_USERNAME');
             \$pass = getenv('DB_PASSWORD');
+
             new PDO(\"\$driver:host=\$host;port=\$port;dbname=\$db\", \$user, \$pass);
         }
     } catch (Exception \$e) {
@@ -57,9 +65,7 @@ if [ "$APP_ROLE" = "app" ] || [ -z "$APP_ROLE" ]; then
     php artisan migrate --force
 
     echo "🔍 Checking seed status..."
-
     COUNT=$(php artisan tinker --execute="echo class_exists('\\Spatie\\Permission\\Models\\Permission') ? \\Spatie\\Permission\\Models\\Permission::count() : 0;")
-
     echo "🔢 Permission count: $COUNT"
 
     if [ "$COUNT" -eq 0 ]; then
