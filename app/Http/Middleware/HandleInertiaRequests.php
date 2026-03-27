@@ -41,9 +41,13 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'auth.user' => function () {
-                return Auth::guard('web')->check()
-                    ? UserResource::make(Auth::guard('web')->user()->load('media', 'roles'))
-                : null;
+                if (Auth::guard('web')->check()) {
+                    $user = Auth::guard('web')->user()->load('media', 'roles');
+                    return array_merge(UserResource::make($user)->resolve(), [
+                        'unreadNotifications' => $user->unreadNotifications()->limit(5)->get()
+                    ]);
+                }
+                return null;
             },
             'auth.customer' => function () {
                 return Auth::guard('customer')->check()

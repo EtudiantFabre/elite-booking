@@ -279,5 +279,6 @@ return [
         'title' => 'Notifications',
         'archive_all' => 'Archive all',
         'mark_all_as_read' => 'Mark all as read',
+        'empty' => 'No unread notifications',
     ],
 ];

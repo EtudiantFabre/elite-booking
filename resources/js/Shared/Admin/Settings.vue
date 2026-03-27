@@ -37,7 +37,7 @@
                     aria-expanded="false"
                 >
                     <IconBell class="icon icon-1"/>
-                    <span class="badge bg-red"></span>
+                    <span class="badge bg-red" v-if="user.unreadNotifications.length">{{ user.unreadNotifications.length }}</span>
                 </a>
                 <Notifications/>
             </div>
