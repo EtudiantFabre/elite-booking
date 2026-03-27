@@ -364,5 +364,6 @@ return [
         'title' => 'Notifications',
         'archive_all' => 'Tout archiver',
         'mark_all_as_read' => 'Tout marquer comme lu',
+        'empty' => 'Aucune notification non lue',
     ],
 ];
