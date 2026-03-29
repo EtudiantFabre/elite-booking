@@ -38,6 +38,9 @@ ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 1
 ENV REAL_IP_HEADER 1
 
+# List of PHP extensions to install/enable
+ENV PHP_EXTENSIONS "bcmath gd zip intl pdo_mysql pdo_pgsql"
+
 # Laravel config
 ENV APP_ENV production
 ENV APP_DEBUG false
