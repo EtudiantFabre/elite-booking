@@ -7,6 +7,7 @@ RUN composer install \
     --no-interaction \
     --no-plugins \
     --no-scripts \
+    --ignore-platform-req=ext-bcmath \
     --prefer-dist
 
 # Stage 2: Frontend assets
@@ -37,6 +38,9 @@ ENV WEBROOT /var/www/html/public
 ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 1
 ENV REAL_IP_HEADER 1
+
+# List of PHP extensions to install/enable
+ENV PHP_EXTENSIONS "bcmath gd zip intl pdo_mysql pdo_pgsql"
 
 # Laravel config
 ENV APP_ENV production
