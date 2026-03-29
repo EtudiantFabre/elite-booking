@@ -13,6 +13,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Str;
+use Illuminate\Routing\UrlGenerator;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,8 +45,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(UrlGenerator $url): void
     {
+        if (env('APP_ENV') == 'production') {
+            $url->forceScheme('https');
+        }
         JsonResource::withoutWrapping();
 
         MorphTo::enforceMorphMap([
