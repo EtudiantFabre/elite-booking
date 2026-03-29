@@ -7,6 +7,7 @@ RUN composer install \
     --no-interaction \
     --no-plugins \
     --no-scripts \
+    --ignore-platform-req=ext-bcmath \
     --prefer-dist
 
 # Stage 2: Frontend assets
