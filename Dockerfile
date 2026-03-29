@@ -15,6 +15,8 @@ WORKDIR /app
 COPY package.json package-lock.json vite.config.js ./
 RUN npm install
 COPY . .
+# CRITICAL: Copy vendor from the vendor stage so Vite can resolve Ziggy during build
+COPY --from=vendor /app/vendor/ ./vendor/
 RUN npm run build
 
 # Stage 3: Final production image
