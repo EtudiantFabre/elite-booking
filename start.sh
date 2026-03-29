@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
-# echo "Running composer"
-# composer global require hirak/prestissimo
-# composer install --no-dev --working-dir=/var/www/html
+set -e
 
-# Caching config
+cd /var/www/html
+
+echo "Checking vendor..."
+if [ ! -f vendor/autoload.php ]; then
+  echo "ERROR: vendor/autoload.php not found"
+  exit 1
+fi
+
 echo "Caching config..."
-php artisan config:cache
+php artisan config:cache || true
 
-# Caching routes
 echo "Caching routes..."
-php artisan route:cache
+php artisan route:cache || true
 
-# Running migrations
 echo "Running migrations..."
-php artisan migrate --force
+php artisan migrate --force || true
+
+echo "Starting services..."
+exec supervisord -n
