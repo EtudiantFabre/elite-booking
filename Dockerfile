@@ -11,6 +11,9 @@ RUN apk add --no-cache curl \
  && tar -xJf node.tar.xz -C /usr/local --strip-components=1 \
  && rm node.tar.xz
 
+# FIX PATH (TRÈS IMPORTANT)
+ENV PATH="/usr/local/bin:${PATH}"
+
 # Force PHP-FPM to listen on TCP
 RUN sed -i 's|^listen = .*|listen = 127.0.0.1:9000|g' /usr/local/etc/php-fpm.d/www.conf
 
