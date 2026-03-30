@@ -5,6 +5,9 @@ COPY . .
 # Installer l'extension manquante
 RUN docker-php-ext-install bcmath
 
+# Force PHP-FPM to listen on TCP
+RUN sed -i 's|^listen = .*|listen = 127.0.0.1:9000|g' /usr/local/etc/php-fpm.d/www.conf
+
 # Image config
 ENV SKIP_COMPOSER 1
 ENV WEBROOT /var/www/html/public
