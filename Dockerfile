@@ -6,9 +6,7 @@ COPY . .
 RUN docker-php-ext-install bcmath
 
 # Installer Node.js (IMPORTANT)
-RUN apt-get update && apt-get install -y curl gnupg ca-certificates \
-    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs
+RUN apk add --no-cache nodejs npm
 
 # Force PHP-FPM to listen on TCP
 RUN sed -i 's|^listen = .*|listen = 127.0.0.1:9000|g' /usr/local/etc/php-fpm.d/www.conf
