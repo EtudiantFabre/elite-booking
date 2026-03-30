@@ -3,6 +3,12 @@ set -e
 
 cd /var/www/html
 
+echo "Node version:"
+node -v
+npm -v
+which node
+which npm
+
 echo "Running composer install..."
 composer install --no-dev --optimize-autoloader --no-interaction
 
@@ -19,11 +25,12 @@ npm install
 echo "Building Vite assets..."
 npm run build
 
+echo "Checking Vite manifest..."
+ls -la /var/www/html/public/build || true
+test -f /var/www/html/public/build/manifest.json && echo "manifest found" || echo "manifest missing"
+
 echo "Clearing old caches..."
-php artisan config:clear || true
-php artisan route:clear || true
-php artisan view:clear || true
-php artisan cache:clear || true
+php artisan optimize:clear || true
 
 echo "Caching config..."
 php artisan config:cache || true
