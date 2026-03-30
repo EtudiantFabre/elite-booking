@@ -5,7 +5,8 @@ import {createInertiaApp, Link, Head} from '@inertiajs/vue3'
 import '@tabler/core/dist/js/tabler.min.js'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
-import {ZiggyVue} from '../../vendor/tightenco/ziggy';
+import { ZiggyVue } from 'ziggy-js';
+// import {ZiggyVue} from '../../vendor/tightenco/ziggy';
 
 
 const resolvePage = async (name) => {
