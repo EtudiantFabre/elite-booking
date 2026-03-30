@@ -9,14 +9,13 @@ if [ ! -f vendor/autoload.php ]; then
   exit 1
 fi
 
-echo "Caching config..."
-php artisan config:cache || true
-
-echo "Caching routes..."
-php artisan route:cache || true
-
-echo "Running migrations..."
-php artisan migrate --force || true
+if [ -f /var/www/html/laravel-deploy.sh ]; then
+  echo "Running deploy script..."
+  chmod +x /var/www/html/laravel-deploy.sh
+  /var/www/html/laravel-deploy.sh
+else
+  echo "WARNING: laravel-deploy.sh not found"
+fi
 
 echo "Starting services..."
 exec supervisord -n
