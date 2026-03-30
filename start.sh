@@ -13,6 +13,9 @@ echo "Checking Node..."
 node -v || true
 npm -v || true
 
+echo "Node path:"
+which node || true
+
 if [ -f /var/www/html/scripts/00-laravel-deploy.sh ]; then
   echo "Running deploy script..."
   chmod +x /var/www/html/scripts/00-laravel-deploy.sh
