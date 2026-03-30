@@ -7,11 +7,11 @@ echo "Running composer install..."
 composer install --no-dev --optimize-autoloader --no-interaction
 
 if [ ! -f .env ]; then
-  echo "No .env file found"
+  echo "No .env file found, skipping key:generate"
+else
+  echo "Generating application key if needed..."
+  php artisan key:generate --force || true
 fi
-
-echo "Generating application key if needed..."
-php artisan key:generate --force || true
 
 echo "Installing node modules..."
 npm install
