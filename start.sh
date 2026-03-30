@@ -9,12 +9,12 @@ if [ ! -f vendor/autoload.php ]; then
   exit 1
 fi
 
-if [ -f /var/www/html/laravel-deploy.sh ]; then
+if [ -f /var/www/html/scripts/00-laravel-deploy.sh ]; then
   echo "Running deploy script..."
-  chmod +x /var/www/html/laravel-deploy.sh
-  /var/www/html/laravel-deploy.sh
+  chmod +x /var/www/html/scripts/00-laravel-deploy.sh
+  /var/www/html/scripts/00-laravel-deploy.sh
 else
-  echo "WARNING: laravel-deploy.sh not found"
+  echo "WARNING: scripts/00-laravel-deploy.sh not found"
 fi
 
 echo "Starting services..."
