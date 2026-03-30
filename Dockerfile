@@ -6,7 +6,10 @@ COPY . .
 RUN docker-php-ext-install bcmath
 
 # Installer Node.js (IMPORTANT)
-RUN apk add --no-cache nodejs-current npm
+RUN apk add --no-cache curl \
+ && curl -fsSL https://nodejs.org/dist/v22.12.0/node-v22.12.0-linux-x64.tar.xz -o node.tar.xz \
+ && tar -xJf node.tar.xz -C /usr/local --strip-components=1 \
+ && rm node.tar.xz
 
 # Force PHP-FPM to listen on TCP
 RUN sed -i 's|^listen = .*|listen = 127.0.0.1:9000|g' /usr/local/etc/php-fpm.d/www.conf
