@@ -121,7 +121,7 @@ class   Booking extends Model
     public static function booted(): void
     {
         static::creating(function (Booking $booking) {
-            $booking->ref_number = fake()->randomNumber(5, true);
+            $booking->ref_number = str_pad(random_int(0, 99999), 5, '0', STR_PAD_LEFT);
         });
     }
 }
