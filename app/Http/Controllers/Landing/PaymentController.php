@@ -86,6 +86,8 @@ class PaymentController extends Controller
 
         set_time_limit(120); // Increase timeout for API call
 
+        $booking->load('customer');
+
         try {
             $transaction = Transaction::create([
                 'description' => "Booking #{$booking->ref_number} payment",
@@ -96,6 +98,10 @@ class PaymentController extends Controller
                     'firstname' => $booking->customer->first_name,
                     'lastname' => $booking->customer->last_name,
                     'email' => $booking->customer->email,
+                    'phone_number' => [
+                        'number' => $booking->customer->mobile,
+                        'country' => 'TG' // Default to BJ as per common usage in the region
+                    ]
                 ]
             ]);
 
