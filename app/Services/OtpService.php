@@ -12,7 +12,7 @@ class OtpService
     {
         $customer->verifications()->where('used', false)->update(['used' => true]);
         $customer->verifications()->create([
-            'code' => $code = fake()->randomNumber(5, true),
+            'code' => $code = str_pad(random_int(0, 99999), 5, '0', STR_PAD_LEFT),
             'type' => VerificationType::Email,
             'expired_at' => now()->addMinutes(5),
         ]);
