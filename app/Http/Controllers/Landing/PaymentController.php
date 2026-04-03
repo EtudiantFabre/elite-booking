@@ -89,6 +89,12 @@ class PaymentController extends Controller
         $booking->load('customer');
 
         try {
+            \Log::info('FedaPay payload', [
+                'booking_id' => $booking->id,
+                'amount' => $booking->total_amount ?? null,
+                'customer_email' => $booking->customer?->email ?? null,
+                'customer_name' => $booking->customer?->name ?? null,
+            ]);
             $transaction = Transaction::create([
                 'description' => "Booking #{$booking->ref_number} payment",
                 'amount' => (int) $booking->total_price,
