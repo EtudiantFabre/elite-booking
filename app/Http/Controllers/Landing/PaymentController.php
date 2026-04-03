@@ -89,6 +89,13 @@ class PaymentController extends Controller
         $booking->load('customer');
 
         try {
+            \Log::info('FedaPay payload', [
+                'booking_id' => $booking->id,
+                'booking' => $booking,
+                'amount' => $booking->total_amount ?? null,
+                'customer_email' => $booking->customer?->email ?? null,
+                'customer_name' => $booking->customer?->name ?? null,
+            ]);
             $transaction = Transaction::create([
                 'description' => "Booking #{$booking->ref_number} payment",
                 'amount' => (int) $booking->total_price,
@@ -131,7 +138,7 @@ class PaymentController extends Controller
             try {
                 $transaction = Transaction::retrieve($id);
                 if ($transaction->status === 'approved') {
-                     DB::Transaction(function () use ($booking) {
+                    DB::Transaction(function () use ($booking) {
                         $booking->update([
                             'status' => BookingStatus::RESERVED,
                             'payment_status' => BookingPayment::PAID,
