@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('booking_id')->constrained();
             $table->enum('charge_type', ChargeType::cases());
             $table->text('description')->nullable();
-            $table->decimal('amount', 8, 2)->default(0);
+            $table->decimal('amount', 15, 2)->default(0);
             $table->timestamps();
         });
     }

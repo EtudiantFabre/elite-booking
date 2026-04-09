@@ -28,8 +28,8 @@ return new class extends Migration
             $table->enum('payment_status', BookingPayment::cases())->default('pending');
             $table->timestamp('lock_until_at')->nullable();
             $table->foreignId('meal_plan_id')->nullable()->constrained();
-            $table->decimal('total_price', 8, 2)->default(0);
-            $table->decimal('deposit_amount', 8, 2)->default(0);
+            $table->decimal('total_price', 15, 2)->default(0);
+            $table->decimal('deposit_amount', 15, 2)->default(0);
             $table->timestamps();
         });
     }
