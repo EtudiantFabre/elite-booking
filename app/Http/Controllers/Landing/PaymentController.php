@@ -96,20 +96,26 @@ class PaymentController extends Controller
                 'customer_email' => $booking->customer?->email ?? null,
                 'customer_name' => $booking->customer?->name ?? null,
             ]);
+            $customerData = [
+                'firstname' => $booking->customer->first_name,
+                'lastname'  => $booking->customer->last_name,
+                'email'     => $booking->customer->email,
+            ];
+
+            // Only include phone_number if a mobile is set; an invalid number causes FedaPay to reject the whole transaction
+            if (!empty($booking->customer->mobile)) {
+                $customerData['phone_number'] = [
+                    'number'  => $booking->customer->mobile,
+                    'country' => 'BJ', // Benin/West-Africa default; change to match your customer base
+                ];
+            }
+
             $transaction = Transaction::create([
-                'description' => "Booking #{$booking->ref_number} payment",
-                'amount' => (int) $booking->total_price,
-                'currency' => ['iso' => 'XOF'],
+                'description'  => "Booking #{$booking->ref_number} payment",
+                'amount'       => (int) $booking->total_price,
+                'currency'     => ['iso' => 'XOF'],
                 'callback_url' => route('payments.fedapay.confirm', ['booking' => $booking->id]),
-                'customer' => [
-                    'firstname' => $booking->customer->first_name,
-                    'lastname' => $booking->customer->last_name,
-                    'email' => $booking->customer->email,
-                    'phone_number' => [
-                        'number' => $booking->customer->mobile,
-                        'country' => 'TG' // Default to BJ as per common usage in the region
-                    ]
-                ]
+                'customer'     => $customerData,
             ]);
 
             $token = $transaction->generateToken();

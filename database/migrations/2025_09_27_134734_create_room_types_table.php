@@ -22,8 +22,8 @@ return new class extends Migration
             $table->unsignedInteger('max_adult');
             $table->unsignedInteger('max_children');
             $table->unsignedInteger('max_total_guests');
-            $table->decimal('price', 8, 2);
-            $table->decimal('extra_bed_price', 8, 2);
+            $table->decimal('price', 15, 2);
+            $table->decimal('extra_bed_price', 15, 2);
             $table->enum('status', RoomTypeStatus::cases());
             $table->timestamps();
         });
