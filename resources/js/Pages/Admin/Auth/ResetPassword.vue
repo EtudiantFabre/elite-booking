@@ -2,8 +2,8 @@
     <div class="page page-center h-fullscreen">
         <div class="container container-tight py-4">
             <div class="text-center mb-4">
-                <img width="70" src="/resources/images/Homa.png" alt="logo"/> <span
-                class="bold h3 brand-color">Hotel Homa</span>
+                <i class="bi bi-building" style="font-size: 48px;"></i> <span
+                class="bold h3 brand-color">Elite Booking</span>
             </div>
             <form class="card card-md" @submit.prevent="submitForm" method="POST" autocomplete="off">
                 <div class="card-body">

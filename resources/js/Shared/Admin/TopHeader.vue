@@ -17,8 +17,8 @@
             <!-- BEGIN NAVBAR LOGO -->
             <div class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
                 <Link :href="route('admin.dashboard')">
-                    <img width="38" src="/resources/images/Homa.png" alt="logo"/> <span
-                    class="bold h4">Hotel Homa</span>
+                    <i class="bi bi-building" style="font-size: 28px;"></i> <span
+                    class="bold h4">Elite Booking</span>
                 </Link>
             </div>
             <Settings />
