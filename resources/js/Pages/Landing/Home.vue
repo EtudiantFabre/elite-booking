@@ -134,15 +134,15 @@
 
                         <div class="stats-row">
                             <div class="stat-item">
-                                <div class="stat-number">185</div>
+                                <div class="stat-number">240</div>
                                 <div class="stat-label">{{ $t('front.home.luxury_rooms') }}</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number">98%</div>
+                                <div class="stat-number">99%</div>
                                 <div class="stat-label">{{ $t('front.home.guest_satisfaction') }}</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number">30</div>
+                                <div class="stat-number">37</div>
                                 <div class="stat-label">{{ $t('front.home.years_experience') }}</div>
                             </div>
                         </div><!-- End Stats Row -->
@@ -157,15 +157,15 @@
                 <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
                     <div class="about-images">
                         <div class="main-image">
-                            <img src="/resources/images/showcase-8.webp" alt="Grandview Resort Main View"
+                            <img src="/resources/images/showcase-8.webp" alt="Elite Booking — Vue Principale"
                                  class="img-fluid">
                         </div>
                         <div class="secondary-image">
-                            <img src="/resources/images/room-12.webp" alt="Luxury Suite Interior" class="img-fluid">
+                            <img src="/resources/images/room-12.webp" alt="Suite de Luxe Elite Booking" class="img-fluid">
                         </div>
                         <div class="experience-badge">
                             <div class="badge-content">
-                                <span class="badge-number">30+</span>
+                                <span class="badge-number">37+</span>
                                 <span class="badge-text" v-html="$t('front.home.years_experience').replace(' ', '<br>')"></span>
                             </div>
                         </div>

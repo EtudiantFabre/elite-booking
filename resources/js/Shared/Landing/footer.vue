@@ -6,13 +6,13 @@
                 <div class="row gy-4">
                     <div class="col-lg-4 col-md-6 footer-about">
                         <Link :href="route('home')" class="logo d-flex align-items-center">
-                            <span class="sitename">Hotel Homa</span>
+                            <span class="sitename">Elite Booking</span>
                         </Link>
                         <div class="footer-contact pt-3">
-                            <p>A108 Adam Street</p>
-                            <p>New York, NY 535022</p>
-                            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                            <p><strong>Email:</strong> <span>info@example.com</span></p>
+                            <p>27 Avenue des Champs-Élysées</p>
+                            <p>75008 Paris, France</p>
+                            <p class="mt-3"><strong>{{ $t('front.footer.phone') }} :</strong> <span>+33 1 42 68 53 00</span></p>
+                            <p><strong>Email :</strong> <span>contact@elitebooking.com</span></p>
                         </div>
                     </div>
 
@@ -30,33 +30,33 @@
                     <div class="col-lg-2 col-md-3 footer-links">
                         <h4>{{ $t('front.footer.our_services') }}</h4>
                         <ul>
-                            <li><a href="#">{{ $t('front.footer.web_design') }}</a></li>
-                            <li><a href="#">{{ $t('front.footer.web_development') }}</a></li>
-                            <li><a href="#">{{ $t('front.footer.product_management') }}</a></li>
-                            <li><a href="#">{{ $t('front.footer.marketing') }}</a></li>
-                            <li><a href="#">{{ $t('front.footer.graphic_design') }}</a></li>
+                            <li><a href="#">{{ $t('front.footer.room_booking') }}</a></li>
+                            <li><a href="#">{{ $t('front.footer.event_hosting') }}</a></li>
+                            <li><a href="#">{{ $t('front.footer.spa_wellness') }}</a></li>
+                            <li><a href="#">{{ $t('front.footer.fine_dining') }}</a></li>
+                            <li><a href="#">{{ $t('front.footer.concierge') }}</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Hic solutasetp</h4>
+                        <h4>{{ $t('front.footer.guest_info') }}</h4>
                         <ul>
-                            <li><a href="#">Molestiae accusamus iure</a></li>
-                            <li><a href="#">Excepturi dignissimos</a></li>
-                            <li><a href="#">Suscipit distinctio</a></li>
-                            <li><a href="#">Dilecta</a></li>
-                            <li><a href="#">Sit quas consectetur</a></li>
+                            <li><a href="#">{{ $t('front.footer.faq') }}</a></li>
+                            <li><a href="#">{{ $t('front.footer.cancellation_policy') }}</a></li>
+                            <li><a href="#">{{ $t('front.footer.check_in_out') }}</a></li>
+                            <li><a href="#">{{ $t('front.footer.accessibility') }}</a></li>
+                            <li><a href="#">{{ $t('front.footer.contact_us') }}</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Nobis illum</h4>
+                        <h4>{{ $t('front.footer.discover') }}</h4>
                         <ul>
-                            <li><a href="#">Ipsam</a></li>
-                            <li><a href="#">Laudantium dolorum</a></li>
-                            <li><a href="#">Dinera</a></li>
-                            <li><a href="#">Trodelas</a></li>
-                            <li><a href="#">Flexo</a></li>
+                            <li><Link :href="route('roomTypes.index')">{{ $t('front.header.rooms') }}</Link></li>
+                            <li><Link :href="route('amenities')">{{ $t('front.header.amenities') }}</Link></li>
+                            <li><a href="#">{{ $t('front.footer.gallery') }}</a></li>
+                            <li><a href="#">{{ $t('front.footer.loyalty_program') }}</a></li>
+                            <li><a href="#">{{ $t('front.footer.gift_cards') }}</a></li>
                         </ul>
                     </div>
 
@@ -69,7 +69,7 @@
 
                 <div class="d-flex flex-column align-items-center align-items-lg-start">
                     <div>
-                        © Copyright <strong><span>Homa</span></strong>. {{ $t('front.footer.all_rights_reserved') }}
+                        © Copyright <strong><span>Elite Booking</span></strong>. {{ $t('front.footer.all_rights_reserved') }}
                     </div>
                     <div class="credits">
                         <!-- All the links in the footer should remain intact. -->

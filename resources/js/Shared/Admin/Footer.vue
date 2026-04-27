@@ -20,7 +20,7 @@
                     <ul class="list-inline list-inline-dots mb-0">
                         <li class="list-inline-item">
                             Copyright © 2025
-                            <a href="." class="link-secondary">Homa</a>. {{ $t('admin.footer.all_rights_reserved') }}
+                            <a href="." class="link-secondary">Elite Booking</a>. {{ $t('admin.footer.all_rights_reserved') }}
                         </li>
                         <li class="list-inline-item">
                             <a href="./changelog.html" class="link-secondary" rel="noopener"> v1.0.0 </a>
